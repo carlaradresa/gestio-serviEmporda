@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="control">
+            <h2><span jhiTranslate="gestioClientsApp.control.detail.title">Control</span> {{control.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestioClientsApp.control.numero">Numero</span></dt>
+                <dd>
+                    <span>{{control.numero}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.control.setmana">Setmana</span></dt>
+                <dd>
+                    <span>{{control.setmana}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.control.causa">Causa</span></dt>
+                <dd>
+                    <span>{{control.causa}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.control.dataRevisio">Data Revisio</span></dt>
+                <dd>
+                    <span>{{control.dataRevisio}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.control.comentaris">Comentaris</span></dt>
+                <dd>
+                    <span>{{control.comentaris}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.control.revisor">Revisor</span></dt>
+                <dd>
+                    <div *ngIf="control.revisor">
+                        <a [routerLink]="['/treballador', control.revisor?.id, 'view']">{{control.revisor?.nom}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.control.feina">Feina</span></dt>
+                <dd>
+                    <div *ngIf="control.feina">
+                        <a [routerLink]="['/feina', control.feina?.id, 'view']">{{control.feina?.nom}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/control', control.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="plantillaFeina">
+            <h2><span jhiTranslate="gestioClientsApp.plantillaFeina.detail.title">Plantilla Feina</span> {{plantillaFeina.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.numero">Numero</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.numero}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.dia">Dia</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'gestioClientsApp.Dia.' + plantillaFeina.dia}}">{{plantillaFeina.dia}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.horaInici}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.horaFinal}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitat">Periodicitat</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'gestioClientsApp.Periodicitat.' + plantillaFeina.periodicitat}}">{{plantillaFeina.periodicitat}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.tempsPrevist}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica">Facturacio Automatica</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.facturacioAutomatica}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Observacions</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.observacions}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial">Setmana Inicial</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.setmanaInicial}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaFinal">Setmana Final</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.setmanaFinal}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl">Numero Control</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.numeroControl}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plantilla-feina', plantillaFeina.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

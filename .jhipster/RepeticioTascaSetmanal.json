@@ -1,0 +1,33 @@
+{
+    "name": "RepeticioTascaSetmanal",
+    "fields": [
+        {
+            "fieldName": "dia",
+            "fieldType": "Dia",
+            "fieldValues": "DILLUNS,DIMARTS,DIMECRES,DIJOUS,DIVENDRES,DISSABTE,DIUMENGE"
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "feina",
+            "otherEntityRelationshipName": "repeticio",
+            "relationshipName": "feina",
+            "otherEntityField": "numero"
+        }
+    ],
+    "changelogDate": "20191029182927",
+    "entityTableName": "repeticio_tasca_setmanal",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

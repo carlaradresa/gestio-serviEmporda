@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.home.title">Repeticio Tasca Setmanals</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-repeticio-tasca-setmanal" [routerLink]="['/repeticio-tasca-setmanal/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.home.createLabel">
+            Create a new Repeticio Tasca Setmanal
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="repeticioTascaSetmanals?.length === 0">
+        <span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.home.notFound">No repeticioTascaSetmanals found</span>
+    </div>
+    <div class="table-responsive" *ngIf="repeticioTascaSetmanals?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.dia">Dia</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.activo">Activo</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.feina">Feina</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let repeticioTascaSetmanal of repeticioTascaSetmanals ;trackBy: trackId">
+                <td><a [routerLink]="['/repeticio-tasca-setmanal', repeticioTascaSetmanal.id, 'view' ]">{{repeticioTascaSetmanal.id}}</a></td>
+                <td jhiTranslate="{{'gestioClientsApp.Dia.' + repeticioTascaSetmanal.dia}}">{{repeticioTascaSetmanal.dia}}</td>
+                <td>{{repeticioTascaSetmanal.activo}}</td>
+                <td>
+                    <div *ngIf="repeticioTascaSetmanal.feina">
+                        <a [routerLink]="['/feina', repeticioTascaSetmanal.feina?.id, 'view' ]" >{{repeticioTascaSetmanal.feina?.numero}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/repeticio-tasca-setmanal', repeticioTascaSetmanal.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/repeticio-tasca-setmanal', repeticioTascaSetmanal.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/repeticio-tasca-setmanal', { outlets: { popup: repeticioTascaSetmanal.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

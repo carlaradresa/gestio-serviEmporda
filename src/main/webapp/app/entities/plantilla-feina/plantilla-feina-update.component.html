@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-plantilla-feina-heading" jhiTranslate="gestioClientsApp.plantillaFeina.home.createOrEditLabel">Create or edit a Plantilla Feina</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.numero" for="field_numero">Numero</label>
+                    <input type="number" class="form-control" name="numero" id="field_numero"
+                           formControlName="numero"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.dia" for="field_dia">Dia</label>
+                    <select class="form-control" name="dia" formControlName="dia" id="field_dia">
+                        <option value="DILLUNS">{{'gestioClientsApp.Dia.DILLUNS' | translate}}</option>
+                        <option value="DIMARTS">{{'gestioClientsApp.Dia.DIMARTS' | translate}}</option>
+                        <option value="DIMECRES">{{'gestioClientsApp.Dia.DIMECRES' | translate}}</option>
+                        <option value="DIJOUS">{{'gestioClientsApp.Dia.DIJOUS' | translate}}</option>
+                        <option value="DIVENDRES">{{'gestioClientsApp.Dia.DIVENDRES' | translate}}</option>
+                        <option value="DISSABTE">{{'gestioClientsApp.Dia.DISSABTE' | translate}}</option>
+                        <option value="DIUMENGE">{{'gestioClientsApp.Dia.DIUMENGE' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaInici" for="field_horaInici">Hora Inici</label>
+                    <div class="d-flex">
+                        <input id="field_horaInici" type="datetime-local" class="form-control" name="horaInici" formControlName="horaInici" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal" for="field_horaFinal">Hora Final</label>
+                    <div class="d-flex">
+                        <input id="field_horaFinal" type="datetime-local" class="form-control" name="horaFinal" formControlName="horaFinal" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.periodicitat" for="field_periodicitat">Periodicitat</label>
+                    <select class="form-control" name="periodicitat" formControlName="periodicitat" id="field_periodicitat">
+                        <option value="DIA">{{'gestioClientsApp.Periodicitat.DIA' | translate}}</option>
+                        <option value="SETMANA">{{'gestioClientsApp.Periodicitat.SETMANA' | translate}}</option>
+                        <option value="QUINZENAL">{{'gestioClientsApp.Periodicitat.QUINZENAL' | translate}}</option>
+                        <option value="MES">{{'gestioClientsApp.Periodicitat.MES' | translate}}</option>
+                        <option value="ANY">{{'gestioClientsApp.Periodicitat.ANY' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist" for="field_tempsPrevist">Temps Previst</label>
+                    <input type="number" class="form-control" name="tempsPrevist" id="field_tempsPrevist"
+                           formControlName="tempsPrevist"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica" for="field_facturacioAutomatica">Facturacio Automatica</label>
+                    <input type="checkbox" class="form-control" name="facturacioAutomatica" id="field_facturacioAutomatica"
+                           formControlName="facturacioAutomatica"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.observacions" for="field_observacions">Observacions</label>
+                    <input type="text" class="form-control" name="observacions" id="field_observacions"
+                           formControlName="observacions"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial" for="field_setmanaInicial">Setmana Inicial</label>
+                    <div class="input-group">
+                        <input id="field_setmanaInicial" type="text" class="form-control" name="setmanaInicial" ngbDatepicker  #setmanaInicialDp="ngbDatepicker" formControlName="setmanaInicial"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="setmanaInicialDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.setmanaFinal" for="field_setmanaFinal">Setmana Final</label>
+                    <div class="input-group">
+                        <input id="field_setmanaFinal" type="text" class="form-control" name="setmanaFinal" ngbDatepicker  #setmanaFinalDp="ngbDatepicker" formControlName="setmanaFinal"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="setmanaFinalDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl" for="field_numeroControl">Numero Control</label>
+                    <input type="number" class="form-control" name="numeroControl" id="field_numeroControl"
+                           formControlName="numeroControl"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

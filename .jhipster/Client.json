@@ -1,0 +1,74 @@
+{
+    "name": "Client",
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "direccio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "localitat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefon",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nif",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codiUbicacio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observacions",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "ubicacio",
+            "otherEntityRelationshipName": "client",
+            "relationshipName": "ubicacio",
+            "otherEntityField": "ubicacio",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "venedor",
+            "otherEntityRelationshipName": "client",
+            "relationshipName": "venedor",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "feina",
+            "otherEntityRelationshipName": "client",
+            "relationshipName": "feina"
+        }
+    ],
+    "changelogDate": "20191029182929",
+    "entityTableName": "client",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
