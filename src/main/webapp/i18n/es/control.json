@@ -1,0 +1,28 @@
+{
+  "gestioClientsApp": {
+    "control": {
+      "home": {
+        "title": "Controls",
+        "createLabel": "Crear nuevo Control",
+        "createOrEditLabel": "Crear o editar Control",
+        "notFound": "No Controls found"
+      },
+      "created": "Un nuevo Control ha sido creado con el identificador {{ param }}",
+      "updated": "Un Control ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Control ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Control {{ id }}?"
+      },
+      "detail": {
+        "title": "Control"
+      },
+      "numero": "Numero",
+      "setmana": "Setmana",
+      "causa": "Causa",
+      "dataRevisio": "Data Revisio",
+      "comentaris": "Comentaris",
+      "revisor": "Revisor",
+      "feina": "Feina"
+    }
+  }
+}

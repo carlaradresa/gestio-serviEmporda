@@ -1,0 +1,47 @@
+{
+    "name": "Marcatge",
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "horaEntrada",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "horaSortida",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "desviacio",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "feina",
+            "otherEntityRelationshipName": "marcatge",
+            "relationshipName": "feina",
+            "otherEntityField": "nom"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "treballador",
+            "otherEntityRelationshipName": "marcatge",
+            "relationshipName": "treballador",
+            "otherEntityField": "nom"
+        }
+    ],
+    "changelogDate": "20191029182932",
+    "entityTableName": "marcatge",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,33 @@
+{
+  "gestioClientsApp": {
+    "client": {
+      "home": {
+        "title": "Clients",
+        "createLabel": "Crear nuevo Client",
+        "createOrEditLabel": "Crear o editar Client",
+        "notFound": "No Clients found"
+      },
+      "created": "Un nuevo Client ha sido creado con el identificador {{ param }}",
+      "updated": "Un Client ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Client ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Client {{ id }}?"
+      },
+      "detail": {
+        "title": "Client"
+      },
+      "numero": "Numero",
+      "nom": "Nom",
+      "direccio": "Direccio",
+      "localitat": "Localitat",
+      "telefon": "Telefon",
+      "email": "Email",
+      "nif": "Nif",
+      "codiUbicacio": "Codi Ubicacio",
+      "observacions": "Observacions",
+      "ubicacio": "Ubicacio",
+      "venedor": "Venedor",
+      "feina": "Feina"
+    }
+  }
+}

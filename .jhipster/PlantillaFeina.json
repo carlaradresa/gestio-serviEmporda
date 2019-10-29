@@ -1,0 +1,69 @@
+{
+    "name": "PlantillaFeina",
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "dia",
+            "fieldType": "Dia",
+            "fieldValues": "DILLUNS,DIMARTS,DIMECRES,DIJOUS,DIVENDRES,DISSABTE,DIUMENGE"
+        },
+        {
+            "fieldName": "horaInici",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "horaFinal",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "periodicitat",
+            "fieldType": "Periodicitat",
+            "fieldValues": "DIA,SETMANA,QUINZENAL,MES,ANY"
+        },
+        {
+            "fieldName": "tempsPrevist",
+            "fieldType": "Duration"
+        },
+        {
+            "fieldName": "facturacioAutomatica",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "observacions",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "setmanaInicial",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "setmanaFinal",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "numeroControl",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "feina",
+            "otherEntityRelationshipName": "plantillaFeina",
+            "relationshipName": "feina"
+        }
+    ],
+    "changelogDate": "20191029182925",
+    "entityTableName": "plantilla_feina",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

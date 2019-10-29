@@ -42,6 +42,27 @@ public class CacheConfiguration {
             createCache(cm, com.serviemporda.gestioclients.domain.User.class.getName());
             createCache(cm, com.serviemporda.gestioclients.domain.Authority.class.getName());
             createCache(cm, com.serviemporda.gestioclients.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.serviemporda.gestioclients.domain.PlantillaFeina.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.PlantillaFeina.class.getName() + ".feinas");
+            createCache(cm, com.serviemporda.gestioclients.domain.Categoria.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Categoria.class.getName() + ".feinas");
+            createCache(cm, com.serviemporda.gestioclients.domain.RepeticioTascaSetmanal.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Ubicacio.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Client.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Client.class.getName() + ".feinas");
+            createCache(cm, com.serviemporda.gestioclients.domain.Feina.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Feina.class.getName() + ".treballadors");
+            createCache(cm, com.serviemporda.gestioclients.domain.Feina.class.getName() + ".repeticios");
+            createCache(cm, com.serviemporda.gestioclients.domain.Feina.class.getName() + ".marcatges");
+            createCache(cm, com.serviemporda.gestioclients.domain.Feina.class.getName() + ".revisionsRebudes");
+            createCache(cm, com.serviemporda.gestioclients.domain.Control.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Marcatge.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Treballador.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Treballador.class.getName() + ".marcatges");
+            createCache(cm, com.serviemporda.gestioclients.domain.Treballador.class.getName() + ".revisionsFetes");
+            createCache(cm, com.serviemporda.gestioclients.domain.Treballador.class.getName() + ".feinas");
+            createCache(cm, com.serviemporda.gestioclients.domain.Venedor.class.getName());
+            createCache(cm, com.serviemporda.gestioclients.domain.Venedor.class.getName() + ".clients");
             // jhipster-needle-ehcache-add-entry
         };
     }

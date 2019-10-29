@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestioClientsApp.plantillaFeina.home.title">Plantilla Feinas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-plantilla-feina" [routerLink]="['/plantilla-feina/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestioClientsApp.plantillaFeina.home.createLabel">
+            Create a new Plantilla Feina
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="plantillaFeinas?.length === 0">
+        <span jhiTranslate="gestioClientsApp.plantillaFeina.home.notFound">No plantillaFeinas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="plantillaFeinas?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.numero">Numero</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.dia">Dia</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitat">Periodicitat</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica">Facturacio Automatica</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Observacions</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial">Setmana Inicial</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaFinal">Setmana Final</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl">Numero Control</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plantillaFeina of plantillaFeinas ;trackBy: trackId">
+                <td><a [routerLink]="['/plantilla-feina', plantillaFeina.id, 'view' ]">{{plantillaFeina.id}}</a></td>
+                <td>{{plantillaFeina.numero}}</td>
+                <td jhiTranslate="{{'gestioClientsApp.Dia.' + plantillaFeina.dia}}">{{plantillaFeina.dia}}</td>
+                <td>{{plantillaFeina.horaInici | date:'medium'}}</td>
+                <td>{{plantillaFeina.horaFinal | date:'medium'}}</td>
+                <td jhiTranslate="{{'gestioClientsApp.Periodicitat.' + plantillaFeina.periodicitat}}">{{plantillaFeina.periodicitat}}</td>
+                <td>{{plantillaFeina.tempsPrevist}}</td>
+                <td>{{plantillaFeina.facturacioAutomatica}}</td>
+                <td>{{plantillaFeina.observacions}}</td>
+                <td>{{plantillaFeina.setmanaInicial | date:'mediumDate'}}</td>
+                <td>{{plantillaFeina.setmanaFinal | date:'mediumDate'}}</td>
+                <td>{{plantillaFeina.numeroControl}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/plantilla-feina', plantillaFeina.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/plantilla-feina', plantillaFeina.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/plantilla-feina', { outlets: { popup: plantillaFeina.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

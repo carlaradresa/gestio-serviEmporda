@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Marcatge.
+    -->
+    <changeSet id="20191029182932-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="feina_id"
+                                 baseTableName="marcatge"
+                                 constraintName="fk_marcatge_feina_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feina"/>
+
+        <addForeignKeyConstraint baseColumnNames="treballador_id"
+                                 baseTableName="marcatge"
+                                 constraintName="fk_marcatge_treballador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="treballador"/>
+
+    </changeSet>
+</databaseChangeLog>

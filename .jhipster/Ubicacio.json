@@ -1,0 +1,43 @@
+{
+    "name": "Ubicacio",
+    "fields": [
+        {
+            "fieldName": "longitud",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "latitud",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ubicacio",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "ubicacio",
+            "relationshipName": "client",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "venedor",
+            "otherEntityRelationshipName": "ubicacio",
+            "relationshipName": "venedor",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191029182928",
+    "entityTableName": "ubicacio",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
