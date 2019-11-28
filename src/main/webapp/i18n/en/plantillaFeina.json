@@ -16,18 +16,16 @@
       "detail": {
         "title": "Plantilla Feina"
       },
-      "numero": "Numero",
-      "dia": "Dia",
       "horaInici": "Hora Inici",
       "horaFinal": "Hora Final",
-      "periodicitat": "Periodicitat",
       "tempsPrevist": "Temps Previst",
       "facturacioAutomatica": "Facturacio Automatica",
       "observacions": "Observacions",
       "setmanaInicial": "Setmana Inicial",
       "setmanaFinal": "Setmana Final",
       "numeroControl": "Numero Control",
-      "feina": "Feina"
+      "periodicitatConfigurable": "Periodicitat Configurable",
+      "periodicitatSetmanal": "Periodicitat Setmanal"
     }
   }
 }

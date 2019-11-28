@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional; 
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -23,6 +24,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
+@Transactional
 public class PlantillaFeinaResource {
 
     private final Logger log = LoggerFactory.getLogger(PlantillaFeinaResource.class);
@@ -81,13 +83,13 @@ public class PlantillaFeinaResource {
     /**
      * {@code GET  /plantilla-feinas} : get all the plantillaFeinas.
      *
-
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of plantillaFeinas in body.
      */
     @GetMapping("/plantilla-feinas")
-    public List<PlantillaFeina> getAllPlantillaFeinas() {
+    public List<PlantillaFeina> getAllPlantillaFeinas(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all PlantillaFeinas");
-        return plantillaFeinaRepository.findAll();
+        return plantillaFeinaRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -99,7 +101,7 @@ public class PlantillaFeinaResource {
     @GetMapping("/plantilla-feinas/{id}")
     public ResponseEntity<PlantillaFeina> getPlantillaFeina(@PathVariable Long id) {
         log.debug("REST request to get PlantillaFeina : {}", id);
-        Optional<PlantillaFeina> plantillaFeina = plantillaFeinaRepository.findById(id);
+        Optional<PlantillaFeina> plantillaFeina = plantillaFeinaRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(plantillaFeina);
     }
 

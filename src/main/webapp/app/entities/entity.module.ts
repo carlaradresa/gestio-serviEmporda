@@ -44,6 +44,16 @@ import { RouterModule } from '@angular/router';
       {
         path: 'venedor',
         loadChildren: () => import('./venedor/venedor.module').then(m => m.GestioClientsVenedorModule)
+      },
+      {
+        path: 'periodicitat-setmanal',
+        loadChildren: () =>
+          import('./periodicitat-setmanal/periodicitat-setmanal.module').then(m => m.GestioClientsPeriodicitatSetmanalModule)
+      },
+      {
+        path: 'periodicitat-configurable',
+        loadChildren: () =>
+          import('./periodicitat-configurable/periodicitat-configurable.module').then(m => m.GestioClientsPeriodicitatConfigurableModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

@@ -17,6 +17,8 @@
         "marcatge": "Marcatge",
         "treballador": "Treballador",
         "venedor": "Venedor",
+        "periodicitatSetmanal": "Periodicitat Setmanal",
+        "periodicitatConfigurable": "Periodicitat Configurable",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

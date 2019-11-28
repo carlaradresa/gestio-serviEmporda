@@ -1,0 +1,25 @@
+{
+  "gestioClientsApp": {
+    "periodicitatConfigurable": {
+      "home": {
+        "title": "Periodicitat Configurables",
+        "createLabel": "Create a new Periodicitat Configurable",
+        "createOrEditLabel": "Create or edit a Periodicitat Configurable",
+        "notFound": "No Periodicitat Configurables found"
+      },
+      "created": "A new Periodicitat Configurable is created with identifier {{ param }}",
+      "updated": "A Periodicitat Configurable is updated with identifier {{ param }}",
+      "deleted": "A Periodicitat Configurable is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Periodicitat Configurable {{ id }}?"
+      },
+      "detail": {
+        "title": "Periodicitat Configurable"
+      },
+      "frequencia": "Frequencia",
+      "periodicitat": "Periodicitat",
+      "observacions": "Observacions",
+      "plantilla": "Plantilla"
+    }
+  }
+}

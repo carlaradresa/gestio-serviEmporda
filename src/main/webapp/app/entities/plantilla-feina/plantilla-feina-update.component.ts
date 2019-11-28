@@ -7,8 +7,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 import { IPlantillaFeina, PlantillaFeina } from 'app/shared/model/plantilla-feina.model';
 import { PlantillaFeinaService } from './plantilla-feina.service';
+import { IPeriodicitatConfigurable } from 'app/shared/model/periodicitat-configurable.model';
+import { PeriodicitatConfigurableService } from 'app/entities/periodicitat-configurable/periodicitat-configurable.service';
+import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.model';
+import { PeriodicitatSetmanalService } from 'app/entities/periodicitat-setmanal/periodicitat-setmanal.service';
 
 @Component({
   selector: 'jhi-plantilla-feina-update',
@@ -16,47 +21,77 @@ import { PlantillaFeinaService } from './plantilla-feina.service';
 })
 export class PlantillaFeinaUpdateComponent implements OnInit {
   isSaving: boolean;
+
+  periodicitatconfigurables: IPeriodicitatConfigurable[];
+
+  periodicitatsetmanals: IPeriodicitatSetmanal[];
   setmanaInicialDp: any;
   setmanaFinalDp: any;
 
   editForm = this.fb.group({
     id: [],
-    numero: [],
-    dia: [],
     horaInici: [],
     horaFinal: [],
-    periodicitat: [],
     tempsPrevist: [],
     facturacioAutomatica: [],
     observacions: [],
     setmanaInicial: [],
     setmanaFinal: [],
-    numeroControl: []
+    numeroControl: [],
+    periodicitatConfigurable: [],
+    periodicitatSetmanals: []
   });
 
-  constructor(protected plantillaFeinaService: PlantillaFeinaService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected jhiAlertService: JhiAlertService,
+    protected plantillaFeinaService: PlantillaFeinaService,
+    protected periodicitatConfigurableService: PeriodicitatConfigurableService,
+    protected periodicitatSetmanalService: PeriodicitatSetmanalService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ plantillaFeina }) => {
       this.updateForm(plantillaFeina);
     });
+    this.periodicitatConfigurableService.query({ filter: 'plantilla-is-null' }).subscribe(
+      (res: HttpResponse<IPeriodicitatConfigurable[]>) => {
+        if (!this.editForm.get('periodicitatConfigurable').value || !this.editForm.get('periodicitatConfigurable').value.id) {
+          this.periodicitatconfigurables = res.body;
+        } else {
+          this.periodicitatConfigurableService
+            .find(this.editForm.get('periodicitatConfigurable').value.id)
+            .subscribe(
+              (subRes: HttpResponse<IPeriodicitatConfigurable>) => (this.periodicitatconfigurables = [subRes.body].concat(res.body)),
+              (subRes: HttpErrorResponse) => this.onError(subRes.message)
+            );
+        }
+      },
+      (res: HttpErrorResponse) => this.onError(res.message)
+    );
+    this.periodicitatSetmanalService
+      .query()
+      .subscribe(
+        (res: HttpResponse<IPeriodicitatSetmanal[]>) => (this.periodicitatsetmanals = res.body),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
   }
 
   updateForm(plantillaFeina: IPlantillaFeina) {
     this.editForm.patchValue({
       id: plantillaFeina.id,
-      numero: plantillaFeina.numero,
-      dia: plantillaFeina.dia,
       horaInici: plantillaFeina.horaInici != null ? plantillaFeina.horaInici.format(DATE_TIME_FORMAT) : null,
       horaFinal: plantillaFeina.horaFinal != null ? plantillaFeina.horaFinal.format(DATE_TIME_FORMAT) : null,
-      periodicitat: plantillaFeina.periodicitat,
       tempsPrevist: plantillaFeina.tempsPrevist,
       facturacioAutomatica: plantillaFeina.facturacioAutomatica,
       observacions: plantillaFeina.observacions,
       setmanaInicial: plantillaFeina.setmanaInicial,
       setmanaFinal: plantillaFeina.setmanaFinal,
-      numeroControl: plantillaFeina.numeroControl
+      numeroControl: plantillaFeina.numeroControl,
+      periodicitatConfigurable: plantillaFeina.periodicitatConfigurable,
+      periodicitatSetmanals: plantillaFeina.periodicitatSetmanals
     });
   }
 
@@ -78,19 +113,18 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
     return {
       ...new PlantillaFeina(),
       id: this.editForm.get(['id']).value,
-      numero: this.editForm.get(['numero']).value,
-      dia: this.editForm.get(['dia']).value,
       horaInici:
         this.editForm.get(['horaInici']).value != null ? moment(this.editForm.get(['horaInici']).value, DATE_TIME_FORMAT) : undefined,
       horaFinal:
         this.editForm.get(['horaFinal']).value != null ? moment(this.editForm.get(['horaFinal']).value, DATE_TIME_FORMAT) : undefined,
-      periodicitat: this.editForm.get(['periodicitat']).value,
       tempsPrevist: this.editForm.get(['tempsPrevist']).value,
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica']).value,
       observacions: this.editForm.get(['observacions']).value,
       setmanaInicial: this.editForm.get(['setmanaInicial']).value,
       setmanaFinal: this.editForm.get(['setmanaFinal']).value,
-      numeroControl: this.editForm.get(['numeroControl']).value
+      numeroControl: this.editForm.get(['numeroControl']).value,
+      periodicitatConfigurable: this.editForm.get(['periodicitatConfigurable']).value,
+      periodicitatSetmanals: this.editForm.get(['periodicitatSetmanals']).value
     };
   }
 
@@ -105,5 +139,27 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
 
   protected onSaveError() {
     this.isSaving = false;
+  }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackPeriodicitatConfigurableById(index: number, item: IPeriodicitatConfigurable) {
+    return item.id;
+  }
+
+  trackPeriodicitatSetmanalById(index: number, item: IPeriodicitatSetmanal) {
+    return item.id;
+  }
+
+  getSelected(selectedVals: any[], option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

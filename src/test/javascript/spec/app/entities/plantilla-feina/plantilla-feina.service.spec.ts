@@ -5,8 +5,6 @@ import * as moment from 'moment';
 import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { PlantillaFeinaService } from 'app/entities/plantilla-feina/plantilla-feina.service';
 import { IPlantillaFeina, PlantillaFeina } from 'app/shared/model/plantilla-feina.model';
-import { Dia } from 'app/shared/model/enumerations/dia.model';
-import { Periodicitat } from 'app/shared/model/enumerations/periodicitat.model';
 
 describe('Service Tests', () => {
   describe('PlantillaFeina Service', () => {
@@ -26,20 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new PlantillaFeina(
-        0,
-        0,
-        Dia.DILLUNS,
-        currentDate,
-        currentDate,
-        Periodicitat.DIA,
-        0,
-        false,
-        'AAAAAAA',
-        currentDate,
-        currentDate,
-        0
-      );
+      elemDefault = new PlantillaFeina(0, currentDate, currentDate, 0, false, 'AAAAAAA', currentDate, currentDate, 0);
     });
 
     describe('Service methods', () => {
@@ -95,11 +80,8 @@ describe('Service Tests', () => {
       it('should update a PlantillaFeina', () => {
         const returnedFromService = Object.assign(
           {
-            numero: 1,
-            dia: 'BBBBBB',
             horaInici: currentDate.format(DATE_TIME_FORMAT),
             horaFinal: currentDate.format(DATE_TIME_FORMAT),
-            periodicitat: 'BBBBBB',
             tempsPrevist: 'BBBBBB',
             facturacioAutomatica: true,
             observacions: 'BBBBBB',
@@ -131,11 +113,8 @@ describe('Service Tests', () => {
       it('should return a list of PlantillaFeina', () => {
         const returnedFromService = Object.assign(
           {
-            numero: 1,
-            dia: 'BBBBBB',
             horaInici: currentDate.format(DATE_TIME_FORMAT),
             horaFinal: currentDate.format(DATE_TIME_FORMAT),
-            periodicitat: 'BBBBBB',
             tempsPrevist: 'BBBBBB',
             facturacioAutomatica: true,
             observacions: 'BBBBBB',

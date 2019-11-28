@@ -10,23 +10,6 @@
                         readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.numero" for="field_numero">Numero</label>
-                    <input type="number" class="form-control" name="numero" id="field_numero"
-                           formControlName="numero"/>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.dia" for="field_dia">Dia</label>
-                    <select class="form-control" name="dia" formControlName="dia" id="field_dia">
-                        <option value="DILLUNS">{{'gestioClientsApp.Dia.DILLUNS' | translate}}</option>
-                        <option value="DIMARTS">{{'gestioClientsApp.Dia.DIMARTS' | translate}}</option>
-                        <option value="DIMECRES">{{'gestioClientsApp.Dia.DIMECRES' | translate}}</option>
-                        <option value="DIJOUS">{{'gestioClientsApp.Dia.DIJOUS' | translate}}</option>
-                        <option value="DIVENDRES">{{'gestioClientsApp.Dia.DIVENDRES' | translate}}</option>
-                        <option value="DISSABTE">{{'gestioClientsApp.Dia.DISSABTE' | translate}}</option>
-                        <option value="DIUMENGE">{{'gestioClientsApp.Dia.DIUMENGE' | translate}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaInici" for="field_horaInici">Hora Inici</label>
                     <div class="d-flex">
                         <input id="field_horaInici" type="datetime-local" class="form-control" name="horaInici" formControlName="horaInici" placeholder="YYYY-MM-DD HH:mm"/>
@@ -37,16 +20,6 @@
                     <div class="d-flex">
                         <input id="field_horaFinal" type="datetime-local" class="form-control" name="horaFinal" formControlName="horaFinal" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.periodicitat" for="field_periodicitat">Periodicitat</label>
-                    <select class="form-control" name="periodicitat" formControlName="periodicitat" id="field_periodicitat">
-                        <option value="DIA">{{'gestioClientsApp.Periodicitat.DIA' | translate}}</option>
-                        <option value="SETMANA">{{'gestioClientsApp.Periodicitat.SETMANA' | translate}}</option>
-                        <option value="QUINZENAL">{{'gestioClientsApp.Periodicitat.QUINZENAL' | translate}}</option>
-                        <option value="MES">{{'gestioClientsApp.Periodicitat.MES' | translate}}</option>
-                        <option value="ANY">{{'gestioClientsApp.Periodicitat.ANY' | translate}}</option>
-                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist" for="field_tempsPrevist">Temps Previst</label>
@@ -87,6 +60,19 @@
                            formControlName="numeroControl"/>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatConfigurable" for="field_periodicitatConfigurable">Periodicitat Configurable</label>
+                    <select class="form-control" id="field_periodicitatConfigurable" name="periodicitatConfigurable" formControlName="periodicitatConfigurable">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="periodicitatConfigurableOption.id === editForm.get('periodicitatConfigurable').value?.id ? editForm.get('periodicitatConfigurable').value : periodicitatConfigurableOption" *ngFor="let periodicitatConfigurableOption of periodicitatconfigurables; trackBy: trackPeriodicitatConfigurableById">{{periodicitatConfigurableOption.observacions}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal" for="field_periodicitatSetmanals">Periodicitat Setmanal</label>
+                    <select class="form-control" id="field_periodicitatSetmanals" multiple name="periodicitatSetmanals" formControlName="periodicitatSetmanals">
+                        <option [ngValue]="getSelected(editForm.get('periodicitatSetmanals').value, periodicitatSetmanalOption)" *ngFor="let periodicitatSetmanalOption of periodicitatsetmanals; trackBy: trackPeriodicitatSetmanalById">{{periodicitatSetmanalOption.diaSetmana}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

@@ -11,10 +11,6 @@ import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.serviemporda.gestioclients.domain.enumeration.Dia;
-
-import com.serviemporda.gestioclients.domain.enumeration.Periodicitat;
-
 /**
  * A PlantillaFeina.
  */
@@ -29,22 +25,11 @@ public class PlantillaFeina implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "numero")
-    private Integer numero;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "dia")
-    private Dia dia;
-
     @Column(name = "hora_inici")
     private Instant horaInici;
 
     @Column(name = "hora_final")
     private Instant horaFinal;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "periodicitat")
-    private Periodicitat periodicitat;
 
     @Column(name = "temps_previst")
     private Duration tempsPrevist;
@@ -64,9 +49,16 @@ public class PlantillaFeina implements Serializable {
     @Column(name = "numero_control")
     private Integer numeroControl;
 
-    @OneToMany(mappedBy = "plantillaFeina")
+    @OneToOne
+    @JoinColumn(unique = true)
+    private PeriodicitatConfigurable periodicitatConfigurable;
+
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Feina> feinas = new HashSet<>();
+    @JoinTable(name = "plantilla_feina_periodicitat_setmanal",
+               joinColumns = @JoinColumn(name = "plantilla_feina_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "periodicitat_setmanal_id", referencedColumnName = "id"))
+    private Set<PeriodicitatSetmanal> periodicitatSetmanals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -75,32 +67,6 @@ public class PlantillaFeina implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public PlantillaFeina numero(Integer numero) {
-        this.numero = numero;
-        return this;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public Dia getDia() {
-        return dia;
-    }
-
-    public PlantillaFeina dia(Dia dia) {
-        this.dia = dia;
-        return this;
-    }
-
-    public void setDia(Dia dia) {
-        this.dia = dia;
     }
 
     public Instant getHoraInici() {
@@ -127,19 +93,6 @@ public class PlantillaFeina implements Serializable {
 
     public void setHoraFinal(Instant horaFinal) {
         this.horaFinal = horaFinal;
-    }
-
-    public Periodicitat getPeriodicitat() {
-        return periodicitat;
-    }
-
-    public PlantillaFeina periodicitat(Periodicitat periodicitat) {
-        this.periodicitat = periodicitat;
-        return this;
-    }
-
-    public void setPeriodicitat(Periodicitat periodicitat) {
-        this.periodicitat = periodicitat;
     }
 
     public Duration getTempsPrevist() {
@@ -220,29 +173,42 @@ public class PlantillaFeina implements Serializable {
         this.numeroControl = numeroControl;
     }
 
-    public Set<Feina> getFeinas() {
-        return feinas;
+    public PeriodicitatConfigurable getPeriodicitatConfigurable() {
+        return periodicitatConfigurable;
     }
 
-    public PlantillaFeina feinas(Set<Feina> feinas) {
-        this.feinas = feinas;
+    public PlantillaFeina periodicitatConfigurable(PeriodicitatConfigurable periodicitatConfigurable) {
+        this.periodicitatConfigurable = periodicitatConfigurable;
         return this;
     }
 
-    public PlantillaFeina addFeina(Feina feina) {
-        this.feinas.add(feina);
-        feina.setPlantillaFeina(this);
+    public void setPeriodicitatConfigurable(PeriodicitatConfigurable periodicitatConfigurable) {
+        this.periodicitatConfigurable = periodicitatConfigurable;
+    }
+
+    public Set<PeriodicitatSetmanal> getPeriodicitatSetmanals() {
+        return periodicitatSetmanals;
+    }
+
+    public PlantillaFeina periodicitatSetmanals(Set<PeriodicitatSetmanal> periodicitatSetmanals) {
+        this.periodicitatSetmanals = periodicitatSetmanals;
         return this;
     }
 
-    public PlantillaFeina removeFeina(Feina feina) {
-        this.feinas.remove(feina);
-        feina.setPlantillaFeina(null);
+    public PlantillaFeina addPeriodicitatSetmanal(PeriodicitatSetmanal periodicitatSetmanal) {
+        this.periodicitatSetmanals.add(periodicitatSetmanal);
+        periodicitatSetmanal.getPlantillas().add(this);
         return this;
     }
 
-    public void setFeinas(Set<Feina> feinas) {
-        this.feinas = feinas;
+    public PlantillaFeina removePeriodicitatSetmanal(PeriodicitatSetmanal periodicitatSetmanal) {
+        this.periodicitatSetmanals.remove(periodicitatSetmanal);
+        periodicitatSetmanal.getPlantillas().remove(this);
+        return this;
+    }
+
+    public void setPeriodicitatSetmanals(Set<PeriodicitatSetmanal> periodicitatSetmanals) {
+        this.periodicitatSetmanals = periodicitatSetmanals;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -266,11 +232,8 @@ public class PlantillaFeina implements Serializable {
     public String toString() {
         return "PlantillaFeina{" +
             "id=" + getId() +
-            ", numero=" + getNumero() +
-            ", dia='" + getDia() + "'" +
             ", horaInici='" + getHoraInici() + "'" +
             ", horaFinal='" + getHoraFinal() + "'" +
-            ", periodicitat='" + getPeriodicitat() + "'" +
             ", tempsPrevist='" + getTempsPrevist() + "'" +
             ", facturacioAutomatica='" + isFacturacioAutomatica() + "'" +
             ", observacions='" + getObservacions() + "'" +

@@ -2,26 +2,12 @@
     "name": "PlantillaFeina",
     "fields": [
         {
-            "fieldName": "numero",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "dia",
-            "fieldType": "Dia",
-            "fieldValues": "DILLUNS,DIMARTS,DIMECRES,DIJOUS,DIVENDRES,DISSABTE,DIUMENGE"
-        },
-        {
             "fieldName": "horaInici",
             "fieldType": "Instant"
         },
         {
             "fieldName": "horaFinal",
             "fieldType": "Instant"
-        },
-        {
-            "fieldName": "periodicitat",
-            "fieldType": "Periodicitat",
-            "fieldValues": "DIA,SETMANA,QUINZENAL,MES,ANY"
         },
         {
             "fieldName": "tempsPrevist",
@@ -50,10 +36,20 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "feina",
-            "otherEntityRelationshipName": "plantillaFeina",
-            "relationshipName": "feina"
+            "relationshipType": "one-to-one",
+            "otherEntityName": "periodicitatConfigurable",
+            "otherEntityRelationshipName": "plantilla",
+            "relationshipName": "periodicitatConfigurable",
+            "otherEntityField": "observacions",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "periodicitatSetmanal",
+            "otherEntityRelationshipName": "plantilla",
+            "relationshipName": "periodicitatSetmanal",
+            "otherEntityField": "diaSetmana",
+            "ownerSide": true
         }
     ],
     "changelogDate": "20191029182925",

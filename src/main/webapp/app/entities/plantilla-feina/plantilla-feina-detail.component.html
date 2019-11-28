@@ -5,14 +5,6 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.numero">Numero</span></dt>
-                <dd>
-                    <span>{{plantillaFeina.numero}}</span>
-                </dd>
-                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.dia">Dia</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'gestioClientsApp.Dia.' + plantillaFeina.dia}}">{{plantillaFeina.dia}}</span>
-                </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></dt>
                 <dd>
                     <span>{{plantillaFeina.horaInici}}</span>
@@ -20,10 +12,6 @@
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></dt>
                 <dd>
                     <span>{{plantillaFeina.horaFinal}}</span>
-                </dd>
-                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitat">Periodicitat</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'gestioClientsApp.Periodicitat.' + plantillaFeina.periodicitat}}">{{plantillaFeina.periodicitat}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></dt>
                 <dd>
@@ -48,6 +36,18 @@
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl">Numero Control</span></dt>
                 <dd>
                     <span>{{plantillaFeina.numeroControl}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatConfigurable">Periodicitat Configurable</span></dt>
+                <dd>
+                    <div *ngIf="plantillaFeina.periodicitatConfigurable">
+                        <a [routerLink]="['/periodicitat-configurable', plantillaFeina.periodicitatConfigurable?.id, 'view']">{{plantillaFeina.periodicitatConfigurable?.observacions}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal">Periodicitat Setmanal</span></dt>
+                <dd>
+                    <span *ngFor="let periodicitatSetmanal of plantillaFeina.periodicitatSetmanals; let last = last">
+                        <a [routerLink]="['/periodicitat-setmanal', periodicitatSetmanal?.id, 'view' ]">{{periodicitatSetmanal.diaSetmana}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
             </dl>
 
