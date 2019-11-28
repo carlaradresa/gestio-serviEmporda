@@ -1,0 +1,49 @@
+{
+    "name": "Treballador",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "carregaHores",
+            "fieldType": "Duration"
+        },
+        {
+            "fieldName": "actiu",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "controlQualitat",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "treballador",
+            "relationshipName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "feina",
+            "otherEntityRelationshipName": "treballador",
+            "relationshipName": "feina",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20191029182933",
+    "entityTableName": "treballador",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

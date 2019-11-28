@@ -1,0 +1,26 @@
+{
+  "gestioClientsApp": {
+    "venedor": {
+      "home": {
+        "title": "Venedors",
+        "createLabel": "Create a new Venedor",
+        "createOrEditLabel": "Create or edit a Venedor",
+        "notFound": "No Venedors found"
+      },
+      "created": "A new Venedor is created with identifier {{ param }}",
+      "updated": "A Venedor is updated with identifier {{ param }}",
+      "deleted": "A Venedor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Venedor {{ id }}?"
+      },
+      "detail": {
+        "title": "Venedor"
+      },
+      "nom": "Nom",
+      "telefon": "Telefon",
+      "email": "Email",
+      "observacions": "Observacions",
+      "ubicacio": "Ubicacio"
+    }
+  }
+}

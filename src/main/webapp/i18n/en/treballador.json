@@ -1,0 +1,27 @@
+{
+  "gestioClientsApp": {
+    "treballador": {
+      "home": {
+        "title": "Treballadors",
+        "createLabel": "Create a new Treballador",
+        "createOrEditLabel": "Create or edit a Treballador",
+        "notFound": "No Treballadors found"
+      },
+      "created": "A new Treballador is created with identifier {{ param }}",
+      "updated": "A Treballador is updated with identifier {{ param }}",
+      "deleted": "A Treballador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Treballador {{ id }}?"
+      },
+      "detail": {
+        "title": "Treballador"
+      },
+      "nom": "Nom",
+      "carregaHores": "Carrega Hores",
+      "actiu": "Actiu",
+      "controlQualitat": "Control Qualitat",
+      "user": "User",
+      "feina": "Feina"
+    }
+  }
+}

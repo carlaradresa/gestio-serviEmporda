@@ -7,6 +7,18 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "plantillaFeina": "Plantilla Feina",
+        "categoria": "Categoria",
+        "repeticioTascaSetmanal": "Repeticio Tasca Setmanal",
+        "ubicacio": "Ubicacio",
+        "client": "Client",
+        "feina": "Feina",
+        "control": "Control",
+        "marcatge": "Marcatge",
+        "treballador": "Treballador",
+        "venedor": "Venedor",
+        "periodicitatSetmanal": "Periodicitat Setmanal",
+        "periodicitatConfigurable": "Periodicitat Configurable",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

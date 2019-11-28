@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity RepeticioTascaSetmanal.
+    -->
+    <changeSet id="20191029182927-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="feina_id"
+                                 baseTableName="repeticio_tasca_setmanal"
+                                 constraintName="fk_repeticio_tasca_setmanal_feina_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feina"/>
+
+    </changeSet>
+</databaseChangeLog>

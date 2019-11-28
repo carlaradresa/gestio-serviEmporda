@@ -1,0 +1,35 @@
+{
+  "gestioClientsApp": {
+    "feina": {
+      "home": {
+        "title": "Feinas",
+        "createLabel": "Crear nuevo Feina",
+        "createOrEditLabel": "Crear o editar Feina",
+        "notFound": "Ningún Feinas encontrado"
+      },
+      "created": "Un nuevo Feina ha sido creado con el identificador {{ param }}",
+      "updated": "Un Feina ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Feina ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Feina {{ id }}?"
+      },
+      "detail": {
+        "title": "Feina"
+      },
+      "nom": "Nom",
+      "descripcio": "Descripcio",
+      "setmana": "Setmana",
+      "tempsPrevist": "Temps Previst",
+      "tempsReal": "Temps Real",
+      "estat": "Estat",
+      "intervalControl": "Interval Control",
+      "facturacioAutomatica": "Facturacio Automatica",
+      "observacions": "Observacions",
+      "comentarisTreballador": "Comentaris Treballador",
+      "plantillaFeina": "Plantilla Feina",
+      "categoria": "Categoria",
+      "client": "Client",
+      "treballador": "Treballador"
+    }
+  }
+}

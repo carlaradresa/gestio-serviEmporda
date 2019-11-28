@@ -1,0 +1,26 @@
+{
+  "gestioClientsApp": {
+    "ubicacio": {
+      "home": {
+        "title": "Ubicacios",
+        "createLabel": "Create a new Ubicacio",
+        "createOrEditLabel": "Create or edit a Ubicacio",
+        "notFound": "No Ubicacios found"
+      },
+      "created": "A new Ubicacio is created with identifier {{ param }}",
+      "updated": "A Ubicacio is updated with identifier {{ param }}",
+      "deleted": "A Ubicacio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ubicacio {{ id }}?"
+      },
+      "detail": {
+        "title": "Ubicacio"
+      },
+      "longitud": "Longitud",
+      "latitud": "Latitud",
+      "ubicacio": "Ubicacio",
+      "client": "Client",
+      "venedor": "Venedor"
+    }
+  }
+}

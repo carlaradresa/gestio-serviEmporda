@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-client-heading" jhiTranslate="gestioClientsApp.client.home.createOrEditLabel">Create or edit a Client</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.direccio" for="field_direccio">Direccio</label>
+                    <input type="text" class="form-control" name="direccio" id="field_direccio"
+                           formControlName="direccio"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.localitat" for="field_localitat">Localitat</label>
+                    <input type="text" class="form-control" name="localitat" id="field_localitat"
+                           formControlName="localitat"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.telefon" for="field_telefon">Telefon</label>
+                    <input type="text" class="form-control" name="telefon" id="field_telefon"
+                           formControlName="telefon"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.nif" for="field_nif">Nif</label>
+                    <input type="text" class="form-control" name="nif" id="field_nif"
+                           formControlName="nif"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.codiUbicacio" for="field_codiUbicacio">Codi Ubicacio</label>
+                    <input type="text" class="form-control" name="codiUbicacio" id="field_codiUbicacio"
+                           formControlName="codiUbicacio"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.observacions" for="field_observacions">Observacions</label>
+                    <input type="text" class="form-control" name="observacions" id="field_observacions"
+                           formControlName="observacions"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.ubicacio" for="field_ubicacio">Ubicacio</label>
+                    <select class="form-control" id="field_ubicacio" name="ubicacio" formControlName="ubicacio">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ubicacioOption.id === editForm.get('ubicacio').value?.id ? editForm.get('ubicacio').value : ubicacioOption" *ngFor="let ubicacioOption of ubicacios; trackBy: trackUbicacioById">{{ubicacioOption.ubicacio}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.client.venedor" for="field_venedor">Venedor</label>
+                    <select class="form-control" id="field_venedor" name="venedor" formControlName="venedor">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="venedorOption.id === editForm.get('venedor').value?.id ? editForm.get('venedor').value : venedorOption" *ngFor="let venedorOption of venedors; trackBy: trackVenedorById">{{venedorOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

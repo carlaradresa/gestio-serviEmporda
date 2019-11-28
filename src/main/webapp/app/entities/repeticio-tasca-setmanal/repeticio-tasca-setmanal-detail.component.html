@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="repeticioTascaSetmanal">
+            <h2><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.detail.title">Repeticio Tasca Setmanal</span> {{repeticioTascaSetmanal.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.dia">Dia</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'gestioClientsApp.Dia.' + repeticioTascaSetmanal.dia}}">{{repeticioTascaSetmanal.dia}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.activo">Activo</span></dt>
+                <dd>
+                    <span>{{repeticioTascaSetmanal.activo}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.repeticioTascaSetmanal.feina">Feina</span></dt>
+                <dd>
+                    <div *ngIf="repeticioTascaSetmanal.feina">
+                        <a [routerLink]="['/feina', repeticioTascaSetmanal.feina?.id, 'view']">{{repeticioTascaSetmanal.feina?.numero}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/repeticio-tasca-setmanal', repeticioTascaSetmanal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

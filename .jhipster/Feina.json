@@ -1,0 +1,86 @@
+{
+    "name": "Feina",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "setmana",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "tempsPrevist",
+            "fieldType": "Duration"
+        },
+        {
+            "fieldName": "tempsReal",
+            "fieldType": "Duration"
+        },
+        {
+            "fieldName": "estat",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "intervalControl",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "facturacioAutomatica",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "observacions",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "comentarisTreballador",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "plantillaFeina",
+            "otherEntityRelationshipName": "feina",
+            "relationshipName": "plantillaFeina",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoria",
+            "otherEntityRelationshipName": "feina",
+            "relationshipName": "categoria",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "feina",
+            "relationshipName": "client",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "treballador",
+            "otherEntityRelationshipName": "feina",
+            "relationshipName": "treballador",
+            "otherEntityField": "nom",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191029182930",
+    "entityTableName": "feina",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="feina">
+            <h2><span jhiTranslate="gestioClientsApp.feina.detail.title">Feina</span> {{feina.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestioClientsApp.feina.nom">Nom</span></dt>
+                <dd>
+                    <span>{{feina.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.descripcio">Descripcio</span></dt>
+                <dd>
+                    <span>{{feina.descripcio}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.setmana">Setmana</span></dt>
+                <dd>
+                    <span>{{feina.setmana}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.tempsPrevist">Temps Previst</span></dt>
+                <dd>
+                    <span>{{feina.tempsPrevist}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.tempsReal">Temps Real</span></dt>
+                <dd>
+                    <span>{{feina.tempsReal}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.estat">Estat</span></dt>
+                <dd>
+                    <span>{{feina.estat}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.intervalControl">Interval Control</span></dt>
+                <dd>
+                    <span>{{feina.intervalControl}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.facturacioAutomatica">Facturacio Automatica</span></dt>
+                <dd>
+                    <span>{{feina.facturacioAutomatica}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.observacions">Observacions</span></dt>
+                <dd>
+                    <span>{{feina.observacions}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.comentarisTreballador">Comentaris Treballador</span></dt>
+                <dd>
+                    <span>{{feina.comentarisTreballador}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.plantillaFeina">Plantilla Feina</span></dt>
+                <dd>
+                    <div *ngIf="feina.plantillaFeina">
+                        <a [routerLink]="['/plantilla-feina', feina.plantillaFeina?.id, 'view']">{{feina.plantillaFeina?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.categoria">Categoria</span></dt>
+                <dd>
+                    <div *ngIf="feina.categoria">
+                        <a [routerLink]="['/categoria', feina.categoria?.id, 'view']">{{feina.categoria?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="feina.client">
+                        <a [routerLink]="['/client', feina.client?.id, 'view']">{{feina.client?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.feina.treballador">Treballador</span></dt>
+                <dd>
+                    <span *ngFor="let treballador of feina.treballadors; let last = last">
+                        <a [routerLink]="['/treballador', treballador?.id, 'view' ]">{{treballador.nom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/feina', feina.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

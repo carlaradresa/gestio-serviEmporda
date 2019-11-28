@@ -1,0 +1,97 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestioClientsApp.feina.home.title">Feinas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-feina" [routerLink]="['/feina/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestioClientsApp.feina.home.createLabel">
+            Create a new Feina
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="feinas?.length === 0">
+        <span jhiTranslate="gestioClientsApp.feina.home.notFound">No feinas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="feinas?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.nom">Nom</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.descripcio">Descripcio</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.setmana">Setmana</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.tempsPrevist">Temps Previst</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.tempsReal">Temps Real</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.estat">Estat</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.intervalControl">Interval Control</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.facturacioAutomatica">Facturacio Automatica</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.observacions">Observacions</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.comentarisTreballador">Comentaris Treballador</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.plantillaFeina">Plantilla Feina</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.categoria">Categoria</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.client">Client</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.treballador">Treballador</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let feina of feinas ;trackBy: trackId">
+                <td><a [routerLink]="['/feina', feina.id, 'view' ]">{{feina.id}}</a></td>
+                <td>{{feina.nom}}</td>
+                <td>{{feina.descripcio}}</td>
+                <td>{{feina.setmana | date:'mediumDate'}}</td>
+                <td>{{feina.tempsPrevist}}</td>
+                <td>{{feina.tempsReal}}</td>
+                <td>{{feina.estat}}</td>
+                <td>{{feina.intervalControl}}</td>
+                <td>{{feina.facturacioAutomatica}}</td>
+                <td>{{feina.observacions}}</td>
+                <td>{{feina.comentarisTreballador}}</td>
+                <td>
+                    <div *ngIf="feina.plantillaFeina">
+                        <a [routerLink]="['/plantilla-feina', feina.plantillaFeina?.id, 'view' ]" >{{feina.plantillaFeina?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="feina.categoria">
+                        <a [routerLink]="['/categoria', feina.categoria?.id, 'view' ]" >{{feina.categoria?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="feina.client">
+                        <a [routerLink]="['/client', feina.client?.id, 'view' ]" >{{feina.client?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let treballador of feina.treballadors; let last = last">
+                            <a class="form-control-static" [routerLink]="['/treballador', treballador?.id, 'view' ]">{{treballador.nom}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/feina', feina.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/feina', feina.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(feina)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

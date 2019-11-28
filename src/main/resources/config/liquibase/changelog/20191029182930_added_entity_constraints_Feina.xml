@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Feina.
+    -->
+    <changeSet id="20191029182930-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="plantilla_feina_id"
+                                 baseTableName="feina"
+                                 constraintName="fk_feina_plantilla_feina_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plantilla_feina"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="feina"
+                                 constraintName="fk_feina_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="feina"
+                                 constraintName="fk_feina_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+
+        <addForeignKeyConstraint baseColumnNames="feina_id"
+                                 baseTableName="feina_treballador"
+                                 constraintName="fk_feina_treballador_feina_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feina"/>
+
+        <addForeignKeyConstraint baseColumnNames="treballador_id"
+                                 baseTableName="feina_treballador"
+                                 constraintName="fk_feina_treballador_treballador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="treballador"/>
+        
+    </changeSet>
+</databaseChangeLog>

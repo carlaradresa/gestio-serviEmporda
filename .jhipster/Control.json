@@ -1,0 +1,51 @@
+{
+    "name": "Control",
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "setmana",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "causa",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataRevisio",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "comentaris",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "treballador",
+            "otherEntityRelationshipName": "control",
+            "relationshipName": "revisor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "feina",
+            "otherEntityRelationshipName": "control",
+            "relationshipName": "feina",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191029182931",
+    "entityTableName": "control",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

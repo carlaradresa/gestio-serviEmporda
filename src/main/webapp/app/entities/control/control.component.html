@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestioClientsApp.control.home.title">Controls</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-control" [routerLink]="['/control/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestioClientsApp.control.home.createLabel">
+            Create a new Control
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="controls?.length === 0">
+        <span jhiTranslate="gestioClientsApp.control.home.notFound">No controls found</span>
+    </div>
+    <div class="table-responsive" *ngIf="controls?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.numero">Numero</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.setmana">Setmana</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.causa">Causa</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.dataRevisio">Data Revisio</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.comentaris">Comentaris</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.revisor">Revisor</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.control.feina">Feina</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let control of controls ;trackBy: trackId">
+                <td><a [routerLink]="['/control', control.id, 'view' ]">{{control.id}}</a></td>
+                <td>{{control.numero}}</td>
+                <td>{{control.setmana | date:'mediumDate'}}</td>
+                <td>{{control.causa}}</td>
+                <td>{{control.dataRevisio | date:'medium'}}</td>
+                <td>{{control.comentaris}}</td>
+                <td>
+                    <div *ngIf="control.revisor">
+                        <a [routerLink]="['/treballador', control.revisor?.id, 'view' ]" >{{control.revisor?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="control.feina">
+                        <a [routerLink]="['/feina', control.feina?.id, 'view' ]" >{{control.feina?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/control', control.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/control', control.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(control)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

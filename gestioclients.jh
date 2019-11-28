@@ -1,0 +1,114 @@
+entity PlantillaFeina {
+    horaInici Instant,
+    horaFinal Instant,
+    tempsPrevist Duration,
+    facturacioAutomatica Boolean,
+    observacions String,
+    setmanaInicial LocalDate,
+    setmanaFinal LocalDate,
+    numeroControl Integer
+}
+
+entity Categoria{
+	nomCategoria String
+}
+
+entity PeriodicitatSetmanal{
+	diaSetmana Dia
+}
+
+entity PeriodicitatConfigurable{
+	frequencia Integer,
+    periodicitat Periodicitat,
+    observacions String
+}
+
+
+enum Dia {
+	DILLUNS, DIMARTS, DIMECRES, DIJOUS, DIVENDRES, DISSABTE, DIUMENGE, QUALSEVOL
+}
+
+enum Periodicitat {
+ DIA, SETMANA, QUINZENAL, MES, ANY 
+}
+
+entity Ubicacio {
+	longitud Double,
+    latitud Double,
+    ubicacio String
+}
+
+entity Client{
+    nom String,
+    direccio String,
+    localitat String,
+    telefon String,
+    email String,
+    nif String,
+    codiUbicacio String,
+    observacions String
+}
+
+entity Feina {
+    nom String,
+    descripcio String,
+    setmana LocalDate,
+    tempsPrevist Duration,
+    tempsReal Duration,
+    estat Boolean,
+    intervalControl Integer,
+    facturacioAutomatica Boolean,
+    observacions String,
+    comentarisTreballador String
+}
+
+entity Control {
+	numero Integer,
+    setmana LocalDate,
+    causa String,
+    dataRevisio ZonedDateTime,
+    comentaris String
+}
+
+entity Marcatge {
+    horaEntrada Instant,
+    horaSortida Instant,
+    desviacio Boolean
+}
+
+entity Treballador {
+    nom String,
+    carregaHores Duration,
+    actiu Boolean,
+    controlQualitat Boolean
+}
+
+entity Venedor {
+    nom String,
+    telefon String,
+    email String,
+    observacions String
+}
+
+relationship ManyToOne {
+    Client{venedor} to Venedor,
+    Feina{plantillaFeina} to PlantillaFeina,
+    Feina{categoria} to Categoria,
+    Marcatge{feina} to Feina,
+    Marcatge{treballador} to Treballador,
+    Feina{client} to Client,
+    Control{revisor} to Treballador,
+    Control{feina} to Feina
+}
+
+relationship OneToOne {
+    Client{ubicacio(ubicacio)} to Ubicacio{client},
+    Venedor{ubicacio(ubicacio)} to Ubicacio{venedor},
+    Treballador{user(login)} to User,
+    PlantillaFeina{periodicitatConfigurable(observacions)} to PeriodicitatConfigurable{plantilla}
+}
+
+relationship ManyToMany {
+	Feina{treballador(nom)} to Treballador{feina},
+    PlantillaFeina{periodicitatSetmanal(diaSetmana)} to PeriodicitatSetmanal{plantilla}
+}

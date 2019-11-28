@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity PlantillaFeina.
+    -->
+    <changeSet id="20191029182925-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="periodicitat_configurable_id"
+                                 baseTableName="plantilla_feina"
+                                 constraintName="fk_plantilla_feina_periodicitat_configurable_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="periodicitat_configurable"/>
+
+        <addForeignKeyConstraint baseColumnNames="plantilla_feina_id"
+                                 baseTableName="plantilla_feina_periodicitat_setmanal"
+                                 constraintName="fk_plantilla_feina_periodicitat_setmanal_plantilla_feina_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plantilla_feina"/>
+
+        <addForeignKeyConstraint baseColumnNames="periodicitat_setmanal_id"
+                                 baseTableName="plantilla_feina_periodicitat_setmanal"
+                                 constraintName="plantilla_feina_periodicitat_se_periodicitat_setmanal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="periodicitat_setmanal"/>
+        
+    </changeSet>
+</databaseChangeLog>
