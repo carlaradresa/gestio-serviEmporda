@@ -55,6 +55,10 @@ public class Feina implements Serializable {
     @Column(name = "comentaris_treballador")
     private String comentarisTreballador;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Ubicacio ubicacio;
+
     @ManyToOne
     @JsonIgnoreProperties("feinas")
     private PlantillaFeina plantillaFeina;
@@ -211,6 +215,19 @@ public class Feina implements Serializable {
 
     public void setComentarisTreballador(String comentarisTreballador) {
         this.comentarisTreballador = comentarisTreballador;
+    }
+
+    public Ubicacio getUbicacio() {
+        return ubicacio;
+    }
+
+    public Feina ubicacio(Ubicacio ubicacio) {
+        this.ubicacio = ubicacio;
+        return this;
+    }
+
+    public void setUbicacio(Ubicacio ubicacio) {
+        this.ubicacio = ubicacio;
     }
 
     public PlantillaFeina getPlantillaFeina() {
