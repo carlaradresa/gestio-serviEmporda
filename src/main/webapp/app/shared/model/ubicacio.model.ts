@@ -9,7 +9,7 @@ export interface IUbicacio {
   ubicacio?: string;
   client?: IClient;
   venedor?: IVenedor;
-  feina?: IFeina;
+  feinas?: IFeina[];
 }
 
 export class Ubicacio implements IUbicacio {
@@ -20,6 +20,6 @@ export class Ubicacio implements IUbicacio {
     public ubicacio?: string,
     public client?: IClient,
     public venedor?: IVenedor,
-    public feina?: IFeina
+    public feinas?: IFeina[]
   ) {}
 }

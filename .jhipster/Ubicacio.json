@@ -30,11 +30,12 @@
             "ownerSide": false
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "feina",
             "otherEntityRelationshipName": "ubicacio",
             "relationshipName": "feina",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20191029182928",

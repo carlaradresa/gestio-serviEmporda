@@ -1,9 +1,9 @@
 import { Moment } from 'moment';
-import { IUbicacio } from 'app/shared/model/ubicacio.model';
 import { IPlantillaFeina } from 'app/shared/model/plantilla-feina.model';
 import { ICategoria } from 'app/shared/model/categoria.model';
 import { IClient } from 'app/shared/model/client.model';
 import { ITreballador } from 'app/shared/model/treballador.model';
+import { IUbicacio } from 'app/shared/model/ubicacio.model';
 
 export interface IFeina {
   id?: number;
@@ -17,11 +17,11 @@ export interface IFeina {
   facturacioAutomatica?: boolean;
   observacions?: string;
   comentarisTreballador?: string;
-  ubicacios?: IUbicacio[];
   plantillaFeina?: IPlantillaFeina;
   categoria?: ICategoria;
   client?: IClient;
   treballadors?: ITreballador[];
+  ubicacios?: IUbicacio[];
 }
 
 export class Feina implements IFeina {
@@ -37,11 +37,11 @@ export class Feina implements IFeina {
     public facturacioAutomatica?: boolean,
     public observacions?: string,
     public comentarisTreballador?: string,
-    public ubicacios?: IUbicacio[],
     public plantillaFeina?: IPlantillaFeina,
     public categoria?: ICategoria,
     public client?: IClient,
-    public treballadors?: ITreballador[]
+    public treballadors?: ITreballador[],
+    public ubicacios?: IUbicacio[]
   ) {
     this.estat = this.estat || false;
     this.facturacioAutomatica = this.facturacioAutomatica || false;

@@ -44,12 +44,6 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "ubicacio",
-            "otherEntityRelationshipName": "feina",
-            "relationshipName": "ubicacio"
-        },
-        {
             "relationshipType": "many-to-one",
             "otherEntityName": "plantillaFeina",
             "otherEntityRelationshipName": "feina",
@@ -76,6 +70,14 @@
             "otherEntityRelationshipName": "feina",
             "relationshipName": "treballador",
             "otherEntityField": "nom",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "ubicacio",
+            "otherEntityRelationshipName": "feina",
+            "relationshipName": "ubicacio",
+            "otherEntityField": "ubicacio",
             "ownerSide": true
         }
     ],

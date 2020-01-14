@@ -55,10 +55,6 @@ public class Feina implements Serializable {
     @Column(name = "comentaris_treballador")
     private String comentarisTreballador;
 
-    @OneToMany(mappedBy = "feina")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Ubicacio> ubicacios = new HashSet<>();
-
     @ManyToOne
     @JsonIgnoreProperties("feinas")
     private PlantillaFeina plantillaFeina;
@@ -77,6 +73,13 @@ public class Feina implements Serializable {
                joinColumns = @JoinColumn(name = "feina_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "treballador_id", referencedColumnName = "id"))
     private Set<Treballador> treballadors = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "feina_ubicacio",
+               joinColumns = @JoinColumn(name = "feina_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "ubicacio_id", referencedColumnName = "id"))
+    private Set<Ubicacio> ubicacios = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -217,31 +220,6 @@ public class Feina implements Serializable {
         this.comentarisTreballador = comentarisTreballador;
     }
 
-    public Set<Ubicacio> getUbicacios() {
-        return ubicacios;
-    }
-
-    public Feina ubicacios(Set<Ubicacio> ubicacios) {
-        this.ubicacios = ubicacios;
-        return this;
-    }
-
-    public Feina addUbicacio(Ubicacio ubicacio) {
-        this.ubicacios.add(ubicacio);
-        ubicacio.setFeina(this);
-        return this;
-    }
-
-    public Feina removeUbicacio(Ubicacio ubicacio) {
-        this.ubicacios.remove(ubicacio);
-        ubicacio.setFeina(null);
-        return this;
-    }
-
-    public void setUbicacios(Set<Ubicacio> ubicacios) {
-        this.ubicacios = ubicacios;
-    }
-
     public PlantillaFeina getPlantillaFeina() {
         return plantillaFeina;
     }
@@ -304,6 +282,31 @@ public class Feina implements Serializable {
 
     public void setTreballadors(Set<Treballador> treballadors) {
         this.treballadors = treballadors;
+    }
+
+    public Set<Ubicacio> getUbicacios() {
+        return ubicacios;
+    }
+
+    public Feina ubicacios(Set<Ubicacio> ubicacios) {
+        this.ubicacios = ubicacios;
+        return this;
+    }
+
+    public Feina addUbicacio(Ubicacio ubicacio) {
+        this.ubicacios.add(ubicacio);
+        ubicacio.getFeinas().add(this);
+        return this;
+    }
+
+    public Feina removeUbicacio(Ubicacio ubicacio) {
+        this.ubicacios.remove(ubicacio);
+        ubicacio.getFeinas().remove(this);
+        return this;
+    }
+
+    public void setUbicacios(Set<Ubicacio> ubicacios) {
+        this.ubicacios = ubicacios;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
