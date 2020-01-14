@@ -12,7 +12,7 @@ export interface IFeina {
   setmana?: Moment;
   tempsPrevist?: number;
   tempsReal?: number;
-  estat?: boolean;
+  estat?: number;
   intervalControl?: number;
   facturacioAutomatica?: boolean;
   observacions?: string;
@@ -32,7 +32,7 @@ export class Feina implements IFeina {
     public setmana?: Moment,
     public tempsPrevist?: number,
     public tempsReal?: number,
-    public estat?: boolean,
+    public estat?: number,
     public intervalControl?: number,
     public facturacioAutomatica?: boolean,
     public observacions?: string,
@@ -43,7 +43,6 @@ export class Feina implements IFeina {
     public treballadors?: ITreballador[],
     public ubicacios?: IUbicacio[]
   ) {
-    this.estat = this.estat || false;
     this.facturacioAutomatica = this.facturacioAutomatica || false;
   }
 }

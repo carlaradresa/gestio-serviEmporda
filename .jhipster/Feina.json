@@ -23,7 +23,7 @@
         },
         {
             "fieldName": "estat",
-            "fieldType": "Boolean"
+            "fieldType": "Integer"
         },
         {
             "fieldName": "intervalControl",
