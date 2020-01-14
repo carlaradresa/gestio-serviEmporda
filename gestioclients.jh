@@ -102,9 +102,6 @@ relationship ManyToOne {
     Control{feina} to Feina
 }
 
-relationship OneToMany {
-    Feina{ubicacio} to Ubicacio
-}
 relationship OneToOne {
     Client{ubicacio(ubicacio)} to Ubicacio{client},
     Venedor{ubicacio(ubicacio)} to Ubicacio{venedor},
@@ -114,5 +111,7 @@ relationship OneToOne {
 
 relationship ManyToMany {
 	Feina{treballador(nom)} to Treballador{feina},
-    PlantillaFeina{periodicitatSetmanal(diaSetmana)} to PeriodicitatSetmanal{plantilla}
+    PlantillaFeina{periodicitatSetmanal(diaSetmana)} to PeriodicitatSetmanal{plantilla},
+    Feina{ubicacio(ubicacio)} to Ubicacio{feina}
+
 }

@@ -17,12 +17,6 @@
                 <dd>
                     <span>{{ubicacio.ubicacio}}</span>
                 </dd>
-                <dt><span jhiTranslate="gestioClientsApp.ubicacio.feina">Feina</span></dt>
-                <dd>
-                    <div *ngIf="ubicacio.feina">
-                        <a [routerLink]="['/feina', ubicacio.feina?.id, 'view']">{{ubicacio.feina?.id}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

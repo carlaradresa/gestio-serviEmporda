@@ -26,11 +26,11 @@
       "facturacioAutomatica": "Facturacio Automatica",
       "observacions": "Observacions",
       "comentarisTreballador": "Comentaris Treballador",
-      "ubicacio": "Ubicacio",
       "plantillaFeina": "Plantilla Feina",
       "categoria": "Categoria",
       "client": "Client",
-      "treballador": "Treballador"
+      "treballador": "Treballador",
+      "ubicacio": "Ubicacio"
     }
   }
 }
