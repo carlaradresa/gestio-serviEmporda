@@ -55,7 +55,7 @@ entity Feina {
     setmana LocalDate,
     tempsPrevist Duration,
     tempsReal Duration,
-    estat Boolean,
+    estat Integer,
     intervalControl Integer,
     facturacioAutomatica Boolean,
     observacions String,
