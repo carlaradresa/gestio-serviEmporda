@@ -55,9 +55,9 @@ public class Feina implements Serializable {
     @Column(name = "comentaris_treballador")
     private String comentarisTreballador;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Ubicacio ubicacio;
+    @OneToMany(mappedBy = "feina")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Ubicacio> ubicacios = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("feinas")
@@ -217,17 +217,29 @@ public class Feina implements Serializable {
         this.comentarisTreballador = comentarisTreballador;
     }
 
-    public Ubicacio getUbicacio() {
-        return ubicacio;
+    public Set<Ubicacio> getUbicacios() {
+        return ubicacios;
     }
 
-    public Feina ubicacio(Ubicacio ubicacio) {
-        this.ubicacio = ubicacio;
+    public Feina ubicacios(Set<Ubicacio> ubicacios) {
+        this.ubicacios = ubicacios;
         return this;
     }
 
-    public void setUbicacio(Ubicacio ubicacio) {
-        this.ubicacio = ubicacio;
+    public Feina addUbicacio(Ubicacio ubicacio) {
+        this.ubicacios.add(ubicacio);
+        ubicacio.setFeina(this);
+        return this;
+    }
+
+    public Feina removeUbicacio(Ubicacio ubicacio) {
+        this.ubicacios.remove(ubicacio);
+        ubicacio.setFeina(null);
+        return this;
+    }
+
+    public void setUbicacios(Set<Ubicacio> ubicacios) {
+        this.ubicacios = ubicacios;
     }
 
     public PlantillaFeina getPlantillaFeina() {

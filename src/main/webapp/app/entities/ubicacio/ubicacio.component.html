@@ -22,6 +22,7 @@
             <th scope="col" ><span jhiTranslate="gestioClientsApp.ubicacio.longitud">Longitud</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.ubicacio.latitud">Latitud</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.ubicacio.ubicacio">Ubicacio</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.ubicacio.feina">Feina</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <td>{{ubicacio.longitud}}</td>
                 <td>{{ubicacio.latitud}}</td>
                 <td>{{ubicacio.ubicacio}}</td>
+                <td>
+                    <div *ngIf="ubicacio.feina">
+                        <a [routerLink]="['/feina', ubicacio.feina?.id, 'view' ]" >{{ubicacio.feina?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

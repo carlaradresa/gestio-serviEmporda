@@ -105,13 +105,6 @@ public class UbicacioResource {
                 .filter(ubicacio -> ubicacio.getVenedor() == null)
                 .collect(Collectors.toList());
         }
-        if ("feina-is-null".equals(filter)) {
-            log.debug("REST request to get all Ubicacios where feina is null");
-            return StreamSupport
-                .stream(ubicacioRepository.findAll().spliterator(), false)
-                .filter(ubicacio -> ubicacio.getFeina() == null)
-                .collect(Collectors.toList());
-        }
         log.debug("REST request to get all Ubicacios");
         return ubicacioRepository.findAll();
     }

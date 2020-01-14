@@ -9,8 +9,6 @@ import * as moment from 'moment';
 
 import { IFeina, Feina } from 'app/shared/model/feina.model';
 import { FeinaService } from './feina.service';
-import { IUbicacio } from 'app/shared/model/ubicacio.model';
-import { UbicacioService } from 'app/entities/ubicacio/ubicacio.service';
 import { IPlantillaFeina } from 'app/shared/model/plantilla-feina.model';
 import { PlantillaFeinaService } from 'app/entities/plantilla-feina/plantilla-feina.service';
 import { ICategoria } from 'app/shared/model/categoria.model';
@@ -20,7 +18,7 @@ import { ClientService } from 'app/entities/client/client.service';
 import { ITreballador } from 'app/shared/model/treballador.model';
 import { TreballadorService } from 'app/entities/treballador/treballador.service';
 
-type SelectableEntity = IUbicacio | IPlantillaFeina | ICategoria | IClient | ITreballador;
+type SelectableEntity = IPlantillaFeina | ICategoria | IClient | ITreballador;
 
 @Component({
   selector: 'jhi-feina-update',
@@ -28,8 +26,6 @@ type SelectableEntity = IUbicacio | IPlantillaFeina | ICategoria | IClient | ITr
 })
 export class FeinaUpdateComponent implements OnInit {
   isSaving = false;
-
-  ubicacios: IUbicacio[] = [];
 
   plantillafeinas: IPlantillaFeina[] = [];
 
@@ -52,7 +48,6 @@ export class FeinaUpdateComponent implements OnInit {
     facturacioAutomatica: [],
     observacions: [],
     comentarisTreballador: [],
-    ubicacio: [],
     plantillaFeina: [],
     categoria: [],
     client: [],
@@ -61,7 +56,6 @@ export class FeinaUpdateComponent implements OnInit {
 
   constructor(
     protected feinaService: FeinaService,
-    protected ubicacioService: UbicacioService,
     protected plantillaFeinaService: PlantillaFeinaService,
     protected categoriaService: CategoriaService,
     protected clientService: ClientService,
@@ -73,30 +67,6 @@ export class FeinaUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ feina }) => {
       this.updateForm(feina);
-
-      this.ubicacioService
-        .query({ filter: 'feina-is-null' })
-        .pipe(
-          map((res: HttpResponse<IUbicacio[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IUbicacio[]) => {
-          if (!feina.ubicacio || !feina.ubicacio.id) {
-            this.ubicacios = resBody;
-          } else {
-            this.ubicacioService
-              .find(feina.ubicacio.id)
-              .pipe(
-                map((subRes: HttpResponse<IUbicacio>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IUbicacio[]) => {
-                this.ubicacios = concatRes;
-              });
-          }
-        });
 
       this.plantillaFeinaService
         .query()
@@ -149,7 +119,6 @@ export class FeinaUpdateComponent implements OnInit {
       facturacioAutomatica: feina.facturacioAutomatica,
       observacions: feina.observacions,
       comentarisTreballador: feina.comentarisTreballador,
-      ubicacio: feina.ubicacio,
       plantillaFeina: feina.plantillaFeina,
       categoria: feina.categoria,
       client: feina.client,
@@ -185,7 +154,6 @@ export class FeinaUpdateComponent implements OnInit {
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica'])!.value,
       observacions: this.editForm.get(['observacions'])!.value,
       comentarisTreballador: this.editForm.get(['comentarisTreballador'])!.value,
-      ubicacio: this.editForm.get(['ubicacio'])!.value,
       plantillaFeina: this.editForm.get(['plantillaFeina'])!.value,
       categoria: this.editForm.get(['categoria'])!.value,
       client: this.editForm.get(['client'])!.value,

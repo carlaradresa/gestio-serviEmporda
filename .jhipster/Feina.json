@@ -44,12 +44,10 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "one-to-many",
             "otherEntityName": "ubicacio",
             "otherEntityRelationshipName": "feina",
-            "relationshipName": "ubicacio",
-            "otherEntityField": "ubicacio",
-            "ownerSide": true
+            "relationshipName": "ubicacio"
         },
         {
             "relationshipType": "many-to-one",

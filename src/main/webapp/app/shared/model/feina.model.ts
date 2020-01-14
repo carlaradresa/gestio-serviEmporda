@@ -17,7 +17,7 @@ export interface IFeina {
   facturacioAutomatica?: boolean;
   observacions?: string;
   comentarisTreballador?: string;
-  ubicacio?: IUbicacio;
+  ubicacios?: IUbicacio[];
   plantillaFeina?: IPlantillaFeina;
   categoria?: ICategoria;
   client?: IClient;
@@ -37,7 +37,7 @@ export class Feina implements IFeina {
     public facturacioAutomatica?: boolean,
     public observacions?: string,
     public comentarisTreballador?: string,
-    public ubicacio?: IUbicacio,
+    public ubicacios?: IUbicacio[],
     public plantillaFeina?: IPlantillaFeina,
     public categoria?: ICategoria,
     public client?: IClient,
