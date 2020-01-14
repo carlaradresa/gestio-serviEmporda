@@ -1,5 +1,6 @@
 package com.serviemporda.gestioclients.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -38,8 +39,8 @@ public class Ubicacio implements Serializable {
     @JsonIgnore
     private Venedor venedor;
 
-    @OneToOne(mappedBy = "ubicacio")
-    @JsonIgnore
+    @ManyToOne
+    @JsonIgnoreProperties("ubicacios")
     private Feina feina;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

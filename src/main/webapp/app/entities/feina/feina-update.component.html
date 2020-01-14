@@ -65,13 +65,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.ubicacio" for="field_ubicacio">Ubicacio</label>
-                    <select class="form-control" id="field_ubicacio" name="ubicacio" formControlName="ubicacio">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="ubicacioOption.id === editForm.get('ubicacio')!.value?.id ? editForm.get('ubicacio')!.value : ubicacioOption" *ngFor="let ubicacioOption of ubicacios; trackBy: trackById">{{ubicacioOption.ubicacio}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.plantillaFeina" for="field_plantillaFeina">Plantilla Feina</label>
                     <select class="form-control" id="field_plantillaFeina" name="plantillaFeina" formControlName="plantillaFeina">
                         <option [ngValue]="null"></option>

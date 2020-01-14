@@ -46,9 +46,6 @@
             <column name="comentaris_treballador" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="ubicacio_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_feina_ubicacio_id" />
-            </column>
             <column name="plantilla_feina_id" type="bigint">
                 <constraints nullable="true" />
             </column>
