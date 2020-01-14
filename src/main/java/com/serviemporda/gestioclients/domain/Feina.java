@@ -41,7 +41,7 @@ public class Feina implements Serializable {
     private Duration tempsReal;
 
     @Column(name = "estat")
-    private Boolean estat;
+    private Integer estat;
 
     @Column(name = "interval_control")
     private Integer intervalControl;
@@ -155,16 +155,16 @@ public class Feina implements Serializable {
         this.tempsReal = tempsReal;
     }
 
-    public Boolean isEstat() {
+    public Integer getEstat() {
         return estat;
     }
 
-    public Feina estat(Boolean estat) {
+    public Feina estat(Integer estat) {
         this.estat = estat;
         return this;
     }
 
-    public void setEstat(Boolean estat) {
+    public void setEstat(Integer estat) {
         this.estat = estat;
     }
 
@@ -335,7 +335,7 @@ public class Feina implements Serializable {
             ", setmana='" + getSetmana() + "'" +
             ", tempsPrevist='" + getTempsPrevist() + "'" +
             ", tempsReal='" + getTempsReal() + "'" +
-            ", estat='" + isEstat() + "'" +
+            ", estat=" + getEstat() +
             ", intervalControl=" + getIntervalControl() +
             ", facturacioAutomatica='" + isFacturacioAutomatica() + "'" +
             ", observacions='" + getObservacions() + "'" +

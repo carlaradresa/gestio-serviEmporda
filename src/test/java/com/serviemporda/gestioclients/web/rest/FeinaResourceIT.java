@@ -56,8 +56,8 @@ public class FeinaResourceIT {
     private static final Duration DEFAULT_TEMPS_REAL = Duration.ofHours(6);
     private static final Duration UPDATED_TEMPS_REAL = Duration.ofHours(12);
 
-    private static final Boolean DEFAULT_ESTAT = false;
-    private static final Boolean UPDATED_ESTAT = true;
+    private static final Integer DEFAULT_ESTAT = 1;
+    private static final Integer UPDATED_ESTAT = 2;
 
     private static final Integer DEFAULT_INTERVAL_CONTROL = 1;
     private static final Integer UPDATED_INTERVAL_CONTROL = 2;
@@ -174,7 +174,7 @@ public class FeinaResourceIT {
         assertThat(testFeina.getSetmana()).isEqualTo(DEFAULT_SETMANA);
         assertThat(testFeina.getTempsPrevist()).isEqualTo(DEFAULT_TEMPS_PREVIST);
         assertThat(testFeina.getTempsReal()).isEqualTo(DEFAULT_TEMPS_REAL);
-        assertThat(testFeina.isEstat()).isEqualTo(DEFAULT_ESTAT);
+        assertThat(testFeina.getEstat()).isEqualTo(DEFAULT_ESTAT);
         assertThat(testFeina.getIntervalControl()).isEqualTo(DEFAULT_INTERVAL_CONTROL);
         assertThat(testFeina.isFacturacioAutomatica()).isEqualTo(DEFAULT_FACTURACIO_AUTOMATICA);
         assertThat(testFeina.getObservacions()).isEqualTo(DEFAULT_OBSERVACIONS);
@@ -217,7 +217,7 @@ public class FeinaResourceIT {
             .andExpect(jsonPath("$.[*].setmana").value(hasItem(DEFAULT_SETMANA.toString())))
             .andExpect(jsonPath("$.[*].tempsPrevist").value(hasItem(DEFAULT_TEMPS_PREVIST.toString())))
             .andExpect(jsonPath("$.[*].tempsReal").value(hasItem(DEFAULT_TEMPS_REAL.toString())))
-            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.booleanValue())))
+            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT)))
             .andExpect(jsonPath("$.[*].intervalControl").value(hasItem(DEFAULT_INTERVAL_CONTROL)))
             .andExpect(jsonPath("$.[*].facturacioAutomatica").value(hasItem(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue())))
             .andExpect(jsonPath("$.[*].observacions").value(hasItem(DEFAULT_OBSERVACIONS)))
@@ -273,7 +273,7 @@ public class FeinaResourceIT {
             .andExpect(jsonPath("$.setmana").value(DEFAULT_SETMANA.toString()))
             .andExpect(jsonPath("$.tempsPrevist").value(DEFAULT_TEMPS_PREVIST.toString()))
             .andExpect(jsonPath("$.tempsReal").value(DEFAULT_TEMPS_REAL.toString()))
-            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT.booleanValue()))
+            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT))
             .andExpect(jsonPath("$.intervalControl").value(DEFAULT_INTERVAL_CONTROL))
             .andExpect(jsonPath("$.facturacioAutomatica").value(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue()))
             .andExpect(jsonPath("$.observacions").value(DEFAULT_OBSERVACIONS))
@@ -326,7 +326,7 @@ public class FeinaResourceIT {
         assertThat(testFeina.getSetmana()).isEqualTo(UPDATED_SETMANA);
         assertThat(testFeina.getTempsPrevist()).isEqualTo(UPDATED_TEMPS_PREVIST);
         assertThat(testFeina.getTempsReal()).isEqualTo(UPDATED_TEMPS_REAL);
-        assertThat(testFeina.isEstat()).isEqualTo(UPDATED_ESTAT);
+        assertThat(testFeina.getEstat()).isEqualTo(UPDATED_ESTAT);
         assertThat(testFeina.getIntervalControl()).isEqualTo(UPDATED_INTERVAL_CONTROL);
         assertThat(testFeina.isFacturacioAutomatica()).isEqualTo(UPDATED_FACTURACIO_AUTOMATICA);
         assertThat(testFeina.getObservacions()).isEqualTo(UPDATED_OBSERVACIONS);

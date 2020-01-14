@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Feina(0, 'AAAAAAA', 'AAAAAAA', currentDate, 0, 0, false, 0, false, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Feina(0, 'AAAAAAA', 'AAAAAAA', currentDate, 0, 0, 0, 0, false, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -76,7 +76,7 @@ describe('Service Tests', () => {
             setmana: currentDate.format(DATE_FORMAT),
             tempsPrevist: 'BBBBBB',
             tempsReal: 'BBBBBB',
-            estat: true,
+            estat: 1,
             intervalControl: 1,
             facturacioAutomatica: true,
             observacions: 'BBBBBB',
@@ -108,7 +108,7 @@ describe('Service Tests', () => {
             setmana: currentDate.format(DATE_FORMAT),
             tempsPrevist: 'BBBBBB',
             tempsReal: 'BBBBBB',
-            estat: true,
+            estat: 1,
             intervalControl: 1,
             facturacioAutomatica: true,
             observacions: 'BBBBBB',
