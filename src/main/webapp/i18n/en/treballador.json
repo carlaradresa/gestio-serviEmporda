@@ -18,7 +18,7 @@
       },
       "nom": "Nom",
       "carregaHores": "Carrega Hores",
-      "actiu": "Actiu",
+      "estat": "Estat",
       "controlQualitat": "Control Qualitat",
       "user": "User",
       "feina": "Feina"

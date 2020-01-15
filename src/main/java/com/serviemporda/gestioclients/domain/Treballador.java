@@ -10,6 +10,8 @@ import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.serviemporda.gestioclients.domain.enumeration.Estat;
+
 /**
  * A Treballador.
  */
@@ -30,8 +32,9 @@ public class Treballador implements Serializable {
     @Column(name = "carrega_hores")
     private Duration carregaHores;
 
-    @Column(name = "actiu")
-    private Boolean actiu;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estat")
+    private Estat estat;
 
     @Column(name = "control_qualitat")
     private Boolean controlQualitat;
@@ -80,17 +83,17 @@ public class Treballador implements Serializable {
         this.carregaHores = carregaHores;
     }
 
-    public Boolean isActiu() {
-        return actiu;
+    public Estat getEstat() {
+        return estat;
     }
 
-    public Treballador actiu(Boolean actiu) {
-        this.actiu = actiu;
+    public Treballador estat(Estat estat) {
+        this.estat = estat;
         return this;
     }
 
-    public void setActiu(Boolean actiu) {
-        this.actiu = actiu;
+    public void setEstat(Estat estat) {
+        this.estat = estat;
     }
 
     public Boolean isControlQualitat() {
@@ -167,7 +170,7 @@ public class Treballador implements Serializable {
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", carregaHores='" + getCarregaHores() + "'" +
-            ", actiu='" + isActiu() + "'" +
+            ", estat='" + getEstat() + "'" +
             ", controlQualitat='" + isControlQualitat() + "'" +
             "}";
     }

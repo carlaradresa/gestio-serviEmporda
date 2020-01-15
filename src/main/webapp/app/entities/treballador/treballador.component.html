@@ -21,7 +21,7 @@
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.treballador.nom">Nom</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.treballador.carregaHores">Carrega Hores</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.treballador.actiu">Actiu</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.treballador.estat">Estat</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.treballador.controlQualitat">Control Qualitat</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.treballador.user">User</span></th>
             <th scope="col"></th>
@@ -32,7 +32,7 @@
                 <td><a [routerLink]="['/treballador', treballador.id, 'view' ]">{{treballador.id}}</a></td>
                 <td>{{treballador.nom}}</td>
                 <td>{{treballador.carregaHores}}</td>
-                <td>{{treballador.actiu}}</td>
+                <td jhiTranslate="{{'gestioClientsApp.Estat.' + treballador.estat}}">{{treballador.estat}}</td>
                 <td>{{treballador.controlQualitat}}</td>
                 <td>
                     {{treballador.user?.login}}

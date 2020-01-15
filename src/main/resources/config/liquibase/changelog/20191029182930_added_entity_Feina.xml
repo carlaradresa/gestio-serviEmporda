@@ -31,7 +31,7 @@
             <column name="temps_real" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="estat" type="integer">
+            <column name="estat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="interval_control" type="integer">
@@ -105,7 +105,7 @@
             <column name="setmana" type="date"/>
             <column name="temps_previst" type="numeric"/>
             <column name="temps_real" type="numeric"/>
-            <column name="estat" type="numeric"/>
+            <column name="estat" type="string"/>
             <column name="interval_control" type="numeric"/>
             <column name="facturacio_automatica" type="boolean"/>
             <column name="observacions" type="string"/>

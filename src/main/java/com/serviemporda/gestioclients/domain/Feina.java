@@ -11,6 +11,8 @@ import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.serviemporda.gestioclients.domain.enumeration.Estat;
+
 /**
  * A Feina.
  */
@@ -40,8 +42,9 @@ public class Feina implements Serializable {
     @Column(name = "temps_real")
     private Duration tempsReal;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "estat")
-    private Integer estat;
+    private Estat estat;
 
     @Column(name = "interval_control")
     private Integer intervalControl;
@@ -155,16 +158,16 @@ public class Feina implements Serializable {
         this.tempsReal = tempsReal;
     }
 
-    public Integer getEstat() {
+    public Estat getEstat() {
         return estat;
     }
 
-    public Feina estat(Integer estat) {
+    public Feina estat(Estat estat) {
         this.estat = estat;
         return this;
     }
 
-    public void setEstat(Integer estat) {
+    public void setEstat(Estat estat) {
         this.estat = estat;
     }
 
@@ -335,7 +338,7 @@ public class Feina implements Serializable {
             ", setmana='" + getSetmana() + "'" +
             ", tempsPrevist='" + getTempsPrevist() + "'" +
             ", tempsReal='" + getTempsReal() + "'" +
-            ", estat=" + getEstat() +
+            ", estat='" + getEstat() + "'" +
             ", intervalControl=" + getIntervalControl() +
             ", facturacioAutomatica='" + isFacturacioAutomatica() + "'" +
             ", observacions='" + getObservacions() + "'" +

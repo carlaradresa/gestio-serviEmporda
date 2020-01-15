@@ -35,6 +35,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.serviemporda.gestioclients.domain.enumeration.Estat;
 /**
  * Integration tests for the {@link FeinaResource} REST controller.
  */
@@ -56,8 +57,8 @@ public class FeinaResourceIT {
     private static final Duration DEFAULT_TEMPS_REAL = Duration.ofHours(6);
     private static final Duration UPDATED_TEMPS_REAL = Duration.ofHours(12);
 
-    private static final Integer DEFAULT_ESTAT = 1;
-    private static final Integer UPDATED_ESTAT = 2;
+    private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
+    private static final Estat UPDATED_ESTAT = Estat.PAUSAT;
 
     private static final Integer DEFAULT_INTERVAL_CONTROL = 1;
     private static final Integer UPDATED_INTERVAL_CONTROL = 2;
@@ -217,7 +218,7 @@ public class FeinaResourceIT {
             .andExpect(jsonPath("$.[*].setmana").value(hasItem(DEFAULT_SETMANA.toString())))
             .andExpect(jsonPath("$.[*].tempsPrevist").value(hasItem(DEFAULT_TEMPS_PREVIST.toString())))
             .andExpect(jsonPath("$.[*].tempsReal").value(hasItem(DEFAULT_TEMPS_REAL.toString())))
-            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT)))
+            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.toString())))
             .andExpect(jsonPath("$.[*].intervalControl").value(hasItem(DEFAULT_INTERVAL_CONTROL)))
             .andExpect(jsonPath("$.[*].facturacioAutomatica").value(hasItem(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue())))
             .andExpect(jsonPath("$.[*].observacions").value(hasItem(DEFAULT_OBSERVACIONS)))
@@ -273,7 +274,7 @@ public class FeinaResourceIT {
             .andExpect(jsonPath("$.setmana").value(DEFAULT_SETMANA.toString()))
             .andExpect(jsonPath("$.tempsPrevist").value(DEFAULT_TEMPS_PREVIST.toString()))
             .andExpect(jsonPath("$.tempsReal").value(DEFAULT_TEMPS_REAL.toString()))
-            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT))
+            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT.toString()))
             .andExpect(jsonPath("$.intervalControl").value(DEFAULT_INTERVAL_CONTROL))
             .andExpect(jsonPath("$.facturacioAutomatica").value(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue()))
             .andExpect(jsonPath("$.observacions").value(DEFAULT_OBSERVACIONS))

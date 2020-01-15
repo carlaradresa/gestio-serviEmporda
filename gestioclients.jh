@@ -9,6 +9,9 @@ entity PlantillaFeina {
     numeroControl Integer
 }
 
+enum Estat{
+	ACTIU, PAUSAT, INACTIU
+}
 entity Categoria{
 	nomCategoria String
 }
@@ -55,7 +58,7 @@ entity Feina {
     setmana LocalDate,
     tempsPrevist Duration,
     tempsReal Duration,
-    estat Integer,
+    estat Estat,
     intervalControl Integer,
     facturacioAutomatica Boolean,
     observacions String,
@@ -80,7 +83,7 @@ entity Marcatge {
 entity Treballador {
     nom String,
     carregaHores Duration,
-    actiu Boolean,
+    estat Estat,
     controlQualitat Boolean
 }
 

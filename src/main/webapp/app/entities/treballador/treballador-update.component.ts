@@ -24,7 +24,7 @@ export class TreballadorUpdateComponent implements OnInit {
     id: [],
     nom: [],
     carregaHores: [],
-    actiu: [],
+    estat: [],
     controlQualitat: [],
     user: []
   });
@@ -56,7 +56,7 @@ export class TreballadorUpdateComponent implements OnInit {
       id: treballador.id,
       nom: treballador.nom,
       carregaHores: treballador.carregaHores,
-      actiu: treballador.actiu,
+      estat: treballador.estat,
       controlQualitat: treballador.controlQualitat,
       user: treballador.user
     });
@@ -82,7 +82,7 @@ export class TreballadorUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       nom: this.editForm.get(['nom'])!.value,
       carregaHores: this.editForm.get(['carregaHores'])!.value,
-      actiu: this.editForm.get(['actiu'])!.value,
+      estat: this.editForm.get(['estat'])!.value,
       controlQualitat: this.editForm.get(['controlQualitat'])!.value,
       user: this.editForm.get(['user'])!.value
     };

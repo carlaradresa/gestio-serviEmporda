@@ -10,8 +10,9 @@
             "fieldType": "Duration"
         },
         {
-            "fieldName": "actiu",
-            "fieldType": "Boolean"
+            "fieldName": "estat",
+            "fieldType": "Estat",
+            "fieldValues": "ACTIU,PAUSAT,INACTIU"
         },
         {
             "fieldName": "controlQualitat",
