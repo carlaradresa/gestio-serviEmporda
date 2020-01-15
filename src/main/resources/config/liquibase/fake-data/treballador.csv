@@ -1,11 +1,11 @@
-id;nom;carrega_hores;actiu;control_qualitat
-1;withdrawal red Syrian Pound;13297;false;true
-2;Berkshire digital utilize;38352;false;false
-3;withdrawal 1080p;4620;false;true
-4;Technician;64489;true;false
-5;heuristic;51080;true;false
-6;efficient transparent Georgia;93202;false;false
-7;Money Market Account;85826;false;false
-8;Afghani Generic Granite Towels green;82183;true;true
-9;cyan Sleek Steel Shirt Usability;7438;false;false
-10;plum Officer;55262;false;true
+id;nom;carrega_hores;estat;control_qualitat
+1;withdrawal red Syrian Pound;13297;PAUSAT;false
+2;maroon Tools Music;50437;ACTIU;true
+3;Technician;64489;ACTIU;true
+4;Louisiana generating;18823;ACTIU;false
+5;Afghani Generic Granite Towels green;82183;INACTIU;true
+6;Customizable;44283;ACTIU;true
+7;Brand;42185;PAUSAT;false
+8;Future Ergonomic hacking;76356;PAUSAT;true
+9;wireless;31744;INACTIU;true
+10;enhance;25252;PAUSAT;true

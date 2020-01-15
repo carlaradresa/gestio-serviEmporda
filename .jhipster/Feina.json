@@ -23,7 +23,8 @@
         },
         {
             "fieldName": "estat",
-            "fieldType": "Integer"
+            "fieldType": "Estat",
+            "fieldValues": "ACTIU,PAUSAT,INACTIU"
         },
         {
             "fieldName": "intervalControl",
