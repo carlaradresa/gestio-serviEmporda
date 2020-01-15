@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { FeinaService } from 'app/entities/feina/feina.service';
 import { IFeina, Feina } from 'app/shared/model/feina.model';
+import { Estat } from 'app/shared/model/enumerations/estat.model';
 
 describe('Service Tests', () => {
   describe('Feina Service', () => {
@@ -24,7 +25,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Feina(0, 'AAAAAAA', 'AAAAAAA', currentDate, 0, 0, 0, 0, false, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Feina(0, 'AAAAAAA', 'AAAAAAA', currentDate, 0, 0, Estat.ACTIU, 0, false, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -76,7 +77,7 @@ describe('Service Tests', () => {
             setmana: currentDate.format(DATE_FORMAT),
             tempsPrevist: 'BBBBBB',
             tempsReal: 'BBBBBB',
-            estat: 1,
+            estat: 'BBBBBB',
             intervalControl: 1,
             facturacioAutomatica: true,
             observacions: 'BBBBBB',
@@ -108,7 +109,7 @@ describe('Service Tests', () => {
             setmana: currentDate.format(DATE_FORMAT),
             tempsPrevist: 'BBBBBB',
             tempsReal: 'BBBBBB',
-            estat: 1,
+            estat: 'BBBBBB',
             intervalControl: 1,
             facturacioAutomatica: true,
             observacions: 'BBBBBB',

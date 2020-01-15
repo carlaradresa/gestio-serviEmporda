@@ -28,6 +28,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.serviemporda.gestioclients.domain.enumeration.Estat;
 /**
  * Integration tests for the {@link TreballadorResource} REST controller.
  */
@@ -40,8 +41,8 @@ public class TreballadorResourceIT {
     private static final Duration DEFAULT_CARREGA_HORES = Duration.ofHours(6);
     private static final Duration UPDATED_CARREGA_HORES = Duration.ofHours(12);
 
-    private static final Boolean DEFAULT_ACTIU = false;
-    private static final Boolean UPDATED_ACTIU = true;
+    private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
+    private static final Estat UPDATED_ESTAT = Estat.PAUSAT;
 
     private static final Boolean DEFAULT_CONTROL_QUALITAT = false;
     private static final Boolean UPDATED_CONTROL_QUALITAT = true;
@@ -90,7 +91,7 @@ public class TreballadorResourceIT {
         Treballador treballador = new Treballador()
             .nom(DEFAULT_NOM)
             .carregaHores(DEFAULT_CARREGA_HORES)
-            .actiu(DEFAULT_ACTIU)
+            .estat(DEFAULT_ESTAT)
             .controlQualitat(DEFAULT_CONTROL_QUALITAT);
         return treballador;
     }
@@ -104,7 +105,7 @@ public class TreballadorResourceIT {
         Treballador treballador = new Treballador()
             .nom(UPDATED_NOM)
             .carregaHores(UPDATED_CARREGA_HORES)
-            .actiu(UPDATED_ACTIU)
+            .estat(UPDATED_ESTAT)
             .controlQualitat(UPDATED_CONTROL_QUALITAT);
         return treballador;
     }
@@ -131,7 +132,7 @@ public class TreballadorResourceIT {
         Treballador testTreballador = treballadorList.get(treballadorList.size() - 1);
         assertThat(testTreballador.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testTreballador.getCarregaHores()).isEqualTo(DEFAULT_CARREGA_HORES);
-        assertThat(testTreballador.isActiu()).isEqualTo(DEFAULT_ACTIU);
+        assertThat(testTreballador.getEstat()).isEqualTo(DEFAULT_ESTAT);
         assertThat(testTreballador.isControlQualitat()).isEqualTo(DEFAULT_CONTROL_QUALITAT);
     }
 
@@ -168,7 +169,7 @@ public class TreballadorResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(treballador.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].carregaHores").value(hasItem(DEFAULT_CARREGA_HORES.toString())))
-            .andExpect(jsonPath("$.[*].actiu").value(hasItem(DEFAULT_ACTIU.booleanValue())))
+            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.toString())))
             .andExpect(jsonPath("$.[*].controlQualitat").value(hasItem(DEFAULT_CONTROL_QUALITAT.booleanValue())));
     }
     
@@ -185,7 +186,7 @@ public class TreballadorResourceIT {
             .andExpect(jsonPath("$.id").value(treballador.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.carregaHores").value(DEFAULT_CARREGA_HORES.toString()))
-            .andExpect(jsonPath("$.actiu").value(DEFAULT_ACTIU.booleanValue()))
+            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT.toString()))
             .andExpect(jsonPath("$.controlQualitat").value(DEFAULT_CONTROL_QUALITAT.booleanValue()));
     }
 
@@ -212,7 +213,7 @@ public class TreballadorResourceIT {
         updatedTreballador
             .nom(UPDATED_NOM)
             .carregaHores(UPDATED_CARREGA_HORES)
-            .actiu(UPDATED_ACTIU)
+            .estat(UPDATED_ESTAT)
             .controlQualitat(UPDATED_CONTROL_QUALITAT);
 
         restTreballadorMockMvc.perform(put("/api/treballadors")
@@ -226,7 +227,7 @@ public class TreballadorResourceIT {
         Treballador testTreballador = treballadorList.get(treballadorList.size() - 1);
         assertThat(testTreballador.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testTreballador.getCarregaHores()).isEqualTo(UPDATED_CARREGA_HORES);
-        assertThat(testTreballador.isActiu()).isEqualTo(UPDATED_ACTIU);
+        assertThat(testTreballador.getEstat()).isEqualTo(UPDATED_ESTAT);
         assertThat(testTreballador.isControlQualitat()).isEqualTo(UPDATED_CONTROL_QUALITAT);
     }
 

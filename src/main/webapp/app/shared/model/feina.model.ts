@@ -4,6 +4,7 @@ import { ICategoria } from 'app/shared/model/categoria.model';
 import { IClient } from 'app/shared/model/client.model';
 import { ITreballador } from 'app/shared/model/treballador.model';
 import { IUbicacio } from 'app/shared/model/ubicacio.model';
+import { Estat } from 'app/shared/model/enumerations/estat.model';
 
 export interface IFeina {
   id?: number;
@@ -12,7 +13,7 @@ export interface IFeina {
   setmana?: Moment;
   tempsPrevist?: number;
   tempsReal?: number;
-  estat?: number;
+  estat?: Estat;
   intervalControl?: number;
   facturacioAutomatica?: boolean;
   observacions?: string;
@@ -32,7 +33,7 @@ export class Feina implements IFeina {
     public setmana?: Moment,
     public tempsPrevist?: number,
     public tempsReal?: number,
-    public estat?: number,
+    public estat?: Estat,
     public intervalControl?: number,
     public facturacioAutomatica?: boolean,
     public observacions?: string,

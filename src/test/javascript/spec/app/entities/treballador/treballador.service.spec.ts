@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { take, map } from 'rxjs/operators';
 import { TreballadorService } from 'app/entities/treballador/treballador.service';
 import { ITreballador, Treballador } from 'app/shared/model/treballador.model';
+import { Estat } from 'app/shared/model/enumerations/estat.model';
 
 describe('Service Tests', () => {
   describe('Treballador Service', () => {
@@ -20,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(TreballadorService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Treballador(0, 'AAAAAAA', 0, false, false);
+      elemDefault = new Treballador(0, 'AAAAAAA', 0, Estat.ACTIU, false);
     });
 
     describe('Service methods', () => {
@@ -58,7 +59,7 @@ describe('Service Tests', () => {
           {
             nom: 'BBBBBB',
             carregaHores: 'BBBBBB',
-            actiu: true,
+            estat: 'BBBBBB',
             controlQualitat: true
           },
           elemDefault
@@ -79,7 +80,7 @@ describe('Service Tests', () => {
           {
             nom: 'BBBBBB',
             carregaHores: 'BBBBBB',
-            actiu: true,
+            estat: 'BBBBBB',
             controlQualitat: true
           },
           elemDefault
