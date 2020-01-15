@@ -84,6 +84,10 @@ public class Feina implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "ubicacio_id", referencedColumnName = "id"))
     private Set<Ubicacio> ubicacios = new HashSet<>();
 
+    public Feina() {
+        this.estat = Estat.INACTIU;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
