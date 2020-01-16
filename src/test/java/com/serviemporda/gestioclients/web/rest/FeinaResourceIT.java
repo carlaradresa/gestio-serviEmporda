@@ -59,6 +59,7 @@ public class FeinaResourceIT {
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
     private static final Estat UPDATED_ESTAT = Estat.PAUSAT;
+    private static final Estat INACTIVE_ESTAT = Estat.INACTIU;
 
     private static final Integer DEFAULT_INTERVAL_CONTROL = 1;
     private static final Integer UPDATED_INTERVAL_CONTROL = 2;
@@ -122,7 +123,7 @@ public class FeinaResourceIT {
             .setmana(DEFAULT_SETMANA)
             .tempsPrevist(DEFAULT_TEMPS_PREVIST)
             .tempsReal(DEFAULT_TEMPS_REAL)
-            .estat(DEFAULT_ESTAT)
+            .estat(INACTIVE_ESTAT)
             .intervalControl(DEFAULT_INTERVAL_CONTROL)
             .facturacioAutomatica(DEFAULT_FACTURACIO_AUTOMATICA)
             .observacions(DEFAULT_OBSERVACIONS)
@@ -142,7 +143,7 @@ public class FeinaResourceIT {
             .setmana(UPDATED_SETMANA)
             .tempsPrevist(UPDATED_TEMPS_PREVIST)
             .tempsReal(UPDATED_TEMPS_REAL)
-            .estat(UPDATED_ESTAT)
+            .estat(INACTIVE_ESTAT)
             .intervalControl(UPDATED_INTERVAL_CONTROL)
             .facturacioAutomatica(UPDATED_FACTURACIO_AUTOMATICA)
             .observacions(UPDATED_OBSERVACIONS)
@@ -175,7 +176,7 @@ public class FeinaResourceIT {
         assertThat(testFeina.getSetmana()).isEqualTo(DEFAULT_SETMANA);
         assertThat(testFeina.getTempsPrevist()).isEqualTo(DEFAULT_TEMPS_PREVIST);
         assertThat(testFeina.getTempsReal()).isEqualTo(DEFAULT_TEMPS_REAL);
-        assertThat(testFeina.getEstat()).isEqualTo(DEFAULT_ESTAT);
+        assertThat(testFeina.getEstat()).isEqualTo(INACTIVE_ESTAT);
         assertThat(testFeina.getIntervalControl()).isEqualTo(DEFAULT_INTERVAL_CONTROL);
         assertThat(testFeina.isFacturacioAutomatica()).isEqualTo(DEFAULT_FACTURACIO_AUTOMATICA);
         assertThat(testFeina.getObservacions()).isEqualTo(DEFAULT_OBSERVACIONS);
@@ -218,13 +219,13 @@ public class FeinaResourceIT {
             .andExpect(jsonPath("$.[*].setmana").value(hasItem(DEFAULT_SETMANA.toString())))
             .andExpect(jsonPath("$.[*].tempsPrevist").value(hasItem(DEFAULT_TEMPS_PREVIST.toString())))
             .andExpect(jsonPath("$.[*].tempsReal").value(hasItem(DEFAULT_TEMPS_REAL.toString())))
-            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.toString())))
+            .andExpect(jsonPath("$.[*].estat").value(hasItem(INACTIVE_ESTAT.toString())))
             .andExpect(jsonPath("$.[*].intervalControl").value(hasItem(DEFAULT_INTERVAL_CONTROL)))
             .andExpect(jsonPath("$.[*].facturacioAutomatica").value(hasItem(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue())))
             .andExpect(jsonPath("$.[*].observacions").value(hasItem(DEFAULT_OBSERVACIONS)))
             .andExpect(jsonPath("$.[*].comentarisTreballador").value(hasItem(DEFAULT_COMENTARIS_TREBALLADOR)));
     }
-    
+
     @SuppressWarnings({"unchecked"})
     public void getAllFeinasWithEagerRelationshipsIsEnabled() throws Exception {
         FeinaResource feinaResource = new FeinaResource(feinaRepositoryMock);
@@ -274,7 +275,7 @@ public class FeinaResourceIT {
             .andExpect(jsonPath("$.setmana").value(DEFAULT_SETMANA.toString()))
             .andExpect(jsonPath("$.tempsPrevist").value(DEFAULT_TEMPS_PREVIST.toString()))
             .andExpect(jsonPath("$.tempsReal").value(DEFAULT_TEMPS_REAL.toString()))
-            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT.toString()))
+            .andExpect(jsonPath("$.estat").value(INACTIVE_ESTAT.toString()))
             .andExpect(jsonPath("$.intervalControl").value(DEFAULT_INTERVAL_CONTROL))
             .andExpect(jsonPath("$.facturacioAutomatica").value(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue()))
             .andExpect(jsonPath("$.observacions").value(DEFAULT_OBSERVACIONS))
@@ -307,7 +308,7 @@ public class FeinaResourceIT {
             .setmana(UPDATED_SETMANA)
             .tempsPrevist(UPDATED_TEMPS_PREVIST)
             .tempsReal(UPDATED_TEMPS_REAL)
-            .estat(UPDATED_ESTAT)
+            .estat(INACTIVE_ESTAT)
             .intervalControl(UPDATED_INTERVAL_CONTROL)
             .facturacioAutomatica(UPDATED_FACTURACIO_AUTOMATICA)
             .observacions(UPDATED_OBSERVACIONS)
@@ -327,7 +328,7 @@ public class FeinaResourceIT {
         assertThat(testFeina.getSetmana()).isEqualTo(UPDATED_SETMANA);
         assertThat(testFeina.getTempsPrevist()).isEqualTo(UPDATED_TEMPS_PREVIST);
         assertThat(testFeina.getTempsReal()).isEqualTo(UPDATED_TEMPS_REAL);
-        assertThat(testFeina.getEstat()).isEqualTo(UPDATED_ESTAT);
+        assertThat(testFeina.getEstat()).isEqualTo(INACTIVE_ESTAT);
         assertThat(testFeina.getIntervalControl()).isEqualTo(UPDATED_INTERVAL_CONTROL);
         assertThat(testFeina.isFacturacioAutomatica()).isEqualTo(UPDATED_FACTURACIO_AUTOMATICA);
         assertThat(testFeina.getObservacions()).isEqualTo(UPDATED_OBSERVACIONS);
