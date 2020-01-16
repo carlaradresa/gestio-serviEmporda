@@ -10,12 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +56,25 @@ public class PlantillaFeinaResource {
             throw new BadRequestAlertException("A new plantillaFeina cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
+
+
+        //CREEM TOTES LES FEINES A PARTIR DE LA PLANTILLA:
+
+        String s = "2014-05-01";
+        String e = "2014-05-10";
+        LocalDate start = result.getSetmanaInicial();
+        LocalDate end = result.getSetmanaFinal();
+        List<LocalDate> totalFeines = new ArrayList<>();
+        while (!start.isAfter(end)) {
+            totalFeines.add(start);
+            start = start.plusDays(1);
+        }
+
+        for (int i = 0; i < totalFeines.size(); i ++){
+            System.out.println("FEINA:            "+totalFeines.get(i).toString());
+        }
+        System.out.println(totalFeines);
+
         return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
