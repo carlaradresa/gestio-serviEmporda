@@ -39,12 +39,12 @@
                 <td>{{control.comentaris}}</td>
                 <td>
                     <div *ngIf="control.revisor">
-                        <a [routerLink]="['/treballador', control.revisor?.id, 'view' ]" >{{control.revisor?.id}}</a>
+                        <a [routerLink]="['/treballador', control.revisor?.id, 'view' ]" >{{control.revisor?.nom}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="control.feina">
-                        <a [routerLink]="['/feina', control.feina?.id, 'view' ]" >{{control.feina?.id}}</a>
+                        <a [routerLink]="['/feina', control.feina?.id, 'view' ]" >{{control.feina?.nom}}</a>
                     </div>
                 </td>
                 <td class="text-right">

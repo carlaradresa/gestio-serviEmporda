@@ -35,12 +35,12 @@
                 <td>{{marcatge.desviacio}}</td>
                 <td>
                     <div *ngIf="marcatge.feina">
-                        <a [routerLink]="['/feina', marcatge.feina?.id, 'view' ]" >{{marcatge.feina?.id}}</a>
+                        <a [routerLink]="['/feina', marcatge.feina?.id, 'view' ]" >{{marcatge.feina?.nom}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="marcatge.treballador">
-                        <a [routerLink]="['/treballador', marcatge.treballador?.id, 'view' ]" >{{marcatge.treballador?.id}}</a>
+                        <a [routerLink]="['/treballador', marcatge.treballador?.id, 'view' ]" >{{marcatge.treballador?.nom}}</a>
                     </div>
                 </td>
                 <td class="text-right">
