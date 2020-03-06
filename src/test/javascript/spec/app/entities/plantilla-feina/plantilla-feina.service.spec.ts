@@ -24,15 +24,15 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new PlantillaFeina(0, currentDate, currentDate, 0, false, 'AAAAAAA', currentDate, currentDate, 0);
+      elemDefault = new PlantillaFeina(0, '00:00:00', '00:00:00', 0, false, 'AAAAAAA', currentDate, currentDate, 0);
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            horaInici: currentDate.format(DATE_TIME_FORMAT),
-            horaFinal: currentDate.format(DATE_TIME_FORMAT),
+            horaInici: '',
+            horaFinal: '',
             setmanaInicial: currentDate.format(DATE_FORMAT),
             setmanaFinal: currentDate.format(DATE_FORMAT)
           },

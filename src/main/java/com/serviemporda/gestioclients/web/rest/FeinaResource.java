@@ -1,6 +1,7 @@
 package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.Feina;
+import com.serviemporda.gestioclients.domain.enumeration.Estat;
 import com.serviemporda.gestioclients.repository.FeinaRepository;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
@@ -52,6 +53,10 @@ public class FeinaResource {
         log.debug("REST request to save Feina : {}", feina);
         if (feina.getId() != null) {
             throw new BadRequestAlertException("A new feina cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        feina.setEstat(Estat.INACTIU);
+        if (feina.getDescripcio() == null){
+            feina.setDescripcio("");
         }
         Feina result = feinaRepository.save(feina);
         return ResponseEntity.created(new URI("/api/feinas/" + result.getId()))

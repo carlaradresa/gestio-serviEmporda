@@ -94,8 +94,8 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
   updateForm(plantillaFeina: IPlantillaFeina): void {
     this.editForm.patchValue({
       id: plantillaFeina.id,
-      horaInici: plantillaFeina.horaInici != null ? plantillaFeina.horaInici.format(DATE_TIME_FORMAT) : null,
-      horaFinal: plantillaFeina.horaFinal != null ? plantillaFeina.horaFinal.format(DATE_TIME_FORMAT) : null,
+      horaInici: plantillaFeina.horaInici != null ? plantillaFeina.horaInici : null,
+      horaFinal: plantillaFeina.horaFinal != null ? plantillaFeina.horaFinal : null,
       tempsPrevist: plantillaFeina.tempsPrevist,
       facturacioAutomatica: plantillaFeina.facturacioAutomatica,
       observacions: plantillaFeina.observacions,
@@ -125,10 +125,8 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
     return {
       ...new PlantillaFeina(),
       id: this.editForm.get(['id'])!.value,
-      horaInici:
-        this.editForm.get(['horaInici'])!.value != null ? moment(this.editForm.get(['horaInici'])!.value, DATE_TIME_FORMAT) : undefined,
-      horaFinal:
-        this.editForm.get(['horaFinal'])!.value != null ? moment(this.editForm.get(['horaFinal'])!.value, DATE_TIME_FORMAT) : undefined,
+      horaInici: this.editForm.get(['horaInici'])!.value != null ? this.editForm.get(['horaInici'])!.value : undefined,
+      horaFinal: this.editForm.get(['horaFinal'])!.value != null ? this.editForm.get(['horaFinal'])!.value : undefined,
       tempsPrevist: this.editForm.get(['tempsPrevist'])!.value,
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica'])!.value,
       observacions: this.editForm.get(['observacions'])!.value,
@@ -141,10 +139,7 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPlantillaFeina>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess(): void {

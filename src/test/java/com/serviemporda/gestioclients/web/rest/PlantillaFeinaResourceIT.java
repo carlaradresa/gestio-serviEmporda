@@ -22,10 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.Instant;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +40,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = GestioClientsApp.class)
 public class PlantillaFeinaResourceIT {
 
-    private static final Instant DEFAULT_HORA_INICI = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_HORA_INICI = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalTime DEFAULT_HORA_INICI = LocalTime.of(0,0);
+    private static final LocalTime UPDATED_HORA_INICI = LocalTime.now();
 
-    private static final Instant DEFAULT_HORA_FINAL = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_HORA_FINAL = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalTime DEFAULT_HORA_FINAL = LocalTime.of(0,0);
+    private static final LocalTime UPDATED_HORA_FINAL = LocalTime.now();
 
     private static final Duration DEFAULT_TEMPS_PREVIST = Duration.ofHours(6);
     private static final Duration UPDATED_TEMPS_PREVIST = Duration.ofHours(12);
@@ -211,7 +208,7 @@ public class PlantillaFeinaResourceIT {
             .andExpect(jsonPath("$.[*].setmanaFinal").value(hasItem(DEFAULT_SETMANA_FINAL.toString())))
             .andExpect(jsonPath("$.[*].numeroControl").value(hasItem(DEFAULT_NUMERO_CONTROL)));
     }
-    
+
     @SuppressWarnings({"unchecked"})
     public void getAllPlantillaFeinasWithEagerRelationshipsIsEnabled() throws Exception {
         PlantillaFeinaResource plantillaFeinaResource = new PlantillaFeinaResource(plantillaFeinaRepositoryMock);

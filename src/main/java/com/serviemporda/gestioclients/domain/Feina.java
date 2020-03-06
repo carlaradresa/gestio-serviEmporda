@@ -349,4 +349,22 @@ public class Feina implements Serializable {
             ", comentarisTreballador='" + getComentarisTreballador() + "'" +
             "}";
     }
+
+    public Feina(String nom, String descripcio, LocalDate setmana, Duration tempsPrevist, Duration tempsReal, Estat estat, Integer intervalControl, Boolean facturacioAutomatica, String observacions, String comentarisTreballador, PlantillaFeina plantillaFeina, Categoria categoria, Client client, Set<Treballador> treballadors, Set<Ubicacio> ubicacios) {
+        this.nom = nom;
+        this.descripcio = descripcio;
+        this.setmana = setmana;
+        this.tempsPrevist = tempsPrevist;
+        this.tempsReal = tempsReal;
+        this.estat = estat;
+        this.intervalControl = intervalControl;
+        this.facturacioAutomatica = facturacioAutomatica;
+        this.observacions = observacions;
+        this.comentarisTreballador = comentarisTreballador;
+        this.plantillaFeina = plantillaFeina;
+        this.categoria = categoria;
+        this.client = client;
+        this.treballadors = treballadors;
+        this.ubicacios = ubicacios;
+    }
 }

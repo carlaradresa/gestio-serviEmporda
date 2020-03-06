@@ -16,10 +16,10 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="hora_inici" type="datetime">
+            <column name="hora_inici" type="time">
                 <constraints nullable="true" />
             </column>
-            <column name="hora_final" type="datetime">
+            <column name="hora_final" type="time">
                 <constraints nullable="true" />
             </column>
             <column name="temps_previst" type="bigint">
@@ -61,7 +61,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="plantilla_feina_id, periodicitat_setmanal_id" tableName="plantilla_feina_periodicitat_setmanal"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

@@ -35,8 +35,8 @@
             <tbody>
             <tr *ngFor="let plantillaFeina of plantillaFeinas ;trackBy: trackId">
                 <td><a [routerLink]="['/plantilla-feina', plantillaFeina.id, 'view' ]">{{plantillaFeina.id}}</a></td>
-                <td>{{plantillaFeina.horaInici | date:'medium'}}</td>
-                <td>{{plantillaFeina.horaFinal | date:'medium'}}</td>
+                <td>{{plantillaFeina.horaInici}}</td>
+                <td>{{plantillaFeina.horaFinal}}</td>
                 <td>{{plantillaFeina.tempsPrevist}}</td>
                 <td>{{plantillaFeina.facturacioAutomatica}}</td>
                 <td>{{plantillaFeina.observacions}}</td>

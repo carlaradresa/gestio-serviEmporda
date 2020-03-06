@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,10 +27,10 @@ public class PlantillaFeina implements Serializable {
     private Long id;
 
     @Column(name = "hora_inici")
-    private Instant horaInici;
+    private LocalTime horaInici;
 
     @Column(name = "hora_final")
-    private Instant horaFinal;
+    private LocalTime horaFinal;
 
     @Column(name = "temps_previst")
     private Duration tempsPrevist;
@@ -69,29 +70,29 @@ public class PlantillaFeina implements Serializable {
         this.id = id;
     }
 
-    public Instant getHoraInici() {
+    public LocalTime getHoraInici() {
         return horaInici;
     }
 
-    public PlantillaFeina horaInici(Instant horaInici) {
+    public PlantillaFeina horaInici(LocalTime horaInici) {
         this.horaInici = horaInici;
         return this;
     }
 
-    public void setHoraInici(Instant horaInici) {
+    public void setHoraInici(LocalTime horaInici) {
         this.horaInici = horaInici;
     }
 
-    public Instant getHoraFinal() {
+    public LocalTime getHoraFinal() {
         return horaFinal;
     }
 
-    public PlantillaFeina horaFinal(Instant horaFinal) {
+    public PlantillaFeina horaFinal(LocalTime horaFinal) {
         this.horaFinal = horaFinal;
         return this;
     }
 
-    public void setHoraFinal(Instant horaFinal) {
+    public void setHoraFinal(LocalTime horaFinal) {
         this.horaFinal = horaFinal;
     }
 
