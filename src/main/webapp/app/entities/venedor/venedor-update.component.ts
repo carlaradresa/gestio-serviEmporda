@@ -17,7 +17,6 @@ import { UbicacioService } from 'app/entities/ubicacio/ubicacio.service';
 })
 export class VenedorUpdateComponent implements OnInit {
   isSaving = false;
-
   ubicacios: IUbicacio[] = [];
 
   editForm = this.fb.group({
@@ -44,7 +43,7 @@ export class VenedorUpdateComponent implements OnInit {
         .query({ filter: 'venedor-is-null' })
         .pipe(
           map((res: HttpResponse<IUbicacio[]>) => {
-            return res.body ? res.body : [];
+            return res.body || [];
           })
         )
         .subscribe((resBody: IUbicacio[]) => {
@@ -58,9 +57,7 @@ export class VenedorUpdateComponent implements OnInit {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IUbicacio[]) => {
-                this.ubicacios = concatRes;
-              });
+              .subscribe((concatRes: IUbicacio[]) => (this.ubicacios = concatRes));
           }
         });
     });

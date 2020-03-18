@@ -19,9 +19,7 @@ export class VenedorComponent implements OnInit, OnDestroy {
   constructor(protected venedorService: VenedorService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.venedorService.query().subscribe((res: HttpResponse<IVenedor[]>) => {
-      this.venedors = res.body ? res.body : [];
-    });
+    this.venedorService.query().subscribe((res: HttpResponse<IVenedor[]>) => (this.venedors = res.body || []));
   }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 package com.serviemporda.gestioclients.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -6,6 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;

@@ -4,8 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import * as moment from 'moment';
 
 import { IFeina, Feina } from 'app/shared/model/feina.model';
 import { FeinaService } from './feina.service';
@@ -30,15 +28,10 @@ type SelectableManyToManyEntity = ITreballador | IUbicacio;
 })
 export class FeinaUpdateComponent implements OnInit {
   isSaving = false;
-
   plantillafeinas: IPlantillaFeina[] = [];
-
   categorias: ICategoria[] = [];
-
   clients: IClient[] = [];
-
   treballadors: ITreballador[] = [];
-
   ubicacios: IUbicacio[] = [];
   setmanaDp: any;
 
@@ -76,50 +69,15 @@ export class FeinaUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ feina }) => {
       this.updateForm(feina);
 
-      this.plantillaFeinaService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IPlantillaFeina[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IPlantillaFeina[]) => (this.plantillafeinas = resBody));
+      this.plantillaFeinaService.query().subscribe((res: HttpResponse<IPlantillaFeina[]>) => (this.plantillafeinas = res.body || []));
 
-      this.categoriaService
-        .query()
-        .pipe(
-          map((res: HttpResponse<ICategoria[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: ICategoria[]) => (this.categorias = resBody));
+      this.categoriaService.query().subscribe((res: HttpResponse<ICategoria[]>) => (this.categorias = res.body || []));
 
-      this.clientService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IClient[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IClient[]) => (this.clients = resBody));
+      this.clientService.query().subscribe((res: HttpResponse<IClient[]>) => (this.clients = res.body || []));
 
-      this.treballadorService
-        .query()
-        .pipe(
-          map((res: HttpResponse<ITreballador[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: ITreballador[]) => (this.treballadors = resBody));
+      this.treballadorService.query().subscribe((res: HttpResponse<ITreballador[]>) => (this.treballadors = res.body || []));
 
-      this.ubicacioService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IUbicacio[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IUbicacio[]) => (this.ubicacios = resBody));
+      this.ubicacioService.query().subscribe((res: HttpResponse<IUbicacio[]>) => (this.ubicacios = res.body || []));
     });
   }
 

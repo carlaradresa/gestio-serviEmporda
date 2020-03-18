@@ -19,9 +19,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
   constructor(protected categoriaService: CategoriaService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.categoriaService.query().subscribe((res: HttpResponse<ICategoria[]>) => {
-      this.categorias = res.body ? res.body : [];
-    });
+    this.categoriaService.query().subscribe((res: HttpResponse<ICategoria[]>) => (this.categorias = res.body || []));
   }
 
   ngOnInit(): void {
