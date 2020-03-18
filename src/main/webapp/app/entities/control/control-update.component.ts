@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
@@ -23,9 +22,7 @@ type SelectableEntity = ITreballador | IFeina;
 })
 export class ControlUpdateComponent implements OnInit {
   isSaving = false;
-
   treballadors: ITreballador[] = [];
-
   feinas: IFeina[] = [];
   setmanaDp: any;
 
@@ -50,25 +47,16 @@ export class ControlUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ control }) => {
+      if (!control.id) {
+        const today = moment().startOf('day');
+        control.dataRevisio = today;
+      }
+
       this.updateForm(control);
 
-      this.treballadorService
-        .query()
-        .pipe(
-          map((res: HttpResponse<ITreballador[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: ITreballador[]) => (this.treballadors = resBody));
+      this.treballadorService.query().subscribe((res: HttpResponse<ITreballador[]>) => (this.treballadors = res.body || []));
 
-      this.feinaService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IFeina[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IFeina[]) => (this.feinas = resBody));
+      this.feinaService.query().subscribe((res: HttpResponse<IFeina[]>) => (this.feinas = res.body || []));
     });
   }
 
@@ -78,7 +66,7 @@ export class ControlUpdateComponent implements OnInit {
       numero: control.numero,
       setmana: control.setmana,
       causa: control.causa,
-      dataRevisio: control.dataRevisio != null ? control.dataRevisio.format(DATE_TIME_FORMAT) : null,
+      dataRevisio: control.dataRevisio ? control.dataRevisio.format(DATE_TIME_FORMAT) : null,
       comentaris: control.comentaris,
       revisor: control.revisor,
       feina: control.feina
@@ -106,8 +94,9 @@ export class ControlUpdateComponent implements OnInit {
       numero: this.editForm.get(['numero'])!.value,
       setmana: this.editForm.get(['setmana'])!.value,
       causa: this.editForm.get(['causa'])!.value,
-      dataRevisio:
-        this.editForm.get(['dataRevisio'])!.value != null ? moment(this.editForm.get(['dataRevisio'])!.value, DATE_TIME_FORMAT) : undefined,
+      dataRevisio: this.editForm.get(['dataRevisio'])!.value
+        ? moment(this.editForm.get(['dataRevisio'])!.value, DATE_TIME_FORMAT)
+        : undefined,
       comentaris: this.editForm.get(['comentaris'])!.value,
       revisor: this.editForm.get(['revisor'])!.value,
       feina: this.editForm.get(['feina'])!.value

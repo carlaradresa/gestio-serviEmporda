@@ -1,14 +1,15 @@
 package com.serviemporda.gestioclients.domain;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Duration;
-import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,10 +28,10 @@ public class PlantillaFeina implements Serializable {
     private Long id;
 
     @Column(name = "hora_inici")
-    private LocalTime horaInici;
+    private Instant horaInici;
 
     @Column(name = "hora_final")
-    private LocalTime horaFinal;
+    private Instant horaFinal;
 
     @Column(name = "temps_previst")
     private Duration tempsPrevist;
@@ -70,29 +71,29 @@ public class PlantillaFeina implements Serializable {
         this.id = id;
     }
 
-    public LocalTime getHoraInici() {
+    public Instant getHoraInici() {
         return horaInici;
     }
 
-    public PlantillaFeina horaInici(LocalTime horaInici) {
+    public PlantillaFeina horaInici(Instant horaInici) {
         this.horaInici = horaInici;
         return this;
     }
 
-    public void setHoraInici(LocalTime horaInici) {
+    public void setHoraInici(Instant horaInici) {
         this.horaInici = horaInici;
     }
 
-    public LocalTime getHoraFinal() {
+    public Instant getHoraFinal() {
         return horaFinal;
     }
 
-    public PlantillaFeina horaFinal(LocalTime horaFinal) {
+    public PlantillaFeina horaFinal(Instant horaFinal) {
         this.horaFinal = horaFinal;
         return this;
     }
 
-    public void setHoraFinal(LocalTime horaFinal) {
+    public void setHoraFinal(Instant horaFinal) {
         this.horaFinal = horaFinal;
     }
 

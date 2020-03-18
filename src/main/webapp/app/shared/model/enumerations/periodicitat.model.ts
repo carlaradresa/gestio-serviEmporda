@@ -1,7 +1,7 @@
 export const enum Periodicitat {
-  DIA,
-  SETMANA,
-  QUINZENAL,
-  MES,
-  ANY
+  DIA = 'DIA',
+  SETMANA = 'SETMANA',
+  QUINZENAL = 'QUINZENAL',
+  MES = 'MES',
+  ANY = 'ANY'
 }

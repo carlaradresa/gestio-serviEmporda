@@ -2,65 +2,76 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-feina-heading" jhiTranslate="gestioClientsApp.feina.home.createOrEditLabel">Create or edit a Feina</h2>
+
             <div>
                 <jhi-alert-error></jhi-alert-error>
+
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.nom" for="field_nom">Nom</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
                            formControlName="nom"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.descripcio" for="field_descripcio">Descripcio</label>
                     <input type="text" class="form-control" name="descripcio" id="field_descripcio"
                            formControlName="descripcio"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.setmana" for="field_setmana">Setmana</label>
                     <div class="input-group">
-                        <input id="field_setmana" type="text" class="form-control" name="setmana" ngbDatepicker  #setmanaDp="ngbDatepicker" formControlName="setmana"/>
+                        <input id="field_setmana" type="text" class="form-control" name="setmana" ngbDatepicker #setmanaDp="ngbDatepicker" formControlName="setmana"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="setmanaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="setmanaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
                         </span>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.tempsPrevist" for="field_tempsPrevist">Temps Previst</label>
                     <input type="number" class="form-control" name="tempsPrevist" id="field_tempsPrevist"
                            formControlName="tempsPrevist"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.tempsReal" for="field_tempsReal">Temps Real</label>
                     <input type="number" class="form-control" name="tempsReal" id="field_tempsReal"
                            formControlName="tempsReal"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.estat" for="field_estat">Estat</label>
                     <select class="form-control" name="estat" formControlName="estat" id="field_estat">
-                        <option value="ACTIU">{{'gestioClientsApp.Estat.ACTIU' | translate}}</option>
-                        <option value="PAUSAT">{{'gestioClientsApp.Estat.PAUSAT' | translate}}</option>
-                        <option value="INACTIU">{{'gestioClientsApp.Estat.INACTIU' | translate}}</option>
+                        <option value="ACTIU">{{ 'gestioClientsApp.Estat.ACTIU' | translate }}</option>
+                        <option value="PAUSAT">{{ 'gestioClientsApp.Estat.PAUSAT' | translate }}</option>
+                        <option value="INACTIU">{{ 'gestioClientsApp.Estat.INACTIU' | translate }}</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.intervalControl" for="field_intervalControl">Interval Control</label>
                     <input type="number" class="form-control" name="intervalControl" id="field_intervalControl"
                            formControlName="intervalControl"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.facturacioAutomatica" for="field_facturacioAutomatica">Facturacio Automatica</label>
                     <input type="checkbox" class="form-control" name="facturacioAutomatica" id="field_facturacioAutomatica"
                            formControlName="facturacioAutomatica"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.observacions" for="field_observacions">Observacions</label>
                     <input type="text" class="form-control" name="observacions" id="field_observacions"
                            formControlName="observacions"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.comentarisTreballador" for="field_comentarisTreballador">Comentaris Treballador</label>
                     <input type="text" class="form-control" name="comentarisTreballador" id="field_comentarisTreballador"
@@ -71,42 +82,48 @@
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.plantillaFeina" for="field_plantillaFeina">Plantilla Feina</label>
                     <select class="form-control" id="field_plantillaFeina" name="plantillaFeina" formControlName="plantillaFeina">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="plantillaFeinaOption.id === editForm.get('plantillaFeina')!.value?.id ? editForm.get('plantillaFeina')!.value : plantillaFeinaOption" *ngFor="let plantillaFeinaOption of plantillafeinas; trackBy: trackById">{{plantillaFeinaOption.id}}</option>
+                        <option [ngValue]="plantillaFeinaOption.id === editForm.get('plantillaFeina')!.value?.id ? editForm.get('plantillaFeina')!.value : plantillaFeinaOption" *ngFor="let plantillaFeinaOption of plantillafeinas; trackBy: trackById">{{ plantillaFeinaOption.id }}</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.categoria" for="field_categoria">Categoria</label>
                     <select class="form-control" id="field_categoria" name="categoria" formControlName="categoria">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="categoriaOption.id === editForm.get('categoria')!.value?.id ? editForm.get('categoria')!.value : categoriaOption" *ngFor="let categoriaOption of categorias; trackBy: trackById">{{categoriaOption.nomCategoria}}</option>
+                        <option [ngValue]="categoriaOption.id === editForm.get('categoria')!.value?.id ? editForm.get('categoria')!.value : categoriaOption" *ngFor="let categoriaOption of categorias; trackBy: trackById">{{ categoriaOption.id }}</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.feina.client" for="field_client">Client</label>
                     <select class="form-control" id="field_client" name="client" formControlName="client">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption" *ngFor="let clientOption of clients; trackBy: trackById">{{clientOption.nom}}</option>
+                        <option [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption" *ngFor="let clientOption of clients; trackBy: trackById">{{ clientOption.id }}</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label jhiTranslate="gestioClientsApp.feina.treballador" for="field_treballadors">Treballador</label>
                     <select class="form-control" id="field_treballadors" multiple name="treballadors" formControlName="treballadors">
-                        <option [ngValue]="getSelected(editForm.get('treballadors')!.value, treballadorOption)" *ngFor="let treballadorOption of treballadors; trackBy: trackById">{{treballadorOption.nom}}</option>
+                        <option [ngValue]="getSelected(editForm.get('treballadors')!.value, treballadorOption)" *ngFor="let treballadorOption of treballadors; trackBy: trackById">{{ treballadorOption.nom }}</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label jhiTranslate="gestioClientsApp.feina.ubicacio" for="field_ubicacios">Ubicacio</label>
                     <select class="form-control" id="field_ubicacios" multiple name="ubicacios" formControlName="ubicacios">
-                        <option [ngValue]="getSelected(editForm.get('ubicacios')!.value, ubicacioOption)" *ngFor="let ubicacioOption of ubicacios; trackBy: trackById">{{ubicacioOption.ubicacio}}</option>
+                        <option [ngValue]="getSelected(editForm.get('ubicacios')!.value, ubicacioOption)" *ngFor="let ubicacioOption of ubicacios; trackBy: trackById">{{ ubicacioOption.ubicacio }}</option>
                     </select>
                 </div>
             </div>
+
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
+
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

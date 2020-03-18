@@ -1,6 +1,7 @@
 package com.serviemporda.gestioclients.repository;
 
 import com.serviemporda.gestioclients.domain.PlantillaFeina;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -25,5 +26,4 @@ public interface PlantillaFeinaRepository extends JpaRepository<PlantillaFeina, 
 
     @Query("select plantillaFeina from PlantillaFeina plantillaFeina left join fetch plantillaFeina.periodicitatSetmanals where plantillaFeina.id =:id")
     Optional<PlantillaFeina> findOneWithEagerRelationships(@Param("id") Long id);
-
 }

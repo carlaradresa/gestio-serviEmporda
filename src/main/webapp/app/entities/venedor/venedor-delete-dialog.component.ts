@@ -13,7 +13,7 @@ export class VenedorDeleteDialogComponent {
 
   constructor(protected venedorService: VenedorService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

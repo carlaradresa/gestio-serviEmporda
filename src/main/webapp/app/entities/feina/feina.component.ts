@@ -19,9 +19,7 @@ export class FeinaComponent implements OnInit, OnDestroy {
   constructor(protected feinaService: FeinaService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.feinaService.query().subscribe((res: HttpResponse<IFeina[]>) => {
-      this.feinas = res.body ? res.body : [];
-    });
+    this.feinaService.query().subscribe((res: HttpResponse<IFeina[]>) => (this.feinas = res.body || []));
   }
 
   ngOnInit(): void {

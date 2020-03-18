@@ -1,7 +1,6 @@
 package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.Treballador;
-import com.serviemporda.gestioclients.domain.enumeration.Estat;
 import com.serviemporda.gestioclients.repository.TreballadorRepository;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -54,9 +52,6 @@ public class TreballadorResource {
         if (treballador.getId() != null) {
             throw new BadRequestAlertException("A new treballador cannot already have an ID", ENTITY_NAME, "idexists");
         }
-
-        treballador.setEstat(Estat.INACTIU);
-
         Treballador result = treballadorRepository.save(treballador);
         return ResponseEntity.created(new URI("/api/treballadors/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -87,7 +82,6 @@ public class TreballadorResource {
     /**
      * {@code GET  /treballadors} : get all the treballadors.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of treballadors in body.
      */
     @GetMapping("/treballadors")

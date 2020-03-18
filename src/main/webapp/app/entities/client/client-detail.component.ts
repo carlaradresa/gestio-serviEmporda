@@ -13,9 +13,7 @@ export class ClientDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ client }) => {
-      this.client = client;
-    });
+    this.activatedRoute.data.subscribe(({ client }) => (this.client = client));
   }
 
   previousState(): void {
