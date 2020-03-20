@@ -11,8 +11,8 @@ export interface IFeina {
   nom?: string;
   descripcio?: string;
   setmana?: Moment;
-  tempsPrevist?: number;
-  tempsReal?: number;
+  tempsPrevist?: Moment;
+  tempsReal?: Moment;
   estat?: Estat;
   intervalControl?: number;
   facturacioAutomatica?: boolean;
@@ -31,8 +31,8 @@ export class Feina implements IFeina {
     public nom?: string,
     public descripcio?: string,
     public setmana?: Moment,
-    public tempsPrevist?: number,
-    public tempsReal?: number,
+    public tempsPrevist?: Moment,
+    public tempsReal?: Moment,
     public estat?: Estat,
     public intervalControl?: number,
     public facturacioAutomatica?: boolean,

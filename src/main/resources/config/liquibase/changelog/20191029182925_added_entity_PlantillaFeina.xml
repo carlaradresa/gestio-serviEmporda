@@ -22,7 +22,7 @@
             <column name="hora_final" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="temps_previst" type="bigint">
+            <column name="temps_previst" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="facturacio_automatica" type="boolean">
@@ -47,6 +47,7 @@
         </createTable>
         <dropDefaultValue tableName="plantilla_feina" columnName="hora_inici" columnDataType="datetime"/>
         <dropDefaultValue tableName="plantilla_feina" columnName="hora_final" columnDataType="datetime"/>
+        <dropDefaultValue tableName="plantilla_feina" columnName="temps_previst" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20191029182925-1-relations" author="jhipster">
@@ -81,7 +82,7 @@
             <column name="id" type="numeric"/>
             <column name="hora_inici" type="datetime"/>
             <column name="hora_final" type="datetime"/>
-            <column name="temps_previst" type="numeric"/>
+            <column name="temps_previst" type="datetime"/>
             <column name="facturacio_automatica" type="boolean"/>
             <column name="observacions" type="string"/>
             <column name="setmana_inicial" type="date"/>
