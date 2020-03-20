@@ -19,10 +19,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,11 +50,11 @@ public class FeinaResourceIT {
     private static final LocalDate DEFAULT_SETMANA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_SETMANA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Instant DEFAULT_TEMPS_PREVIST = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_TEMPS_PREVIST = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Duration DEFAULT_TEMPS_PREVIST = Duration.ofHours(6);
+    private static final Duration UPDATED_TEMPS_PREVIST = Duration.ofHours(12);
 
-    private static final Instant DEFAULT_TEMPS_REAL = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_TEMPS_REAL = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Duration DEFAULT_TEMPS_REAL = Duration.ofHours(6);
+    private static final Duration UPDATED_TEMPS_REAL = Duration.ofHours(12);
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
     private static final Estat UPDATED_ESTAT = Estat.PAUSAT;

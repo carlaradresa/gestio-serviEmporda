@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class PlantillaFeina implements Serializable {
     private Instant horaFinal;
 
     @Column(name = "temps_previst")
-    private Instant tempsPrevist;
+    private Duration tempsPrevist;
 
     @Column(name = "facturacio_automatica")
     private Boolean facturacioAutomatica;
@@ -96,16 +97,16 @@ public class PlantillaFeina implements Serializable {
         this.horaFinal = horaFinal;
     }
 
-    public Instant getTempsPrevist() {
+    public Duration getTempsPrevist() {
         return tempsPrevist;
     }
 
-    public PlantillaFeina tempsPrevist(Instant tempsPrevist) {
+    public PlantillaFeina tempsPrevist(Duration tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return this;
     }
 
-    public void setTempsPrevist(Instant tempsPrevist) {
+    public void setTempsPrevist(Duration tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
     }
 

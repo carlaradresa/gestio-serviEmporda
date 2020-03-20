@@ -11,7 +11,7 @@
         },
         {
             "fieldName": "tempsPrevist",
-            "fieldType": "Instant"
+            "fieldType": "Duration"
         },
         {
             "fieldName": "facturacioAutomatica",

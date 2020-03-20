@@ -8,8 +8,8 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,10 +39,10 @@ public class Feina implements Serializable {
     private LocalDate setmana;
 
     @Column(name = "temps_previst")
-    private Instant tempsPrevist;
+    private Duration tempsPrevist;
 
     @Column(name = "temps_real")
-    private Instant tempsReal;
+    private Duration tempsReal;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estat")
@@ -134,29 +134,29 @@ public class Feina implements Serializable {
         this.setmana = setmana;
     }
 
-    public Instant getTempsPrevist() {
+    public Duration getTempsPrevist() {
         return tempsPrevist;
     }
 
-    public Feina tempsPrevist(Instant tempsPrevist) {
+    public Feina tempsPrevist(Duration tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return this;
     }
 
-    public void setTempsPrevist(Instant tempsPrevist) {
+    public void setTempsPrevist(Duration tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
     }
 
-    public Instant getTempsReal() {
+    public Duration getTempsReal() {
         return tempsReal;
     }
 
-    public Feina tempsReal(Instant tempsReal) {
+    public Feina tempsReal(Duration tempsReal) {
         this.tempsReal = tempsReal;
         return this;
     }
 
-    public void setTempsReal(Instant tempsReal) {
+    public void setTempsReal(Duration tempsReal) {
         this.tempsReal = tempsReal;
     }
 

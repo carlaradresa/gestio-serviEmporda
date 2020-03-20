@@ -6,7 +6,7 @@ export interface IPlantillaFeina {
   id?: number;
   horaInici?: Moment;
   horaFinal?: Moment;
-  tempsPrevist?: Moment;
+  tempsPrevist?: number;
   facturacioAutomatica?: boolean;
   observacions?: string;
   setmanaInicial?: Moment;
@@ -21,7 +21,7 @@ export class PlantillaFeina implements IPlantillaFeina {
     public id?: number,
     public horaInici?: Moment,
     public horaFinal?: Moment,
-    public tempsPrevist?: Moment,
+    public tempsPrevist?: number,
     public facturacioAutomatica?: boolean,
     public observacions?: string,
     public setmanaInicial?: Moment,
