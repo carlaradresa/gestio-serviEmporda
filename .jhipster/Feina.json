@@ -15,11 +15,11 @@
         },
         {
             "fieldName": "tempsPrevist",
-            "fieldType": "Duration"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "tempsReal",
-            "fieldType": "Duration"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "estat",

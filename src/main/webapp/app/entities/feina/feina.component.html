@@ -47,8 +47,8 @@
                     <td>{{ feina.nom }}</td>
                     <td>{{ feina.descripcio }}</td>
                     <td>{{ feina.setmana | date:'mediumDate' }}</td>
-                    <td>{{ feina.tempsPrevist }}</td>
-                    <td>{{ feina.tempsReal }}</td>
+                    <td>{{ feina.tempsPrevist | date:'medium' }}</td>
+                    <td>{{ feina.tempsReal | date:'medium' }}</td>
                     <td jhiTranslate="{{ 'gestioClientsApp.Estat.' + feina.estat }}">{{ feina.estat }}</td>
                     <td>{{ feina.intervalControl }}</td>
                     <td>{{ feina.facturacioAutomatica }}</td>
