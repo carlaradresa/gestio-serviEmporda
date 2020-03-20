@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as moment from 'moment';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { FeinaService } from 'app/entities/feina/feina.service';
 import { IFeina, Feina } from 'app/shared/model/feina.model';
 import { Estat } from 'app/shared/model/enumerations/estat.model';
@@ -25,16 +25,14 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Feina(0, 'AAAAAAA', 'AAAAAAA', currentDate, currentDate, currentDate, Estat.ACTIU, 0, false, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Feina(0, 'AAAAAAA', 'AAAAAAA', currentDate, 0, 0, Estat.ACTIU, 0, false, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            setmana: currentDate.format(DATE_FORMAT),
-            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
-            tempsReal: currentDate.format(DATE_TIME_FORMAT)
+            setmana: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -50,18 +48,14 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            setmana: currentDate.format(DATE_FORMAT),
-            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
-            tempsReal: currentDate.format(DATE_TIME_FORMAT)
+            setmana: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            setmana: currentDate,
-            tempsPrevist: currentDate,
-            tempsReal: currentDate
+            setmana: currentDate
           },
           returnedFromService
         );
@@ -79,8 +73,8 @@ describe('Service Tests', () => {
             nom: 'BBBBBB',
             descripcio: 'BBBBBB',
             setmana: currentDate.format(DATE_FORMAT),
-            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
-            tempsReal: currentDate.format(DATE_TIME_FORMAT),
+            tempsPrevist: 'BBBBBB',
+            tempsReal: 'BBBBBB',
             estat: 'BBBBBB',
             intervalControl: 1,
             facturacioAutomatica: true,
@@ -92,9 +86,7 @@ describe('Service Tests', () => {
 
         const expected = Object.assign(
           {
-            setmana: currentDate,
-            tempsPrevist: currentDate,
-            tempsReal: currentDate
+            setmana: currentDate
           },
           returnedFromService
         );
@@ -112,8 +104,8 @@ describe('Service Tests', () => {
             nom: 'BBBBBB',
             descripcio: 'BBBBBB',
             setmana: currentDate.format(DATE_FORMAT),
-            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
-            tempsReal: currentDate.format(DATE_TIME_FORMAT),
+            tempsPrevist: 'BBBBBB',
+            tempsReal: 'BBBBBB',
             estat: 'BBBBBB',
             intervalControl: 1,
             facturacioAutomatica: true,
@@ -125,9 +117,7 @@ describe('Service Tests', () => {
 
         const expected = Object.assign(
           {
-            setmana: currentDate,
-            tempsPrevist: currentDate,
-            tempsReal: currentDate
+            setmana: currentDate
           },
           returnedFromService
         );
