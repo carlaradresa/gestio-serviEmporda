@@ -56,6 +56,7 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
         const today = moment().startOf('day');
         plantillaFeina.horaInici = today;
         plantillaFeina.horaFinal = today;
+        plantillaFeina.tempsPrevist = today;
       }
 
       this.updateForm(plantillaFeina);
@@ -93,7 +94,7 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
       id: plantillaFeina.id,
       horaInici: plantillaFeina.horaInici ? plantillaFeina.horaInici.format(DATE_TIME_FORMAT) : null,
       horaFinal: plantillaFeina.horaFinal ? plantillaFeina.horaFinal.format(DATE_TIME_FORMAT) : null,
-      tempsPrevist: plantillaFeina.tempsPrevist,
+      tempsPrevist: plantillaFeina.tempsPrevist ? plantillaFeina.tempsPrevist.format(DATE_TIME_FORMAT) : null,
       facturacioAutomatica: plantillaFeina.facturacioAutomatica,
       observacions: plantillaFeina.observacions,
       setmanaInicial: plantillaFeina.setmanaInicial,
@@ -124,7 +125,9 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       horaInici: this.editForm.get(['horaInici'])!.value ? moment(this.editForm.get(['horaInici'])!.value, DATE_TIME_FORMAT) : undefined,
       horaFinal: this.editForm.get(['horaFinal'])!.value ? moment(this.editForm.get(['horaFinal'])!.value, DATE_TIME_FORMAT) : undefined,
-      tempsPrevist: this.editForm.get(['tempsPrevist'])!.value,
+      tempsPrevist: this.editForm.get(['tempsPrevist'])!.value
+        ? moment(this.editForm.get(['tempsPrevist'])!.value, DATE_TIME_FORMAT)
+        : undefined,
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica'])!.value,
       observacions: this.editForm.get(['observacions'])!.value,
       setmanaInicial: this.editForm.get(['setmanaInicial'])!.value,

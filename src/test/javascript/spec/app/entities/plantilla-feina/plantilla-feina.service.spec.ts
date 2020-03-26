@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new PlantillaFeina(0, currentDate, currentDate, 0, false, 'AAAAAAA', currentDate, currentDate, 0);
+      elemDefault = new PlantillaFeina(0, currentDate, currentDate, currentDate, false, 'AAAAAAA', currentDate, currentDate, 0);
     });
 
     describe('Service methods', () => {
@@ -33,6 +33,7 @@ describe('Service Tests', () => {
           {
             horaInici: currentDate.format(DATE_TIME_FORMAT),
             horaFinal: currentDate.format(DATE_TIME_FORMAT),
+            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
             setmanaInicial: currentDate.format(DATE_FORMAT),
             setmanaFinal: currentDate.format(DATE_FORMAT)
           },
@@ -52,6 +53,7 @@ describe('Service Tests', () => {
             id: 0,
             horaInici: currentDate.format(DATE_TIME_FORMAT),
             horaFinal: currentDate.format(DATE_TIME_FORMAT),
+            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
             setmanaInicial: currentDate.format(DATE_FORMAT),
             setmanaFinal: currentDate.format(DATE_FORMAT)
           },
@@ -62,6 +64,7 @@ describe('Service Tests', () => {
           {
             horaInici: currentDate,
             horaFinal: currentDate,
+            tempsPrevist: currentDate,
             setmanaInicial: currentDate,
             setmanaFinal: currentDate
           },
@@ -80,7 +83,7 @@ describe('Service Tests', () => {
           {
             horaInici: currentDate.format(DATE_TIME_FORMAT),
             horaFinal: currentDate.format(DATE_TIME_FORMAT),
-            tempsPrevist: 'BBBBBB',
+            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
             facturacioAutomatica: true,
             observacions: 'BBBBBB',
             setmanaInicial: currentDate.format(DATE_FORMAT),
@@ -94,6 +97,7 @@ describe('Service Tests', () => {
           {
             horaInici: currentDate,
             horaFinal: currentDate,
+            tempsPrevist: currentDate,
             setmanaInicial: currentDate,
             setmanaFinal: currentDate
           },
@@ -112,7 +116,7 @@ describe('Service Tests', () => {
           {
             horaInici: currentDate.format(DATE_TIME_FORMAT),
             horaFinal: currentDate.format(DATE_TIME_FORMAT),
-            tempsPrevist: 'BBBBBB',
+            tempsPrevist: currentDate.format(DATE_TIME_FORMAT),
             facturacioAutomatica: true,
             observacions: 'BBBBBB',
             setmanaInicial: currentDate.format(DATE_FORMAT),
@@ -126,6 +130,7 @@ describe('Service Tests', () => {
           {
             horaInici: currentDate,
             horaFinal: currentDate,
+            tempsPrevist: currentDate,
             setmanaInicial: currentDate,
             setmanaFinal: currentDate
           },

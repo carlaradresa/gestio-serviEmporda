@@ -19,7 +19,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -48,8 +47,8 @@ public class PlantillaFeinaResourceIT {
     private static final Instant DEFAULT_HORA_FINAL = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_HORA_FINAL = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Duration DEFAULT_TEMPS_PREVIST = Duration.ofHours(6);
-    private static final Duration UPDATED_TEMPS_PREVIST = Duration.ofHours(12);
+    private static final Instant DEFAULT_TEMPS_PREVIST = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_TEMPS_PREVIST = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Boolean DEFAULT_FACTURACIO_AUTOMATICA = false;
     private static final Boolean UPDATED_FACTURACIO_AUTOMATICA = true;
