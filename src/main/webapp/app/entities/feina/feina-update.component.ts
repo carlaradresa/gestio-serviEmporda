@@ -4,6 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IFeina, Feina } from 'app/shared/model/feina.model';
 import { FeinaService } from './feina.service';
@@ -67,6 +69,12 @@ export class FeinaUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ feina }) => {
+      if (!feina.id) {
+        const today = moment().startOf('day');
+        feina.tempsPrevist = today;
+        feina.tempsReal = today;
+      }
+
       this.updateForm(feina);
 
       this.plantillaFeinaService.query().subscribe((res: HttpResponse<IPlantillaFeina[]>) => (this.plantillafeinas = res.body || []));
@@ -87,8 +95,8 @@ export class FeinaUpdateComponent implements OnInit {
       nom: feina.nom,
       descripcio: feina.descripcio,
       setmana: feina.setmana,
-      tempsPrevist: feina.tempsPrevist,
-      tempsReal: feina.tempsReal,
+      tempsPrevist: feina.tempsPrevist ? feina.tempsPrevist.format(DATE_TIME_FORMAT) : null,
+      tempsReal: feina.tempsReal ? feina.tempsReal.format(DATE_TIME_FORMAT) : null,
       estat: feina.estat,
       intervalControl: feina.intervalControl,
       facturacioAutomatica: feina.facturacioAutomatica,
@@ -123,8 +131,10 @@ export class FeinaUpdateComponent implements OnInit {
       nom: this.editForm.get(['nom'])!.value,
       descripcio: this.editForm.get(['descripcio'])!.value,
       setmana: this.editForm.get(['setmana'])!.value,
-      tempsPrevist: this.editForm.get(['tempsPrevist'])!.value,
-      tempsReal: this.editForm.get(['tempsReal'])!.value,
+      tempsPrevist: this.editForm.get(['tempsPrevist'])!.value
+        ? moment(this.editForm.get(['tempsPrevist'])!.value, DATE_TIME_FORMAT)
+        : undefined,
+      tempsReal: this.editForm.get(['tempsReal'])!.value ? moment(this.editForm.get(['tempsReal'])!.value, DATE_TIME_FORMAT) : undefined,
       estat: this.editForm.get(['estat'])!.value,
       intervalControl: this.editForm.get(['intervalControl'])!.value,
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica'])!.value,
