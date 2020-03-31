@@ -4,7 +4,6 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { IControl, Control } from 'app/shared/model/control.model';
 import { ControlService } from './control.service';
@@ -39,7 +38,7 @@ export const controlRoute: Routes = [
     path: '',
     component: ControlComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.control.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +50,7 @@ export const controlRoute: Routes = [
       control: ControlResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.control.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -63,7 +62,7 @@ export const controlRoute: Routes = [
       control: ControlResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.control.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +74,7 @@ export const controlRoute: Routes = [
       control: ControlResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.control.home.title'
     },
     canActivate: [UserRouteAccessService]

@@ -13,7 +13,9 @@ export class FeinaDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ feina }) => (this.feina = feina));
+    this.activatedRoute.data.subscribe(({ feina }) => {
+      this.feina = feina;
+    });
   }
 
   previousState(): void {

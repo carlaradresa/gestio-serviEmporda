@@ -23,7 +23,9 @@ export class TreballadorComponent implements OnInit, OnDestroy {
   ) {}
 
   loadAll(): void {
-    this.treballadorService.query().subscribe((res: HttpResponse<ITreballador[]>) => (this.treballadors = res.body || []));
+    this.treballadorService.query().subscribe((res: HttpResponse<ITreballador[]>) => {
+      this.treballadors = res.body ? res.body : [];
+    });
   }
 
   ngOnInit(): void {

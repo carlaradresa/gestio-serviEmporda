@@ -13,7 +13,9 @@ export class PeriodicitatSetmanalDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ periodicitatSetmanal }) => (this.periodicitatSetmanal = periodicitatSetmanal));
+    this.activatedRoute.data.subscribe(({ periodicitatSetmanal }) => {
+      this.periodicitatSetmanal = periodicitatSetmanal;
+    });
   }
 
   previousState(): void {

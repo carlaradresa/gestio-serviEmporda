@@ -13,7 +13,9 @@ export class TreballadorDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ treballador }) => (this.treballador = treballador));
+    this.activatedRoute.data.subscribe(({ treballador }) => {
+      this.treballador = treballador;
+    });
   }
 
   previousState(): void {

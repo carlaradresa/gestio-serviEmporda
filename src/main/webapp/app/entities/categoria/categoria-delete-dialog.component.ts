@@ -13,7 +13,7 @@ export class CategoriaDeleteDialogComponent {
 
   constructor(protected categoriaService: CategoriaService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  cancel(): void {
+  clear(): void {
     this.activeModal.dismiss();
   }
 

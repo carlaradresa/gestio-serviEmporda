@@ -3,19 +3,25 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.GestioClientsApp;
 import com.serviemporda.gestioclients.domain.Client;
 import com.serviemporda.gestioclients.repository.ClientRepository;
+import com.serviemporda.gestioclients.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
+
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.serviemporda.gestioclients.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -25,9 +31,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link ClientResource} REST controller.
  */
 @SpringBootTest(classes = GestioClientsApp.class)
-
-@AutoConfigureMockMvc
-@WithMockUser
 public class ClientResourceIT {
 
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
@@ -58,12 +61,35 @@ public class ClientResourceIT {
     private ClientRepository clientRepository;
 
     @Autowired
+    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
+
+    @Autowired
+    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+
+    @Autowired
+    private ExceptionTranslator exceptionTranslator;
+
+    @Autowired
     private EntityManager em;
 
     @Autowired
+    private Validator validator;
+
     private MockMvc restClientMockMvc;
 
     private Client client;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final ClientResource clientResource = new ClientResource(clientRepository);
+        this.restClientMockMvc = MockMvcBuilders.standaloneSetup(clientResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
+    }
 
     /**
      * Create an entity for this test.
@@ -114,7 +140,7 @@ public class ClientResourceIT {
 
         // Create the Client
         restClientMockMvc.perform(post("/api/clients")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(client)))
             .andExpect(status().isCreated());
 
@@ -142,7 +168,7 @@ public class ClientResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restClientMockMvc.perform(post("/api/clients")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(client)))
             .andExpect(status().isBadRequest());
 
@@ -161,7 +187,7 @@ public class ClientResourceIT {
         // Get all the clientList
         restClientMockMvc.perform(get("/api/clients?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].direccio").value(hasItem(DEFAULT_DIRECCIO)))
@@ -182,7 +208,7 @@ public class ClientResourceIT {
         // Get the client
         restClientMockMvc.perform(get("/api/clients/{id}", client.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(client.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.direccio").value(DEFAULT_DIRECCIO))
@@ -225,7 +251,7 @@ public class ClientResourceIT {
             .observacions(UPDATED_OBSERVACIONS);
 
         restClientMockMvc.perform(put("/api/clients")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedClient)))
             .andExpect(status().isOk());
 
@@ -252,7 +278,7 @@ public class ClientResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restClientMockMvc.perform(put("/api/clients")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(client)))
             .andExpect(status().isBadRequest());
 
@@ -271,7 +297,7 @@ public class ClientResourceIT {
 
         // Delete the client
         restClientMockMvc.perform(delete("/api/clients/{id}", client.getId())
-            .accept(MediaType.APPLICATION_JSON))
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

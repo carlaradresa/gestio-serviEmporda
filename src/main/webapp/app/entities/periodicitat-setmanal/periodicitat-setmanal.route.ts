@@ -4,7 +4,6 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { IPeriodicitatSetmanal, PeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.model';
 import { PeriodicitatSetmanalService } from './periodicitat-setmanal.service';
@@ -39,7 +38,7 @@ export const periodicitatSetmanalRoute: Routes = [
     path: '',
     component: PeriodicitatSetmanalComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.periodicitatSetmanal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +50,7 @@ export const periodicitatSetmanalRoute: Routes = [
       periodicitatSetmanal: PeriodicitatSetmanalResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.periodicitatSetmanal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -63,7 +62,7 @@ export const periodicitatSetmanalRoute: Routes = [
       periodicitatSetmanal: PeriodicitatSetmanalResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.periodicitatSetmanal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +74,7 @@ export const periodicitatSetmanalRoute: Routes = [
       periodicitatSetmanal: PeriodicitatSetmanalResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.periodicitatSetmanal.home.title'
     },
     canActivate: [UserRouteAccessService]

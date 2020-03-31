@@ -3,29 +3,31 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.GestioClientsApp;
 import com.serviemporda.gestioclients.domain.PlantillaFeina;
 import com.serviemporda.gestioclients.repository.PlantillaFeinaRepository;
+import com.serviemporda.gestioclients.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
+
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.Instant;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.serviemporda.gestioclients.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Mockito.*;
@@ -36,19 +38,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link PlantillaFeinaResource} REST controller.
  */
 @SpringBootTest(classes = GestioClientsApp.class)
-@ExtendWith(MockitoExtension.class)
-@AutoConfigureMockMvc
-@WithMockUser
 public class PlantillaFeinaResourceIT {
 
-    private static final Instant DEFAULT_HORA_INICI = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_HORA_INICI = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalTime DEFAULT_HORA_INICI = LocalTime.of(0,0);
+    private static final LocalTime UPDATED_HORA_INICI = LocalTime.now();
 
-    private static final Instant DEFAULT_HORA_FINAL = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_HORA_FINAL = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalTime DEFAULT_HORA_FINAL = LocalTime.of(0,0);
+    private static final LocalTime UPDATED_HORA_FINAL = LocalTime.now();
 
-    private static final Instant DEFAULT_TEMPS_PREVIST = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_TEMPS_PREVIST = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Duration DEFAULT_TEMPS_PREVIST = Duration.ofHours(6);
+    private static final Duration UPDATED_TEMPS_PREVIST = Duration.ofHours(12);
 
     private static final Boolean DEFAULT_FACTURACIO_AUTOMATICA = false;
     private static final Boolean UPDATED_FACTURACIO_AUTOMATICA = true;
@@ -72,12 +71,35 @@ public class PlantillaFeinaResourceIT {
     private PlantillaFeinaRepository plantillaFeinaRepositoryMock;
 
     @Autowired
+    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
+
+    @Autowired
+    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+
+    @Autowired
+    private ExceptionTranslator exceptionTranslator;
+
+    @Autowired
     private EntityManager em;
 
     @Autowired
+    private Validator validator;
+
     private MockMvc restPlantillaFeinaMockMvc;
 
     private PlantillaFeina plantillaFeina;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final PlantillaFeinaResource plantillaFeinaResource = new PlantillaFeinaResource(plantillaFeinaRepository);
+        this.restPlantillaFeinaMockMvc = MockMvcBuilders.standaloneSetup(plantillaFeinaResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
+    }
 
     /**
      * Create an entity for this test.
@@ -128,7 +150,7 @@ public class PlantillaFeinaResourceIT {
 
         // Create the PlantillaFeina
         restPlantillaFeinaMockMvc.perform(post("/api/plantilla-feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(plantillaFeina)))
             .andExpect(status().isCreated());
 
@@ -156,7 +178,7 @@ public class PlantillaFeinaResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPlantillaFeinaMockMvc.perform(post("/api/plantilla-feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(plantillaFeina)))
             .andExpect(status().isBadRequest());
 
@@ -175,7 +197,7 @@ public class PlantillaFeinaResourceIT {
         // Get all the plantillaFeinaList
         restPlantillaFeinaMockMvc.perform(get("/api/plantilla-feinas?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(plantillaFeina.getId().intValue())))
             .andExpect(jsonPath("$.[*].horaInici").value(hasItem(DEFAULT_HORA_INICI.toString())))
             .andExpect(jsonPath("$.[*].horaFinal").value(hasItem(DEFAULT_HORA_FINAL.toString())))
@@ -186,14 +208,20 @@ public class PlantillaFeinaResourceIT {
             .andExpect(jsonPath("$.[*].setmanaFinal").value(hasItem(DEFAULT_SETMANA_FINAL.toString())))
             .andExpect(jsonPath("$.[*].numeroControl").value(hasItem(DEFAULT_NUMERO_CONTROL)));
     }
-    
+
     @SuppressWarnings({"unchecked"})
     public void getAllPlantillaFeinasWithEagerRelationshipsIsEnabled() throws Exception {
         PlantillaFeinaResource plantillaFeinaResource = new PlantillaFeinaResource(plantillaFeinaRepositoryMock);
         when(plantillaFeinaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
+        MockMvc restPlantillaFeinaMockMvc = MockMvcBuilders.standaloneSetup(plantillaFeinaResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
         restPlantillaFeinaMockMvc.perform(get("/api/plantilla-feinas?eagerload=true"))
-            .andExpect(status().isOk());
+        .andExpect(status().isOk());
 
         verify(plantillaFeinaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
     }
@@ -201,12 +229,17 @@ public class PlantillaFeinaResourceIT {
     @SuppressWarnings({"unchecked"})
     public void getAllPlantillaFeinasWithEagerRelationshipsIsNotEnabled() throws Exception {
         PlantillaFeinaResource plantillaFeinaResource = new PlantillaFeinaResource(plantillaFeinaRepositoryMock);
-        when(plantillaFeinaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            when(plantillaFeinaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restPlantillaFeinaMockMvc = MockMvcBuilders.standaloneSetup(plantillaFeinaResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
 
         restPlantillaFeinaMockMvc.perform(get("/api/plantilla-feinas?eagerload=true"))
-            .andExpect(status().isOk());
+        .andExpect(status().isOk());
 
-        verify(plantillaFeinaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+            verify(plantillaFeinaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -218,7 +251,7 @@ public class PlantillaFeinaResourceIT {
         // Get the plantillaFeina
         restPlantillaFeinaMockMvc.perform(get("/api/plantilla-feinas/{id}", plantillaFeina.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(plantillaFeina.getId().intValue()))
             .andExpect(jsonPath("$.horaInici").value(DEFAULT_HORA_INICI.toString()))
             .andExpect(jsonPath("$.horaFinal").value(DEFAULT_HORA_FINAL.toString()))
@@ -261,7 +294,7 @@ public class PlantillaFeinaResourceIT {
             .numeroControl(UPDATED_NUMERO_CONTROL);
 
         restPlantillaFeinaMockMvc.perform(put("/api/plantilla-feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedPlantillaFeina)))
             .andExpect(status().isOk());
 
@@ -288,7 +321,7 @@ public class PlantillaFeinaResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restPlantillaFeinaMockMvc.perform(put("/api/plantilla-feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(plantillaFeina)))
             .andExpect(status().isBadRequest());
 
@@ -307,7 +340,7 @@ public class PlantillaFeinaResourceIT {
 
         // Delete the plantillaFeina
         restPlantillaFeinaMockMvc.perform(delete("/api/plantilla-feinas/{id}", plantillaFeina.getId())
-            .accept(MediaType.APPLICATION_JSON))
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

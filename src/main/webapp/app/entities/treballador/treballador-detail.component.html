@@ -1,45 +1,42 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="treballador">
-            <h2><span jhiTranslate="gestioClientsApp.treballador.detail.title">Treballador</span> {{ treballador.id }}</h2>
-
+            <h2><span jhiTranslate="gestioClientsApp.treballador.detail.title">Treballador</span> {{treballador.id}}</h2>
             <hr>
-
             <jhi-alert-error></jhi-alert-error>
-
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="gestioClientsApp.treballador.nom">Nom</span></dt>
                 <dd>
-                    <span>{{ treballador.nom }}</span>
+                    <span>{{treballador.nom}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.treballador.carregaHores">Carrega Hores</span></dt>
                 <dd>
-                    <span>{{ treballador.carregaHores }}</span>
+                    <span>{{treballador.carregaHores}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.treballador.estat">Estat</span></dt>
                 <dd>
-                    <span jhiTranslate="{{ 'gestioClientsApp.Estat.' + treballador.estat }}">{{ treballador.estat }}</span>
+                    <span jhiTranslate="{{'gestioClientsApp.Estat.' + treballador.estat}}">{{treballador.estat}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.treballador.controlQualitat">Control Qualitat</span></dt>
                 <dd>
-                    <span>{{ treballador.controlQualitat }}</span>
+                    <span>{{treballador.controlQualitat}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.treballador.user">User</span></dt>
                 <dd>
-                    {{ treballador.user?.login }}
+                    {{treballador.user?.login}}
                 </dd>
             </dl>
 
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/treballador', treballador.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>

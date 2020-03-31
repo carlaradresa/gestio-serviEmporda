@@ -1,24 +1,19 @@
-<form *ngIf="ubicacio" name="deleteForm" (ngSubmit)="confirmDelete(ubicacio?.id!)">
+<form *ngIf="ubicacio" name="deleteForm" (ngSubmit)="confirmDelete(ubicacio.id!)">
     <div class="modal-header">
         <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
-
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="cancel()">&times;</button>
+                (click)="clear()">&times;</button>
     </div>
-
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-
-        <p id="jhi-delete-ubicacio-heading" jhiTranslate="gestioClientsApp.ubicacio.delete.question" [translateValues]="{ id: ubicacio.id }">Are you sure you want to delete this Ubicacio?</p>
+        <p id="jhi-delete-ubicacio-heading" jhiTranslate="gestioClientsApp.ubicacio.delete.question" [translateValues]="{id: ubicacio.id}">Are you sure you want to delete this Ubicacio?</p>
     </div>
-
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
-            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-
         <button id="jhi-confirm-delete-ubicacio" type="submit" class="btn btn-danger">
-            <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
         </button>
     </div>
 </form>

@@ -11,7 +11,7 @@
         },
         {
             "fieldName": "tempsPrevist",
-            "fieldType": "Instant"
+            "fieldType": "Duration"
         },
         {
             "fieldName": "facturacioAutomatica",
@@ -61,6 +61,5 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*",
-    "embedded": false
+    "applications": "*"
 }

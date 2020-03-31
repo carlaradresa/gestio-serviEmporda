@@ -3,29 +3,32 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.GestioClientsApp;
 import com.serviemporda.gestioclients.domain.Feina;
 import com.serviemporda.gestioclients.repository.FeinaRepository;
+import com.serviemporda.gestioclients.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
+
 import javax.persistence.EntityManager;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Instant;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.serviemporda.gestioclients.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Mockito.*;
@@ -37,9 +40,6 @@ import com.serviemporda.gestioclients.domain.enumeration.Estat;
  * Integration tests for the {@link FeinaResource} REST controller.
  */
 @SpringBootTest(classes = GestioClientsApp.class)
-@ExtendWith(MockitoExtension.class)
-@AutoConfigureMockMvc
-@WithMockUser
 public class FeinaResourceIT {
 
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
@@ -51,14 +51,15 @@ public class FeinaResourceIT {
     private static final LocalDate DEFAULT_SETMANA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_SETMANA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Instant DEFAULT_TEMPS_PREVIST = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_TEMPS_PREVIST = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Duration DEFAULT_TEMPS_PREVIST = Duration.ofHours(6);
+    private static final Duration UPDATED_TEMPS_PREVIST = Duration.ofHours(12);
 
-    private static final Instant DEFAULT_TEMPS_REAL = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_TEMPS_REAL = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Duration DEFAULT_TEMPS_REAL = Duration.ofHours(6);
+    private static final Duration UPDATED_TEMPS_REAL = Duration.ofHours(12);
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
     private static final Estat UPDATED_ESTAT = Estat.PAUSAT;
+    private static final Estat INACTIVE_ESTAT = Estat.INACTIU;
 
     private static final Integer DEFAULT_INTERVAL_CONTROL = 1;
     private static final Integer UPDATED_INTERVAL_CONTROL = 2;
@@ -79,12 +80,35 @@ public class FeinaResourceIT {
     private FeinaRepository feinaRepositoryMock;
 
     @Autowired
+    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
+
+    @Autowired
+    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+
+    @Autowired
+    private ExceptionTranslator exceptionTranslator;
+
+    @Autowired
     private EntityManager em;
 
     @Autowired
+    private Validator validator;
+
     private MockMvc restFeinaMockMvc;
 
     private Feina feina;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final FeinaResource feinaResource = new FeinaResource(feinaRepository);
+        this.restFeinaMockMvc = MockMvcBuilders.standaloneSetup(feinaResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
+    }
 
     /**
      * Create an entity for this test.
@@ -99,7 +123,7 @@ public class FeinaResourceIT {
             .setmana(DEFAULT_SETMANA)
             .tempsPrevist(DEFAULT_TEMPS_PREVIST)
             .tempsReal(DEFAULT_TEMPS_REAL)
-            .estat(DEFAULT_ESTAT)
+            .estat(INACTIVE_ESTAT)
             .intervalControl(DEFAULT_INTERVAL_CONTROL)
             .facturacioAutomatica(DEFAULT_FACTURACIO_AUTOMATICA)
             .observacions(DEFAULT_OBSERVACIONS)
@@ -119,7 +143,7 @@ public class FeinaResourceIT {
             .setmana(UPDATED_SETMANA)
             .tempsPrevist(UPDATED_TEMPS_PREVIST)
             .tempsReal(UPDATED_TEMPS_REAL)
-            .estat(UPDATED_ESTAT)
+            .estat(INACTIVE_ESTAT)
             .intervalControl(UPDATED_INTERVAL_CONTROL)
             .facturacioAutomatica(UPDATED_FACTURACIO_AUTOMATICA)
             .observacions(UPDATED_OBSERVACIONS)
@@ -139,7 +163,7 @@ public class FeinaResourceIT {
 
         // Create the Feina
         restFeinaMockMvc.perform(post("/api/feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(feina)))
             .andExpect(status().isCreated());
 
@@ -152,7 +176,7 @@ public class FeinaResourceIT {
         assertThat(testFeina.getSetmana()).isEqualTo(DEFAULT_SETMANA);
         assertThat(testFeina.getTempsPrevist()).isEqualTo(DEFAULT_TEMPS_PREVIST);
         assertThat(testFeina.getTempsReal()).isEqualTo(DEFAULT_TEMPS_REAL);
-        assertThat(testFeina.getEstat()).isEqualTo(DEFAULT_ESTAT);
+        assertThat(testFeina.getEstat()).isEqualTo(INACTIVE_ESTAT);
         assertThat(testFeina.getIntervalControl()).isEqualTo(DEFAULT_INTERVAL_CONTROL);
         assertThat(testFeina.isFacturacioAutomatica()).isEqualTo(DEFAULT_FACTURACIO_AUTOMATICA);
         assertThat(testFeina.getObservacions()).isEqualTo(DEFAULT_OBSERVACIONS);
@@ -169,7 +193,7 @@ public class FeinaResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restFeinaMockMvc.perform(post("/api/feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(feina)))
             .andExpect(status().isBadRequest());
 
@@ -188,27 +212,33 @@ public class FeinaResourceIT {
         // Get all the feinaList
         restFeinaMockMvc.perform(get("/api/feinas?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(feina.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].descripcio").value(hasItem(DEFAULT_DESCRIPCIO)))
             .andExpect(jsonPath("$.[*].setmana").value(hasItem(DEFAULT_SETMANA.toString())))
             .andExpect(jsonPath("$.[*].tempsPrevist").value(hasItem(DEFAULT_TEMPS_PREVIST.toString())))
             .andExpect(jsonPath("$.[*].tempsReal").value(hasItem(DEFAULT_TEMPS_REAL.toString())))
-            .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.toString())))
+            .andExpect(jsonPath("$.[*].estat").value(hasItem(INACTIVE_ESTAT.toString())))
             .andExpect(jsonPath("$.[*].intervalControl").value(hasItem(DEFAULT_INTERVAL_CONTROL)))
             .andExpect(jsonPath("$.[*].facturacioAutomatica").value(hasItem(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue())))
             .andExpect(jsonPath("$.[*].observacions").value(hasItem(DEFAULT_OBSERVACIONS)))
             .andExpect(jsonPath("$.[*].comentarisTreballador").value(hasItem(DEFAULT_COMENTARIS_TREBALLADOR)));
     }
-    
+
     @SuppressWarnings({"unchecked"})
     public void getAllFeinasWithEagerRelationshipsIsEnabled() throws Exception {
         FeinaResource feinaResource = new FeinaResource(feinaRepositoryMock);
         when(feinaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
+        MockMvc restFeinaMockMvc = MockMvcBuilders.standaloneSetup(feinaResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
         restFeinaMockMvc.perform(get("/api/feinas?eagerload=true"))
-            .andExpect(status().isOk());
+        .andExpect(status().isOk());
 
         verify(feinaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
     }
@@ -216,12 +246,17 @@ public class FeinaResourceIT {
     @SuppressWarnings({"unchecked"})
     public void getAllFeinasWithEagerRelationshipsIsNotEnabled() throws Exception {
         FeinaResource feinaResource = new FeinaResource(feinaRepositoryMock);
-        when(feinaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            when(feinaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restFeinaMockMvc = MockMvcBuilders.standaloneSetup(feinaResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
 
         restFeinaMockMvc.perform(get("/api/feinas?eagerload=true"))
-            .andExpect(status().isOk());
+        .andExpect(status().isOk());
 
-        verify(feinaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+            verify(feinaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -233,14 +268,14 @@ public class FeinaResourceIT {
         // Get the feina
         restFeinaMockMvc.perform(get("/api/feinas/{id}", feina.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(feina.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.descripcio").value(DEFAULT_DESCRIPCIO))
             .andExpect(jsonPath("$.setmana").value(DEFAULT_SETMANA.toString()))
             .andExpect(jsonPath("$.tempsPrevist").value(DEFAULT_TEMPS_PREVIST.toString()))
             .andExpect(jsonPath("$.tempsReal").value(DEFAULT_TEMPS_REAL.toString()))
-            .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT.toString()))
+            .andExpect(jsonPath("$.estat").value(INACTIVE_ESTAT.toString()))
             .andExpect(jsonPath("$.intervalControl").value(DEFAULT_INTERVAL_CONTROL))
             .andExpect(jsonPath("$.facturacioAutomatica").value(DEFAULT_FACTURACIO_AUTOMATICA.booleanValue()))
             .andExpect(jsonPath("$.observacions").value(DEFAULT_OBSERVACIONS))
@@ -273,14 +308,14 @@ public class FeinaResourceIT {
             .setmana(UPDATED_SETMANA)
             .tempsPrevist(UPDATED_TEMPS_PREVIST)
             .tempsReal(UPDATED_TEMPS_REAL)
-            .estat(UPDATED_ESTAT)
+            .estat(INACTIVE_ESTAT)
             .intervalControl(UPDATED_INTERVAL_CONTROL)
             .facturacioAutomatica(UPDATED_FACTURACIO_AUTOMATICA)
             .observacions(UPDATED_OBSERVACIONS)
             .comentarisTreballador(UPDATED_COMENTARIS_TREBALLADOR);
 
         restFeinaMockMvc.perform(put("/api/feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedFeina)))
             .andExpect(status().isOk());
 
@@ -293,7 +328,7 @@ public class FeinaResourceIT {
         assertThat(testFeina.getSetmana()).isEqualTo(UPDATED_SETMANA);
         assertThat(testFeina.getTempsPrevist()).isEqualTo(UPDATED_TEMPS_PREVIST);
         assertThat(testFeina.getTempsReal()).isEqualTo(UPDATED_TEMPS_REAL);
-        assertThat(testFeina.getEstat()).isEqualTo(UPDATED_ESTAT);
+        assertThat(testFeina.getEstat()).isEqualTo(INACTIVE_ESTAT);
         assertThat(testFeina.getIntervalControl()).isEqualTo(UPDATED_INTERVAL_CONTROL);
         assertThat(testFeina.isFacturacioAutomatica()).isEqualTo(UPDATED_FACTURACIO_AUTOMATICA);
         assertThat(testFeina.getObservacions()).isEqualTo(UPDATED_OBSERVACIONS);
@@ -309,7 +344,7 @@ public class FeinaResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restFeinaMockMvc.perform(put("/api/feinas")
-            .contentType(MediaType.APPLICATION_JSON)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(feina)))
             .andExpect(status().isBadRequest());
 
@@ -328,7 +363,7 @@ public class FeinaResourceIT {
 
         // Delete the feina
         restFeinaMockMvc.perform(delete("/api/feinas/{id}", feina.getId())
-            .accept(MediaType.APPLICATION_JSON))
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

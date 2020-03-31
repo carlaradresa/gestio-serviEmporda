@@ -4,9 +4,9 @@ import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.mo
 
 export interface IPlantillaFeina {
   id?: number;
-  horaInici?: Moment;
-  horaFinal?: Moment;
-  tempsPrevist?: Moment;
+  horaInici?: string;
+  horaFinal?: string;
+  tempsPrevist?: number;
   facturacioAutomatica?: boolean;
   observacions?: string;
   setmanaInicial?: Moment;
@@ -19,9 +19,9 @@ export interface IPlantillaFeina {
 export class PlantillaFeina implements IPlantillaFeina {
   constructor(
     public id?: number,
-    public horaInici?: Moment,
-    public horaFinal?: Moment,
-    public tempsPrevist?: Moment,
+    public horaInici?: string,
+    public horaFinal?: string,
+    public tempsPrevist?: number,
     public facturacioAutomatica?: boolean,
     public observacions?: string,
     public setmanaInicial?: Moment,

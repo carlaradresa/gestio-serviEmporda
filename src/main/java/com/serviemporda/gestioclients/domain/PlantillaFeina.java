@@ -1,14 +1,14 @@
 package com.serviemporda.gestioclients.domain;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,13 +27,13 @@ public class PlantillaFeina implements Serializable {
     private Long id;
 
     @Column(name = "hora_inici")
-    private Instant horaInici;
+    private LocalTime horaInici;
 
     @Column(name = "hora_final")
-    private Instant horaFinal;
+    private LocalTime horaFinal;
 
     @Column(name = "temps_previst")
-    private Instant tempsPrevist;
+    private Duration tempsPrevist;
 
     @Column(name = "facturacio_automatica")
     private Boolean facturacioAutomatica;
@@ -70,42 +70,42 @@ public class PlantillaFeina implements Serializable {
         this.id = id;
     }
 
-    public Instant getHoraInici() {
+    public LocalTime getHoraInici() {
         return horaInici;
     }
 
-    public PlantillaFeina horaInici(Instant horaInici) {
+    public PlantillaFeina horaInici(LocalTime horaInici) {
         this.horaInici = horaInici;
         return this;
     }
 
-    public void setHoraInici(Instant horaInici) {
+    public void setHoraInici(LocalTime horaInici) {
         this.horaInici = horaInici;
     }
 
-    public Instant getHoraFinal() {
+    public LocalTime getHoraFinal() {
         return horaFinal;
     }
 
-    public PlantillaFeina horaFinal(Instant horaFinal) {
+    public PlantillaFeina horaFinal(LocalTime horaFinal) {
         this.horaFinal = horaFinal;
         return this;
     }
 
-    public void setHoraFinal(Instant horaFinal) {
+    public void setHoraFinal(LocalTime horaFinal) {
         this.horaFinal = horaFinal;
     }
 
-    public Instant getTempsPrevist() {
+    public Duration getTempsPrevist() {
         return tempsPrevist;
     }
 
-    public PlantillaFeina tempsPrevist(Instant tempsPrevist) {
+    public PlantillaFeina tempsPrevist(Duration tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return this;
     }
 
-    public void setTempsPrevist(Instant tempsPrevist) {
+    public void setTempsPrevist(Duration tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
     }
 

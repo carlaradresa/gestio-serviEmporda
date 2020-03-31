@@ -17,7 +17,7 @@ export class PeriodicitatSetmanalDeleteDialogComponent {
     protected eventManager: JhiEventManager
   ) {}
 
-  cancel(): void {
+  clear(): void {
     this.activeModal.dismiss();
   }
 

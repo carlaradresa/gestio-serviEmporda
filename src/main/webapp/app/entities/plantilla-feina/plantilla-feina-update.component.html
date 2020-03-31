@@ -2,68 +2,58 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-plantilla-feina-heading" jhiTranslate="gestioClientsApp.plantillaFeina.home.createOrEditLabel">Create or edit a Plantilla Feina</h2>
-
             <div>
                 <jhi-alert-error></jhi-alert-error>
-
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaInici" for="field_horaInici">Hora Inici</label>
                     <div class="d-flex">
-                        <input id="field_horaInici" type="datetime-local" class="form-control" name="horaInici" formControlName="horaInici" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_horaInici" type="time" class="form-control" name="horaInici" formControlName="horaInici" placeholder="HH:mm"/>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal" for="field_horaFinal">Hora Final</label>
                     <div class="d-flex">
-                        <input id="field_horaFinal" type="datetime-local" class="form-control" name="horaFinal" formControlName="horaFinal" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_horaFinal" type="time" class="form-control" name="horaFinal" formControlName="horaFinal" placeholder="sHH:mm"/>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist" for="field_tempsPrevist">Temps Previst</label>
-                    <div class="d-flex">
-                        <input id="field_tempsPrevist" type="datetime-local" class="form-control" name="tempsPrevist" formControlName="tempsPrevist" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
+                    <input type="number" class="form-control" name="tempsPrevist" id="field_tempsPrevist"
+                           formControlName="tempsPrevist"/>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica" for="field_facturacioAutomatica">Facturacio Automatica</label>
                     <input type="checkbox" class="form-control" name="facturacioAutomatica" id="field_facturacioAutomatica"
                            formControlName="facturacioAutomatica"/>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.observacions" for="field_observacions">Observacions</label>
                     <input type="text" class="form-control" name="observacions" id="field_observacions"
                            formControlName="observacions"/>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial" for="field_setmanaInicial">Setmana Inicial</label>
                     <div class="input-group">
-                        <input id="field_setmanaInicial" type="text" class="form-control" name="setmanaInicial" ngbDatepicker #setmanaInicialDp="ngbDatepicker" formControlName="setmanaInicial"/>
+                        <input id="field_setmanaInicial" type="text" class="form-control" name="setmanaInicial" ngbDatepicker  #setmanaInicialDp="ngbDatepicker" formControlName="setmanaInicial"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="setmanaInicialDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="setmanaInicialDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.setmanaFinal" for="field_setmanaFinal">Setmana Final</label>
                     <div class="input-group">
-                        <input id="field_setmanaFinal" type="text" class="form-control" name="setmanaFinal" ngbDatepicker #setmanaFinalDp="ngbDatepicker" formControlName="setmanaFinal"/>
+                        <input id="field_setmanaFinal" type="text" class="form-control" name="setmanaFinal" ngbDatepicker  #setmanaFinalDp="ngbDatepicker" formControlName="setmanaFinal"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="setmanaFinalDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="setmanaFinalDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl" for="field_numeroControl">Numero Control</label>
                     <input type="number" class="form-control" name="numeroControl" id="field_numeroControl"
@@ -74,25 +64,22 @@
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatConfigurable" for="field_periodicitatConfigurable">Periodicitat Configurable</label>
                     <select class="form-control" id="field_periodicitatConfigurable" name="periodicitatConfigurable" formControlName="periodicitatConfigurable">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="periodicitatConfigurableOption.id === editForm.get('periodicitatConfigurable')!.value?.id ? editForm.get('periodicitatConfigurable')!.value : periodicitatConfigurableOption" *ngFor="let periodicitatConfigurableOption of periodicitatconfigurables; trackBy: trackById">{{ periodicitatConfigurableOption.observacions }}</option>
+                        <option [ngValue]="periodicitatConfigurableOption.id === editForm.get('periodicitatConfigurable')!.value?.id ? editForm.get('periodicitatConfigurable')!.value : periodicitatConfigurableOption" *ngFor="let periodicitatConfigurableOption of periodicitatconfigurables; trackBy: trackById">{{periodicitatConfigurableOption.observacions}}</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal" for="field_periodicitatSetmanals">Periodicitat Setmanal</label>
                     <select class="form-control" id="field_periodicitatSetmanals" multiple name="periodicitatSetmanals" formControlName="periodicitatSetmanals">
-                        <option [ngValue]="getSelected(editForm.get('periodicitatSetmanals')!.value, periodicitatSetmanalOption)" *ngFor="let periodicitatSetmanalOption of periodicitatsetmanals; trackBy: trackById">{{ periodicitatSetmanalOption.diaSetmana }}</option>
+                        <option [ngValue]="getSelected(editForm.get('periodicitatSetmanals')!.value, periodicitatSetmanalOption)" *ngFor="let periodicitatSetmanalOption of periodicitatsetmanals; trackBy: trackById">{{periodicitatSetmanalOption.diaSetmana}}</option>
                     </select>
                 </div>
             </div>
-
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

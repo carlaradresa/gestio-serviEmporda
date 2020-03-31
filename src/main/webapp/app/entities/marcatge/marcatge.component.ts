@@ -19,7 +19,9 @@ export class MarcatgeComponent implements OnInit, OnDestroy {
   constructor(protected marcatgeService: MarcatgeService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.marcatgeService.query().subscribe((res: HttpResponse<IMarcatge[]>) => (this.marcatges = res.body || []));
+    this.marcatgeService.query().subscribe((res: HttpResponse<IMarcatge[]>) => {
+      this.marcatges = res.body ? res.body : [];
+    });
   }
 
   ngOnInit(): void {

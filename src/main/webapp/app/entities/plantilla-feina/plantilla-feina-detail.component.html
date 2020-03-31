@@ -1,55 +1,52 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="plantillaFeina">
-            <h2><span jhiTranslate="gestioClientsApp.plantillaFeina.detail.title">Plantilla Feina</span> {{ plantillaFeina.id }}</h2>
-
+            <h2><span jhiTranslate="gestioClientsApp.plantillaFeina.detail.title">Plantilla Feina</span> {{plantillaFeina.id}}</h2>
             <hr>
-
             <jhi-alert-error></jhi-alert-error>
-
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.horaInici }}</span>
+                    <span>{{plantillaFeina.horaInici}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.horaFinal }}</span>
+                    <span>{{plantillaFeina.horaFinal}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.tempsPrevist }}</span>
+                    <span>{{plantillaFeina.tempsPrevist}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica">Facturacio Automatica</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.facturacioAutomatica }}</span>
+                    <span>{{plantillaFeina.facturacioAutomatica}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Observacions</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.observacions }}</span>
+                    <span>{{plantillaFeina.observacions}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial">Setmana Inicial</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.setmanaInicial }}</span>
+                    <span>{{plantillaFeina.setmanaInicial}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaFinal">Setmana Final</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.setmanaFinal }}</span>
+                    <span>{{plantillaFeina.setmanaFinal}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl">Numero Control</span></dt>
                 <dd>
-                    <span>{{ plantillaFeina.numeroControl }}</span>
+                    <span>{{plantillaFeina.numeroControl}}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatConfigurable">Periodicitat Configurable</span></dt>
                 <dd>
                     <div *ngIf="plantillaFeina.periodicitatConfigurable">
-                        <a [routerLink]="['/periodicitat-configurable', plantillaFeina.periodicitatConfigurable?.id, 'view']">{{ plantillaFeina.periodicitatConfigurable?.observacions }}</a>
+                        <a [routerLink]="['/periodicitat-configurable', plantillaFeina.periodicitatConfigurable?.id, 'view']">{{plantillaFeina.periodicitatConfigurable?.observacions}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal">Periodicitat Setmanal</span></dt>
                 <dd>
                     <span *ngFor="let periodicitatSetmanal of plantillaFeina.periodicitatSetmanals; let last = last">
-                        <a [routerLink]="['/periodicitat-setmanal', periodicitatSetmanal?.id, 'view']">{{ periodicitatSetmanal.diaSetmana }}</a>{{ last ? '' : ', ' }}
+                        <a [routerLink]="['/periodicitat-setmanal', periodicitatSetmanal?.id, 'view' ]">{{periodicitatSetmanal.diaSetmana}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>
@@ -57,13 +54,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/plantilla-feina', plantillaFeina.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>

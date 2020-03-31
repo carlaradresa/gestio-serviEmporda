@@ -1,6 +1,10 @@
 package com.serviemporda.gestioclients.web.rest;
 
-import com.serviemporda.gestioclients.domain.PlantillaFeina;
+import com.serviemporda.gestioclients.domain.*;
+import com.serviemporda.gestioclients.domain.Feina;
+import com.serviemporda.gestioclients.domain.enumeration.Dia;
+import com.serviemporda.gestioclients.domain.enumeration.Estat;
+import com.serviemporda.gestioclients.repository.FeinaRepository;
 import com.serviemporda.gestioclients.repository.PlantillaFeinaRepository;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
@@ -15,11 +19,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * REST controller for managing {@link com.serviemporda.gestioclients.domain.PlantillaFeina}.
+ * REST controller for managing {@link com.serviemporda.gestioclients.domain.Feina}.
  */
 @RestController
 @RequestMapping("/api")
@@ -30,10 +40,12 @@ public class PlantillaFeinaResource {
 
     private static final String ENTITY_NAME = "plantillaFeina";
 
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
     private final PlantillaFeinaRepository plantillaFeinaRepository;
+    private FeinaRepository feinaRepository;
+    private FeinaResource feinaResource;
 
     public PlantillaFeinaResource(PlantillaFeinaRepository plantillaFeinaRepository) {
         this.plantillaFeinaRepository = plantillaFeinaRepository;
@@ -53,7 +65,58 @@ public class PlantillaFeinaResource {
             throw new BadRequestAlertException("A new plantillaFeina cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
-        return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
+        //CREEM TOTES LES FEINES A PARTIR DE LA PLANTILLA:
+        LocalDate start = result.getSetmanaInicial();
+        LocalDate end = result.getSetmanaFinal();
+        String startDay = start.getDayOfWeek().name();
+
+        //Comprovem el que ha seleccionat l'usuari en periodicitat configurable
+
+  /*      String periodicitatDiaSetmana = result.getPeriodicitatConfigurable().getPeriodicitat().name(); //SETMANA, ANY, DIA,...
+        Integer frequenciaPeriodicitat = result.getPeriodicitatConfigurable().getFrequencia(); //
+
+        List<LocalDate> totalFeines = new ArrayList<>();
+
+        LocalDate dateToCompare = start;
+
+        int dayplus = 0;
+        while (!dateToCompare.isAfter(end)) {
+
+            if (startDay.equalsIgnoreCase(dateToCompare.getDayOfWeek().name())){
+
+                totalFeines.add(start);
+
+                if (frequenciaPeriodicitat == 1){
+
+                }
+            }
+
+            dateToCompare = start.plusDays(1 + dayplus);
+
+            dayplus ++;
+            if (start.getDayOfWeek().name().equalsIgnoreCase("DILLUNS")){
+                if (frequenciaPeriodicitat != 1){
+
+                }
+            }
+        }
+
+        for (int i = 0; i < totalFeines.size(); i ++){
+            System.out.println("FEINA:            "+totalFeines.get(i).toString());
+        }
+        System.out.println(totalFeines);
+*/
+        /*    Categoria c = new Categoria();
+            c.setNomCategoria("Neteja");
+            Client cl = new Client();
+            cl.setNom("Carla");
+            Treballador t = new Treballador();
+            Ubicacio u = new Ubicacio();
+
+            Feina feina = new Feina("nom", result.getObservacions(), result.getSetmanaInicial(), result.getTempsPrevist(), result.getTempsPrevist(), Estat.INACTIU, result.getNumeroControl(),result.isFacturacioAutomatica(), result.getObservacions(), "comentarisTreballador", plantillaFeina, c, cl, t, u);
+
+            feinaResource.createFeina(feina);*/
+             return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
