@@ -2,7 +2,7 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <!--
         Added the constraints for entity PlantillaFeina.
     -->
@@ -14,17 +14,29 @@
                                  referencedColumnNames="id"
                                  referencedTableName="periodicitat_configurable"/>
 
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="plantilla_feina"
+                                 constraintName="fk_plantilla_feina_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="plantilla_feina"
+                                 constraintName="fk_plantilla_feina_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+
         <addForeignKeyConstraint baseColumnNames="plantilla_feina_id"
-                                 baseTableName="plantilla_feina_periodicitat_setmanal"
-                                 constraintName="fk_plantilla_feina_periodicitat_setmanal_plantilla_feina_id"
+                                 baseTableName="plantilla_feina_treballador"
+                                 constraintName="fk_plantilla_feina_treballador_plantilla_feina_id"
                                  referencedColumnNames="id"
                                  referencedTableName="plantilla_feina"/>
 
-        <addForeignKeyConstraint baseColumnNames="periodicitat_setmanal_id"
-                                 baseTableName="plantilla_feina_periodicitat_setmanal"
-                                 constraintName="plantilla_feina_periodicitat_se_periodicitat_setmanal_id"
+        <addForeignKeyConstraint baseColumnNames="treballador_id"
+                                 baseTableName="plantilla_feina_treballador"
+                                 constraintName="fk_plantilla_feina_treballador_treballador_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="periodicitat_setmanal"/>
+                                 referencedTableName="treballador"/>
         
     </changeSet>
 </databaseChangeLog>

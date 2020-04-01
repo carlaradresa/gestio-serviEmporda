@@ -16,8 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [GestioClientsTestModule],
-        declarations: [MarcatgeComponent],
-        providers: []
+        declarations: [MarcatgeComponent]
       })
         .overrideTemplate(MarcatgeComponent, '')
         .compileComponents();

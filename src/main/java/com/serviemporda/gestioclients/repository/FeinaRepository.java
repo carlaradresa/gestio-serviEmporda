@@ -1,6 +1,7 @@
 package com.serviemporda.gestioclients.repository;
 
 import com.serviemporda.gestioclients.domain.Feina;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -16,14 +17,13 @@ import java.util.Optional;
 @Repository
 public interface FeinaRepository extends JpaRepository<Feina, Long> {
 
-    @Query(value = "select distinct feina from Feina feina left join fetch feina.treballadors left join fetch feina.ubicacios",
+    @Query(value = "select distinct feina from Feina feina left join fetch feina.treballadors",
         countQuery = "select count(distinct feina) from Feina feina")
     Page<Feina> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct feina from Feina feina left join fetch feina.treballadors left join fetch feina.ubicacios")
+    @Query("select distinct feina from Feina feina left join fetch feina.treballadors")
     List<Feina> findAllWithEagerRelationships();
 
-    @Query("select feina from Feina feina left join fetch feina.treballadors left join fetch feina.ubicacios where feina.id =:id")
+    @Query("select feina from Feina feina left join fetch feina.treballadors where feina.id =:id")
     Optional<Feina> findOneWithEagerRelationships(@Param("id") Long id);
-
 }
