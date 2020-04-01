@@ -3,25 +3,19 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.GestioClientsApp;
 import com.serviemporda.gestioclients.domain.Ubicacio;
 import com.serviemporda.gestioclients.repository.UbicacioRepository;
-import com.serviemporda.gestioclients.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.serviemporda.gestioclients.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -31,6 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link UbicacioResource} REST controller.
  */
 @SpringBootTest(classes = GestioClientsApp.class)
+
+@AutoConfigureMockMvc
+@WithMockUser
 public class UbicacioResourceIT {
 
     private static final Double DEFAULT_LONGITUD = 1D;
@@ -46,35 +43,12 @@ public class UbicacioResourceIT {
     private UbicacioRepository ubicacioRepository;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
-
-    @Autowired
-    private ExceptionTranslator exceptionTranslator;
-
-    @Autowired
     private EntityManager em;
 
     @Autowired
-    private Validator validator;
-
     private MockMvc restUbicacioMockMvc;
 
     private Ubicacio ubicacio;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final UbicacioResource ubicacioResource = new UbicacioResource(ubicacioRepository);
-        this.restUbicacioMockMvc = MockMvcBuilders.standaloneSetup(ubicacioResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
 
     /**
      * Create an entity for this test.
@@ -115,7 +89,7 @@ public class UbicacioResourceIT {
 
         // Create the Ubicacio
         restUbicacioMockMvc.perform(post("/api/ubicacios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(ubicacio)))
             .andExpect(status().isCreated());
 
@@ -138,7 +112,7 @@ public class UbicacioResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restUbicacioMockMvc.perform(post("/api/ubicacios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(ubicacio)))
             .andExpect(status().isBadRequest());
 
@@ -157,7 +131,7 @@ public class UbicacioResourceIT {
         // Get all the ubicacioList
         restUbicacioMockMvc.perform(get("/api/ubicacios?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(ubicacio.getId().intValue())))
             .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())))
             .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
@@ -173,7 +147,7 @@ public class UbicacioResourceIT {
         // Get the ubicacio
         restUbicacioMockMvc.perform(get("/api/ubicacios/{id}", ubicacio.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(ubicacio.getId().intValue()))
             .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.doubleValue()))
             .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD.doubleValue()))
@@ -206,7 +180,7 @@ public class UbicacioResourceIT {
             .ubicacio(UPDATED_UBICACIO);
 
         restUbicacioMockMvc.perform(put("/api/ubicacios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedUbicacio)))
             .andExpect(status().isOk());
 
@@ -228,7 +202,7 @@ public class UbicacioResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUbicacioMockMvc.perform(put("/api/ubicacios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(ubicacio)))
             .andExpect(status().isBadRequest());
 
@@ -247,7 +221,7 @@ public class UbicacioResourceIT {
 
         // Delete the ubicacio
         restUbicacioMockMvc.perform(delete("/api/ubicacios/{id}", ubicacio.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item

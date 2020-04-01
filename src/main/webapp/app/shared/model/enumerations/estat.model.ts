@@ -1,5 +1,6 @@
 export const enum Estat {
-  ACTIU,
-  PAUSAT,
-  INACTIU
+  ACTIU = 'ACTIU',
+  PAUSAT = 'PAUSAT',
+  INACTIU = 'INACTIU',
+  FINALITZAT = 'FINALITZAT'
 }

@@ -1,52 +1,55 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="client">
-            <h2><span jhiTranslate="gestioClientsApp.client.detail.title">Client</span> {{client.id}}</h2>
+            <h2><span jhiTranslate="gestioClientsApp.client.detail.title">Client</span> {{ client.id }}</h2>
+
             <hr>
+
             <jhi-alert-error></jhi-alert-error>
+
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="gestioClientsApp.client.nom">Nom</span></dt>
                 <dd>
-                    <span>{{client.nom}}</span>
+                    <span>{{ client.nom }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.direccio">Direccio</span></dt>
                 <dd>
-                    <span>{{client.direccio}}</span>
+                    <span>{{ client.direccio }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.localitat">Localitat</span></dt>
                 <dd>
-                    <span>{{client.localitat}}</span>
+                    <span>{{ client.localitat }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.telefon">Telefon</span></dt>
                 <dd>
-                    <span>{{client.telefon}}</span>
+                    <span>{{ client.telefon }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.email">Email</span></dt>
                 <dd>
-                    <span>{{client.email}}</span>
+                    <span>{{ client.email }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.nif">Nif</span></dt>
                 <dd>
-                    <span>{{client.nif}}</span>
+                    <span>{{ client.nif }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.codiUbicacio">Codi Ubicacio</span></dt>
                 <dd>
-                    <span>{{client.codiUbicacio}}</span>
+                    <span>{{ client.codiUbicacio }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.observacions">Observacions</span></dt>
                 <dd>
-                    <span>{{client.observacions}}</span>
+                    <span>{{ client.observacions }}</span>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.ubicacio">Ubicacio</span></dt>
                 <dd>
                     <div *ngIf="client.ubicacio">
-                        <a [routerLink]="['/ubicacio', client.ubicacio?.id, 'view']">{{client.ubicacio?.ubicacio}}</a>
+                        <a [routerLink]="['/ubicacio', client.ubicacio?.id, 'view']">{{ client.ubicacio?.ubicacio }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="gestioClientsApp.client.venedor">Venedor</span></dt>
                 <dd>
                     <div *ngIf="client.venedor">
-                        <a [routerLink]="['/venedor', client.venedor?.id, 'view']">{{client.venedor?.id}}</a>
+                        <a [routerLink]="['/venedor', client.venedor?.id, 'view']">{{ client.venedor?.id }}</a>
                     </div>
                 </dd>
             </dl>
@@ -54,13 +57,13 @@
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
             <button type="button"
                     [routerLink]="['/client', client.id, 'edit']"
                     class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
     </div>
