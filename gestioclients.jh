@@ -1,31 +1,28 @@
 entity PlantillaFeina {
+	nom String,
+    setmanaInicial LocalDate,
+    setmanaFinal LocalDate,
     horaInici Instant,
     horaFinal Instant,
     tempsPrevist Instant,
+    intervalControl Integer,
+    diaSetmana Dia,
     facturacioAutomatica Boolean,
-    observacions String,
-    setmanaInicial LocalDate,
-    setmanaFinal LocalDate,
-    numeroControl Integer
+    observacions String
 }
 
 enum Estat{
-	ACTIU, PAUSAT, INACTIU
+	ACTIU, PAUSAT, INACTIU, FINALITZAT
 }
 entity Categoria{
 	nomCategoria String
 }
 
-entity PeriodicitatSetmanal{
-	diaSetmana Dia
-}
-
 entity PeriodicitatConfigurable{
-	frequencia Integer,
-    periodicitat Periodicitat,
+	periodicitat Periodicitat,
+	frequencia Integer, 
     observacions String
 }
-
 
 enum Dia {
 	DILLUNS, DIMARTS, DIMECRES, DIJOUS, DIVENDRES, DISSABTE, DIUMENGE, QUALSEVOL
@@ -63,7 +60,6 @@ entity Feina {
     facturacioAutomatica Boolean,
     observacions String,
     comentarisTreballador String
-    
   }
 
 entity Control {
@@ -98,11 +94,13 @@ relationship ManyToOne {
     Client{venedor} to Venedor,
     Feina{plantillaFeina} to PlantillaFeina,
     Feina{categoria} to Categoria,
+    PlantillaFeina{categoria} to Categoria,
     Marcatge{feina} to Feina,
     Marcatge{treballador} to Treballador,
     Feina{client} to Client,
     Control{revisor} to Treballador,
-    Control{feina} to Feina
+    Control{feina} to Feina,
+    PlantillaFeina{client} to Client
 }
 
 relationship OneToOne {
@@ -114,7 +112,5 @@ relationship OneToOne {
 
 relationship ManyToMany {
 	Feina{treballador(nom)} to Treballador{feina},
-    PlantillaFeina{periodicitatSetmanal(diaSetmana)} to PeriodicitatSetmanal{plantilla},
-    Feina{ubicacio(ubicacio)} to Ubicacio{feina}
-
+    PlantillaFeina{treballador(nom)} to Treballador{plantillafeina}
 }
