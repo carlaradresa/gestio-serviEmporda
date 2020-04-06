@@ -64,8 +64,6 @@ public class CacheConfiguration {
             createCache(cm, com.serviemporda.gestioclients.domain.Venedor.class.getName());
             createCache(cm, com.serviemporda.gestioclients.domain.Venedor.class.getName() + ".clients");
             createCache(cm, com.serviemporda.gestioclients.domain.PlantillaFeina.class.getName() + ".periodicitatSetmanals");
-            createCache(cm, com.serviemporda.gestioclients.domain.PeriodicitatSetmanal.class.getName());
-            createCache(cm, com.serviemporda.gestioclients.domain.PeriodicitatSetmanal.class.getName() + ".plantillas");
             createCache(cm, com.serviemporda.gestioclients.domain.PeriodicitatConfigurable.class.getName());
             createCache(cm, com.serviemporda.gestioclients.domain.Feina.class.getName() + ".ubicacios");
             createCache(cm, com.serviemporda.gestioclients.domain.Ubicacio.class.getName() + ".feinas");
