@@ -13,9 +13,7 @@ export class PeriodicitatConfigurableDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ periodicitatConfigurable }) => {
-      this.periodicitatConfigurable = periodicitatConfigurable;
-    });
+    this.activatedRoute.data.subscribe(({ periodicitatConfigurable }) => (this.periodicitatConfigurable = periodicitatConfigurable));
   }
 
   previousState(): void {

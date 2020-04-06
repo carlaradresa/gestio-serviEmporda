@@ -19,9 +19,7 @@ export class ControlComponent implements OnInit, OnDestroy {
   constructor(protected controlService: ControlService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.controlService.query().subscribe((res: HttpResponse<IControl[]>) => {
-      this.controls = res.body ? res.body : [];
-    });
+    this.controlService.query().subscribe((res: HttpResponse<IControl[]>) => (this.controls = res.body || []));
   }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 package com.serviemporda.gestioclients.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -6,8 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Ubicacio.
@@ -39,11 +39,6 @@ public class Ubicacio implements Serializable {
     @OneToOne(mappedBy = "ubicacio")
     @JsonIgnore
     private Venedor venedor;
-
-    @ManyToMany(mappedBy = "ubicacios")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<Feina> feinas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -117,31 +112,6 @@ public class Ubicacio implements Serializable {
 
     public void setVenedor(Venedor venedor) {
         this.venedor = venedor;
-    }
-
-    public Set<Feina> getFeinas() {
-        return feinas;
-    }
-
-    public Ubicacio feinas(Set<Feina> feinas) {
-        this.feinas = feinas;
-        return this;
-    }
-
-    public Ubicacio addFeina(Feina feina) {
-        this.feinas.add(feina);
-        feina.getUbicacios().add(this);
-        return this;
-    }
-
-    public Ubicacio removeFeina(Feina feina) {
-        this.feinas.remove(feina);
-        feina.getUbicacios().remove(this);
-        return this;
-    }
-
-    public void setFeinas(Set<Feina> feinas) {
-        this.feinas = feinas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

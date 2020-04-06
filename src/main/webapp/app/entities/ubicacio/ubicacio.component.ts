@@ -19,9 +19,7 @@ export class UbicacioComponent implements OnInit, OnDestroy {
   constructor(protected ubicacioService: UbicacioService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.ubicacioService.query().subscribe((res: HttpResponse<IUbicacio[]>) => {
-      this.ubicacios = res.body ? res.body : [];
-    });
+    this.ubicacioService.query().subscribe((res: HttpResponse<IUbicacio[]>) => (this.ubicacios = res.body || []));
   }
 
   ngOnInit(): void {

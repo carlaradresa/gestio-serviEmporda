@@ -13,9 +13,7 @@ export class CategoriaDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ categoria }) => {
-      this.categoria = categoria;
-    });
+    this.activatedRoute.data.subscribe(({ categoria }) => (this.categoria = categoria));
   }
 
   previousState(): void {

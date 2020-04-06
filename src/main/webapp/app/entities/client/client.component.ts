@@ -19,9 +19,7 @@ export class ClientComponent implements OnInit, OnDestroy {
   constructor(protected clientService: ClientService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll(): void {
-    this.clientService.query().subscribe((res: HttpResponse<IClient[]>) => {
-      this.clients = res.body ? res.body : [];
-    });
+    this.clientService.query().subscribe((res: HttpResponse<IClient[]>) => (this.clients = res.body || []));
   }
 
   ngOnInit(): void {

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
@@ -52,7 +51,9 @@ export class FeinaService {
 
   protected convertDateFromClient(feina: IFeina): IFeina {
     const copy: IFeina = Object.assign({}, feina, {
-      setmana: feina.setmana && feina.setmana.isValid() ? feina.setmana.format(DATE_FORMAT) : undefined
+      setmana: feina.setmana && feina.setmana.isValid() ? feina.setmana.format(DATE_FORMAT) : undefined,
+      tempsPrevist: feina.tempsPrevist && feina.tempsPrevist.isValid() ? feina.tempsPrevist.toJSON() : undefined,
+      tempsReal: feina.tempsReal && feina.tempsReal.isValid() ? feina.tempsReal.toJSON() : undefined
     });
     return copy;
   }
@@ -60,6 +61,8 @@ export class FeinaService {
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.setmana = res.body.setmana ? moment(res.body.setmana) : undefined;
+      res.body.tempsPrevist = res.body.tempsPrevist ? moment(res.body.tempsPrevist) : undefined;
+      res.body.tempsReal = res.body.tempsReal ? moment(res.body.tempsReal) : undefined;
     }
     return res;
   }
@@ -68,6 +71,8 @@ export class FeinaService {
     if (res.body) {
       res.body.forEach((feina: IFeina) => {
         feina.setmana = feina.setmana ? moment(feina.setmana) : undefined;
+        feina.tempsPrevist = feina.tempsPrevist ? moment(feina.tempsPrevist) : undefined;
+        feina.tempsReal = feina.tempsReal ? moment(feina.tempsReal) : undefined;
       });
     }
     return res;

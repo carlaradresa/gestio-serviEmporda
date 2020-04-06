@@ -4,7 +4,6 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
@@ -23,9 +22,7 @@ type SelectableEntity = IFeina | ITreballador;
 })
 export class MarcatgeUpdateComponent implements OnInit {
   isSaving = false;
-
   feinas: IFeina[] = [];
-
   treballadors: ITreballador[] = [];
 
   editForm = this.fb.group({
@@ -47,33 +44,25 @@ export class MarcatgeUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ marcatge }) => {
+      if (!marcatge.id) {
+        const today = moment().startOf('day');
+        marcatge.horaEntrada = today;
+        marcatge.horaSortida = today;
+      }
+
       this.updateForm(marcatge);
 
-      this.feinaService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IFeina[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IFeina[]) => (this.feinas = resBody));
+      this.feinaService.query().subscribe((res: HttpResponse<IFeina[]>) => (this.feinas = res.body || []));
 
-      this.treballadorService
-        .query()
-        .pipe(
-          map((res: HttpResponse<ITreballador[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: ITreballador[]) => (this.treballadors = resBody));
+      this.treballadorService.query().subscribe((res: HttpResponse<ITreballador[]>) => (this.treballadors = res.body || []));
     });
   }
 
   updateForm(marcatge: IMarcatge): void {
     this.editForm.patchValue({
       id: marcatge.id,
-      horaEntrada: marcatge.horaEntrada != null ? marcatge.horaEntrada.format(DATE_TIME_FORMAT) : null,
-      horaSortida: marcatge.horaSortida != null ? marcatge.horaSortida.format(DATE_TIME_FORMAT) : null,
+      horaEntrada: marcatge.horaEntrada ? marcatge.horaEntrada.format(DATE_TIME_FORMAT) : null,
+      horaSortida: marcatge.horaSortida ? marcatge.horaSortida.format(DATE_TIME_FORMAT) : null,
       desviacio: marcatge.desviacio,
       feina: marcatge.feina,
       treballador: marcatge.treballador
@@ -98,10 +87,12 @@ export class MarcatgeUpdateComponent implements OnInit {
     return {
       ...new Marcatge(),
       id: this.editForm.get(['id'])!.value,
-      horaEntrada:
-        this.editForm.get(['horaEntrada'])!.value != null ? moment(this.editForm.get(['horaEntrada'])!.value, DATE_TIME_FORMAT) : undefined,
-      horaSortida:
-        this.editForm.get(['horaSortida'])!.value != null ? moment(this.editForm.get(['horaSortida'])!.value, DATE_TIME_FORMAT) : undefined,
+      horaEntrada: this.editForm.get(['horaEntrada'])!.value
+        ? moment(this.editForm.get(['horaEntrada'])!.value, DATE_TIME_FORMAT)
+        : undefined,
+      horaSortida: this.editForm.get(['horaSortida'])!.value
+        ? moment(this.editForm.get(['horaSortida'])!.value, DATE_TIME_FORMAT)
+        : undefined,
       desviacio: this.editForm.get(['desviacio'])!.value,
       feina: this.editForm.get(['feina'])!.value,
       treballador: this.editForm.get(['treballador'])!.value
@@ -109,7 +100,10 @@ export class MarcatgeUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IMarcatge>>): void {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
   }
 
   protected onSaveSuccess(): void {
