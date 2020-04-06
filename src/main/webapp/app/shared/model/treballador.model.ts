@@ -1,6 +1,5 @@
 import { IUser } from 'app/core/user/user.model';
 import { IFeina } from 'app/shared/model/feina.model';
-import { IPlantillaFeina } from 'app/shared/model/plantilla-feina.model';
 import { Estat } from 'app/shared/model/enumerations/estat.model';
 
 export interface ITreballador {
@@ -11,7 +10,6 @@ export interface ITreballador {
   controlQualitat?: boolean;
   user?: IUser;
   feinas?: IFeina[];
-  plantillafeinas?: IPlantillaFeina[];
 }
 
 export class Treballador implements ITreballador {
@@ -22,8 +20,7 @@ export class Treballador implements ITreballador {
     public estat?: Estat,
     public controlQualitat?: boolean,
     public user?: IUser,
-    public feinas?: IFeina[],
-    public plantillafeinas?: IPlantillaFeina[]
+    public feinas?: IFeina[]
   ) {
     this.controlQualitat = this.controlQualitat || false;
   }

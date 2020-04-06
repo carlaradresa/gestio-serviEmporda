@@ -4,6 +4,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ITreballador, Treballador } from 'app/shared/model/treballador.model';
 import { TreballadorService } from './treballador.service';
@@ -16,6 +17,7 @@ import { UserService } from 'app/core/user/user.service';
 })
 export class TreballadorUpdateComponent implements OnInit {
   isSaving = false;
+
   users: IUser[] = [];
 
   editForm = this.fb.group({
@@ -38,7 +40,14 @@ export class TreballadorUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ treballador }) => {
       this.updateForm(treballador);
 
-      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+      this.userService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IUser[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IUser[]) => (this.users = resBody));
     });
   }
 
@@ -80,10 +89,7 @@ export class TreballadorUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITreballador>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess(): void {

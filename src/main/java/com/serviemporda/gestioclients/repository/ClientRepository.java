@@ -1,9 +1,9 @@
 package com.serviemporda.gestioclients.repository;
 
 import com.serviemporda.gestioclients.domain.Client;
-
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+
 
 /**
  * Spring Data  repository for the Client entity.
@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
+
 }

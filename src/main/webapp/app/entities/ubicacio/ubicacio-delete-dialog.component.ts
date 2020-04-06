@@ -13,7 +13,7 @@ export class UbicacioDeleteDialogComponent {
 
   constructor(protected ubicacioService: UbicacioService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  cancel(): void {
+  clear(): void {
     this.activeModal.dismiss();
   }
 

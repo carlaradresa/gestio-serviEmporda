@@ -13,7 +13,7 @@ export class ControlDeleteDialogComponent {
 
   constructor(protected controlService: ControlService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  cancel(): void {
+  clear(): void {
     this.activeModal.dismiss();
   }
 

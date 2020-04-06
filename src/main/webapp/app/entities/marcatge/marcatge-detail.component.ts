@@ -13,7 +13,9 @@ export class MarcatgeDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ marcatge }) => (this.marcatge = marcatge));
+    this.activatedRoute.data.subscribe(({ marcatge }) => {
+      this.marcatge = marcatge;
+    });
   }
 
   previousState(): void {

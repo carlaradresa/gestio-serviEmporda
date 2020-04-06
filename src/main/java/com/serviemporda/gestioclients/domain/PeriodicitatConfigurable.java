@@ -1,5 +1,4 @@
 package com.serviemporda.gestioclients.domain;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -7,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import com.serviemporda.gestioclients.domain.enumeration.Periodicitat;
 
@@ -25,12 +23,12 @@ public class PeriodicitatConfigurable implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "frequencia")
+    private Integer frequencia;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "periodicitat")
     private Periodicitat periodicitat;
-
-    @Column(name = "frequencia")
-    private Integer frequencia;
 
     @Column(name = "observacions")
     private String observacions;
@@ -48,19 +46,6 @@ public class PeriodicitatConfigurable implements Serializable {
         this.id = id;
     }
 
-    public Periodicitat getPeriodicitat() {
-        return periodicitat;
-    }
-
-    public PeriodicitatConfigurable periodicitat(Periodicitat periodicitat) {
-        this.periodicitat = periodicitat;
-        return this;
-    }
-
-    public void setPeriodicitat(Periodicitat periodicitat) {
-        this.periodicitat = periodicitat;
-    }
-
     public Integer getFrequencia() {
         return frequencia;
     }
@@ -72,6 +57,19 @@ public class PeriodicitatConfigurable implements Serializable {
 
     public void setFrequencia(Integer frequencia) {
         this.frequencia = frequencia;
+    }
+
+    public Periodicitat getPeriodicitat() {
+        return periodicitat;
+    }
+
+    public PeriodicitatConfigurable periodicitat(Periodicitat periodicitat) {
+        this.periodicitat = periodicitat;
+        return this;
+    }
+
+    public void setPeriodicitat(Periodicitat periodicitat) {
+        this.periodicitat = periodicitat;
     }
 
     public String getObservacions() {
@@ -121,8 +119,8 @@ public class PeriodicitatConfigurable implements Serializable {
     public String toString() {
         return "PeriodicitatConfigurable{" +
             "id=" + getId() +
-            ", periodicitat='" + getPeriodicitat() + "'" +
             ", frequencia=" + getFrequencia() +
+            ", periodicitat='" + getPeriodicitat() + "'" +
             ", observacions='" + getObservacions() + "'" +
             "}";
     }

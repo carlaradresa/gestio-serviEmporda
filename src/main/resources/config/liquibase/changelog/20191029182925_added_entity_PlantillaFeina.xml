@@ -3,7 +3,7 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
         <property name="autoIncrement" value="true"/>
@@ -16,28 +16,13 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="nom" type="varchar(255)">
+            <column name="hora_inici" type="time">
                 <constraints nullable="true" />
             </column>
-            <column name="setmana_inicial" type="date">
+            <column name="hora_final" type="time">
                 <constraints nullable="true" />
             </column>
-            <column name="setmana_final" type="date">
-                <constraints nullable="true" />
-            </column>
-            <column name="hora_inici" type="datetime">
-                <constraints nullable="true" />
-            </column>
-            <column name="hora_final" type="datetime">
-                <constraints nullable="true" />
-            </column>
-            <column name="temps_previst" type="datetime">
-                <constraints nullable="true" />
-            </column>
-            <column name="interval_control" type="integer">
-                <constraints nullable="true" />
-            </column>
-            <column name="dia_setmana" type="varchar(255)">
+            <column name="temps_previst" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="facturacio_automatica" type="boolean">
@@ -46,26 +31,28 @@
             <column name="observacions" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="setmana_inicial" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="setmana_final" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="numero_control" type="integer">
+                <constraints nullable="true" />
+            </column>
             <column name="periodicitat_configurable_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_plantilla_feina_periodicitat_configurable_id" />
-            </column>
-            <column name="categoria_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="client_id" type="bigint">
-                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="plantilla_feina" columnName="hora_inici" columnDataType="datetime"/>
         <dropDefaultValue tableName="plantilla_feina" columnName="hora_final" columnDataType="datetime"/>
-        <dropDefaultValue tableName="plantilla_feina" columnName="temps_previst" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20191029182925-1-relations" author="jhipster">
 
-        <createTable tableName="plantilla_feina_treballador">
-            <column name="treballador_id" type="bigint">
+        <createTable tableName="plantilla_feina_periodicitat_setmanal">
+            <column name="periodicitat_setmanal_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="plantilla_feina_id" type="bigint">
@@ -73,8 +60,8 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="plantilla_feina_id, treballador_id" tableName="plantilla_feina_treballador"/>
-        
+        <addPrimaryKey columnNames="plantilla_feina_id, periodicitat_setmanal_id" tableName="plantilla_feina_periodicitat_setmanal"/>
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -92,16 +79,14 @@
                   separator=";"
                   tableName="plantilla_feina">
             <column name="id" type="numeric"/>
-            <column name="nom" type="string"/>
-            <column name="setmana_inicial" type="date"/>
-            <column name="setmana_final" type="date"/>
             <column name="hora_inici" type="datetime"/>
             <column name="hora_final" type="datetime"/>
-            <column name="temps_previst" type="datetime"/>
-            <column name="interval_control" type="numeric"/>
-            <column name="dia_setmana" type="string"/>
+            <column name="temps_previst" type="numeric"/>
             <column name="facturacio_automatica" type="boolean"/>
             <column name="observacions" type="string"/>
+            <column name="setmana_inicial" type="date"/>
+            <column name="setmana_final" type="date"/>
+            <column name="numero_control" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

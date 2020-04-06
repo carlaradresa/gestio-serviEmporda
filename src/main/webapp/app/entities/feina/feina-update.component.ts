@@ -4,8 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IFeina, Feina } from 'app/shared/model/feina.model';
 import { FeinaService } from './feina.service';
@@ -17,8 +17,12 @@ import { IClient } from 'app/shared/model/client.model';
 import { ClientService } from 'app/entities/client/client.service';
 import { ITreballador } from 'app/shared/model/treballador.model';
 import { TreballadorService } from 'app/entities/treballador/treballador.service';
+import { IUbicacio } from 'app/shared/model/ubicacio.model';
+import { UbicacioService } from 'app/entities/ubicacio/ubicacio.service';
 
-type SelectableEntity = IPlantillaFeina | ICategoria | IClient | ITreballador;
+type SelectableEntity = IPlantillaFeina | ICategoria | IClient | ITreballador | IUbicacio;
+
+type SelectableManyToManyEntity = ITreballador | IUbicacio;
 
 @Component({
   selector: 'jhi-feina-update',
@@ -26,10 +30,16 @@ type SelectableEntity = IPlantillaFeina | ICategoria | IClient | ITreballador;
 })
 export class FeinaUpdateComponent implements OnInit {
   isSaving = false;
+
   plantillafeinas: IPlantillaFeina[] = [];
+
   categorias: ICategoria[] = [];
+
   clients: IClient[] = [];
+
   treballadors: ITreballador[] = [];
+
+  ubicacios: IUbicacio[] = [];
   setmanaDp: any;
 
   editForm = this.fb.group({
@@ -47,7 +57,8 @@ export class FeinaUpdateComponent implements OnInit {
     plantillaFeina: [],
     categoria: [],
     client: [],
-    treballadors: []
+    treballadors: [],
+    ubicacios: []
   });
 
   constructor(
@@ -56,27 +67,59 @@ export class FeinaUpdateComponent implements OnInit {
     protected categoriaService: CategoriaService,
     protected clientService: ClientService,
     protected treballadorService: TreballadorService,
+    protected ubicacioService: UbicacioService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ feina }) => {
-      if (!feina.id) {
-        const today = moment().startOf('day');
-        feina.tempsPrevist = today;
-        feina.tempsReal = today;
-      }
-
       this.updateForm(feina);
 
-      this.plantillaFeinaService.query().subscribe((res: HttpResponse<IPlantillaFeina[]>) => (this.plantillafeinas = res.body || []));
+      this.plantillaFeinaService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IPlantillaFeina[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IPlantillaFeina[]) => (this.plantillafeinas = resBody));
 
-      this.categoriaService.query().subscribe((res: HttpResponse<ICategoria[]>) => (this.categorias = res.body || []));
+      this.categoriaService
+        .query()
+        .pipe(
+          map((res: HttpResponse<ICategoria[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: ICategoria[]) => (this.categorias = resBody));
 
-      this.clientService.query().subscribe((res: HttpResponse<IClient[]>) => (this.clients = res.body || []));
+      this.clientService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IClient[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IClient[]) => (this.clients = resBody));
 
-      this.treballadorService.query().subscribe((res: HttpResponse<ITreballador[]>) => (this.treballadors = res.body || []));
+      this.treballadorService
+        .query()
+        .pipe(
+          map((res: HttpResponse<ITreballador[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: ITreballador[]) => (this.treballadors = resBody));
+
+      this.ubicacioService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IUbicacio[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IUbicacio[]) => (this.ubicacios = resBody));
     });
   }
 
@@ -86,8 +129,8 @@ export class FeinaUpdateComponent implements OnInit {
       nom: feina.nom,
       descripcio: feina.descripcio,
       setmana: feina.setmana,
-      tempsPrevist: feina.tempsPrevist ? feina.tempsPrevist.format(DATE_TIME_FORMAT) : null,
-      tempsReal: feina.tempsReal ? feina.tempsReal.format(DATE_TIME_FORMAT) : null,
+      tempsPrevist: feina.tempsPrevist,
+      tempsReal: feina.tempsReal,
       estat: feina.estat,
       intervalControl: feina.intervalControl,
       facturacioAutomatica: feina.facturacioAutomatica,
@@ -96,7 +139,8 @@ export class FeinaUpdateComponent implements OnInit {
       plantillaFeina: feina.plantillaFeina,
       categoria: feina.categoria,
       client: feina.client,
-      treballadors: feina.treballadors
+      treballadors: feina.treballadors,
+      ubicacios: feina.ubicacios
     });
   }
 
@@ -121,10 +165,8 @@ export class FeinaUpdateComponent implements OnInit {
       nom: this.editForm.get(['nom'])!.value,
       descripcio: this.editForm.get(['descripcio'])!.value,
       setmana: this.editForm.get(['setmana'])!.value,
-      tempsPrevist: this.editForm.get(['tempsPrevist'])!.value
-        ? moment(this.editForm.get(['tempsPrevist'])!.value, DATE_TIME_FORMAT)
-        : undefined,
-      tempsReal: this.editForm.get(['tempsReal'])!.value ? moment(this.editForm.get(['tempsReal'])!.value, DATE_TIME_FORMAT) : undefined,
+      tempsPrevist: this.editForm.get(['tempsPrevist'])!.value,
+      tempsReal: this.editForm.get(['tempsReal'])!.value,
       estat: this.editForm.get(['estat'])!.value,
       intervalControl: this.editForm.get(['intervalControl'])!.value,
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica'])!.value,
@@ -133,15 +175,13 @@ export class FeinaUpdateComponent implements OnInit {
       plantillaFeina: this.editForm.get(['plantillaFeina'])!.value,
       categoria: this.editForm.get(['categoria'])!.value,
       client: this.editForm.get(['client'])!.value,
-      treballadors: this.editForm.get(['treballadors'])!.value
+      treballadors: this.editForm.get(['treballadors'])!.value,
+      ubicacios: this.editForm.get(['ubicacios'])!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFeina>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess(): void {
@@ -157,7 +197,7 @@ export class FeinaUpdateComponent implements OnInit {
     return item.id;
   }
 
-  getSelected(selectedVals: ITreballador[], option: ITreballador): ITreballador {
+  getSelected(selectedVals: SelectableManyToManyEntity[], option: SelectableManyToManyEntity): SelectableManyToManyEntity {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
         if (option.id === selectedVals[i].id) {

@@ -12,7 +12,7 @@
         {
             "fieldName": "estat",
             "fieldType": "Estat",
-            "fieldValues": "ACTIU,PAUSAT,INACTIU,FINALITZAT"
+            "fieldValues": "ACTIU,PAUSAT,INACTIU"
         },
         {
             "fieldName": "controlQualitat",
@@ -35,14 +35,6 @@
             "relationshipName": "feina",
             "otherEntityField": "id",
             "ownerSide": false
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "plantillaFeina",
-            "otherEntityRelationshipName": "treballador",
-            "relationshipName": "plantillafeina",
-            "otherEntityField": "id",
-            "ownerSide": false
         }
     ],
     "changelogDate": "20191029182933",
@@ -54,6 +46,5 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*",
-    "embedded": false
+    "applications": "*"
 }

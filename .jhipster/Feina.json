@@ -15,16 +15,16 @@
         },
         {
             "fieldName": "tempsPrevist",
-            "fieldType": "Instant"
+            "fieldType": "Duration"
         },
         {
             "fieldName": "tempsReal",
-            "fieldType": "Instant"
+            "fieldType": "Duration"
         },
         {
             "fieldName": "estat",
             "fieldType": "Estat",
-            "fieldValues": "ACTIU,PAUSAT,INACTIU,FINALITZAT"
+            "fieldValues": "ACTIU,PAUSAT,INACTIU"
         },
         {
             "fieldName": "intervalControl",
@@ -72,6 +72,14 @@
             "relationshipName": "treballador",
             "otherEntityField": "nom",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "ubicacio",
+            "otherEntityRelationshipName": "feina",
+            "relationshipName": "ubicacio",
+            "otherEntityField": "ubicacio",
+            "ownerSide": true
         }
     ],
     "changelogDate": "20191029182930",
@@ -83,6 +91,5 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*",
-    "embedded": false
+    "applications": "*"
 }

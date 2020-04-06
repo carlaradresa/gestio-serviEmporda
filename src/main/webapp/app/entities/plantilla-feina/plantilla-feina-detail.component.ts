@@ -13,7 +13,9 @@ export class PlantillaFeinaDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ plantillaFeina }) => (this.plantillaFeina = plantillaFeina));
+    this.activatedRoute.data.subscribe(({ plantillaFeina }) => {
+      this.plantillaFeina = plantillaFeina;
+    });
   }
 
   previousState(): void {

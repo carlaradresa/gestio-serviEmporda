@@ -4,7 +4,6 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { IPlantillaFeina, PlantillaFeina } from 'app/shared/model/plantilla-feina.model';
 import { PlantillaFeinaService } from './plantilla-feina.service';
@@ -39,7 +38,7 @@ export const plantillaFeinaRoute: Routes = [
     path: '',
     component: PlantillaFeinaComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.plantillaFeina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +50,7 @@ export const plantillaFeinaRoute: Routes = [
       plantillaFeina: PlantillaFeinaResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.plantillaFeina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -63,7 +62,7 @@ export const plantillaFeinaRoute: Routes = [
       plantillaFeina: PlantillaFeinaResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.plantillaFeina.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +74,7 @@ export const plantillaFeinaRoute: Routes = [
       plantillaFeina: PlantillaFeinaResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.plantillaFeina.home.title'
     },
     canActivate: [UserRouteAccessService]

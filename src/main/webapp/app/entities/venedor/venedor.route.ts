@@ -4,7 +4,6 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { IVenedor, Venedor } from 'app/shared/model/venedor.model';
 import { VenedorService } from './venedor.service';
@@ -39,7 +38,7 @@ export const venedorRoute: Routes = [
     path: '',
     component: VenedorComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.venedor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +50,7 @@ export const venedorRoute: Routes = [
       venedor: VenedorResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.venedor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -63,7 +62,7 @@ export const venedorRoute: Routes = [
       venedor: VenedorResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.venedor.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +74,7 @@ export const venedorRoute: Routes = [
       venedor: VenedorResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: ['ROLE_USER'],
       pageTitle: 'gestioClientsApp.venedor.home.title'
     },
     canActivate: [UserRouteAccessService]

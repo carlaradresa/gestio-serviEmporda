@@ -16,7 +16,8 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [GestioClientsTestModule],
-        declarations: [FeinaComponent]
+        declarations: [FeinaComponent],
+        providers: []
       })
         .overrideTemplate(FeinaComponent, '')
         .compileComponents();

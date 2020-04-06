@@ -23,9 +23,9 @@ export class PeriodicitatConfigurableComponent implements OnInit, OnDestroy {
   ) {}
 
   loadAll(): void {
-    this.periodicitatConfigurableService
-      .query()
-      .subscribe((res: HttpResponse<IPeriodicitatConfigurable[]>) => (this.periodicitatConfigurables = res.body || []));
+    this.periodicitatConfigurableService.query().subscribe((res: HttpResponse<IPeriodicitatConfigurable[]>) => {
+      this.periodicitatConfigurables = res.body ? res.body : [];
+    });
   }
 
   ngOnInit(): void {

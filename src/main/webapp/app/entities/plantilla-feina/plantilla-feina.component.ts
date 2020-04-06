@@ -23,7 +23,9 @@ export class PlantillaFeinaComponent implements OnInit, OnDestroy {
   ) {}
 
   loadAll(): void {
-    this.plantillaFeinaService.query().subscribe((res: HttpResponse<IPlantillaFeina[]>) => (this.plantillaFeinas = res.body || []));
+    this.plantillaFeinaService.query().subscribe((res: HttpResponse<IPlantillaFeina[]>) => {
+      this.plantillaFeinas = res.body ? res.body : [];
+    });
   }
 
   ngOnInit(): void {

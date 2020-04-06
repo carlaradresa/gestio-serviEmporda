@@ -21,7 +21,9 @@ type SelectableEntity = IUbicacio | IVenedor;
 })
 export class ClientUpdateComponent implements OnInit {
   isSaving = false;
+
   ubicacios: IUbicacio[] = [];
+
   venedors: IVenedor[] = [];
 
   editForm = this.fb.group({
@@ -54,7 +56,7 @@ export class ClientUpdateComponent implements OnInit {
         .query({ filter: 'client-is-null' })
         .pipe(
           map((res: HttpResponse<IUbicacio[]>) => {
-            return res.body || [];
+            return res.body ? res.body : [];
           })
         )
         .subscribe((resBody: IUbicacio[]) => {
@@ -68,11 +70,20 @@ export class ClientUpdateComponent implements OnInit {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IUbicacio[]) => (this.ubicacios = concatRes));
+              .subscribe((concatRes: IUbicacio[]) => {
+                this.ubicacios = concatRes;
+              });
           }
         });
 
-      this.venedorService.query().subscribe((res: HttpResponse<IVenedor[]>) => (this.venedors = res.body || []));
+      this.venedorService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IVenedor[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IVenedor[]) => (this.venedors = resBody));
     });
   }
 
@@ -124,10 +135,7 @@ export class ClientUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IClient>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess(): void {

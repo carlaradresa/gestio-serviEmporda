@@ -2,41 +2,36 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-ubicacio-heading" jhiTranslate="gestioClientsApp.ubicacio.home.createOrEditLabel">Create or edit a Ubicacio</h2>
-
             <div>
                 <jhi-alert-error></jhi-alert-error>
-
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.ubicacio.longitud" for="field_longitud">Longitud</label>
                     <input type="number" class="form-control" name="longitud" id="field_longitud"
                            formControlName="longitud"/>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.ubicacio.latitud" for="field_latitud">Latitud</label>
                     <input type="number" class="form-control" name="latitud" id="field_latitud"
                            formControlName="latitud"/>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.ubicacio.ubicacio" for="field_ubicacio">Ubicacio</label>
                     <input type="text" class="form-control" name="ubicacio" id="field_ubicacio"
                            formControlName="ubicacio"/>
                 </div>
+
             </div>
-
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

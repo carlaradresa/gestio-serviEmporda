@@ -1,76 +1,70 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="gestioClientsApp.marcatge.home.title">Marcatges</span>
-
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-marcatge" [routerLink]="['/marcatge/new']">
-            <fa-icon icon="plus"></fa-icon>
+            <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="gestioClientsApp.marcatge.home.createLabel">
             Create a new Marcatge
             </span>
         </button>
     </h2>
-
     <jhi-alert-error></jhi-alert-error>
-
     <jhi-alert></jhi-alert>
-
-    <div class="alert alert-warning" id="no-result" *ngIf="marcatges?.length === 0">
+    <br/>
+    <div class="alert alert-warning" *ngIf="marcatges?.length === 0">
         <span jhiTranslate="gestioClientsApp.marcatge.home.notFound">No marcatges found</span>
     </div>
-
-    <div class="table-responsive" id="entities" *ngIf="marcatges?.length > 0">
+    <div class="table-responsive" *ngIf="marcatges?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr>
-                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.horaEntrada">Hora Entrada</span></th>
-                    <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.horaSortida">Hora Sortida</span></th>
-                    <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.desviacio">Desviacio</span></th>
-                    <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.feina">Feina</span></th>
-                    <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.treballador">Treballador</span></th>
-                    <th scope="col"></th>
-                </tr>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.horaEntrada">Hora Entrada</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.horaSortida">Hora Sortida</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.desviacio">Desviacio</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.feina">Feina</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.marcatge.treballador">Treballador</span></th>
+            <th scope="col"></th>
+            </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let marcatge of marcatges ;trackBy: trackId">
-                    <td><a [routerLink]="['/marcatge', marcatge.id, 'view']">{{ marcatge.id }}</a></td>
-                    <td>{{ marcatge.horaEntrada | date:'medium' }}</td>
-                    <td>{{ marcatge.horaSortida | date:'medium' }}</td>
-                    <td>{{ marcatge.desviacio }}</td>
-                    <td>
-                        <div *ngIf="marcatge.feina">
-                            <a [routerLink]="['/feina', marcatge.feina?.id, 'view']" >{{ marcatge.feina?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="marcatge.treballador">
-                            <a [routerLink]="['/treballador', marcatge.treballador?.id, 'view']" >{{ marcatge.treballador?.id }}</a>
-                        </div>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group">
-                            <button type="submit"
-                                    [routerLink]="['/marcatge', marcatge.id, 'view']"
-                                    class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-
-                            <button type="submit"
-                                    [routerLink]="['/marcatge', marcatge.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                            </button>
-
-                            <button type="submit" (click)="delete(marcatge)"
-                                    class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr *ngFor="let marcatge of marcatges ;trackBy: trackId">
+                <td><a [routerLink]="['/marcatge', marcatge.id, 'view' ]">{{marcatge.id}}</a></td>
+                <td>{{marcatge.horaEntrada | date:'medium'}}</td>
+                <td>{{marcatge.horaSortida | date:'medium'}}</td>
+                <td>{{marcatge.desviacio}}</td>
+                <td>
+                    <div *ngIf="marcatge.feina">
+                        <a [routerLink]="['/feina', marcatge.feina?.id, 'view' ]" >{{marcatge.feina?.nom}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="marcatge.treballador">
+                        <a [routerLink]="['/treballador', marcatge.treballador?.id, 'view' ]" >{{marcatge.treballador?.nom}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/marcatge', marcatge.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/marcatge', marcatge.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(marcatge)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -13,7 +13,9 @@ export class VenedorDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ venedor }) => (this.venedor = venedor));
+    this.activatedRoute.data.subscribe(({ venedor }) => {
+      this.venedor = venedor;
+    });
   }
 
   previousState(): void {

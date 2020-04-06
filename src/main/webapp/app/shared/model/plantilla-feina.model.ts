@@ -1,45 +1,34 @@
 import { Moment } from 'moment';
 import { IPeriodicitatConfigurable } from 'app/shared/model/periodicitat-configurable.model';
-import { ICategoria } from 'app/shared/model/categoria.model';
-import { IClient } from 'app/shared/model/client.model';
-import { ITreballador } from 'app/shared/model/treballador.model';
-import { Dia } from 'app/shared/model/enumerations/dia.model';
+import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.model';
 
 export interface IPlantillaFeina {
   id?: number;
-  nom?: string;
-  setmanaInicial?: Moment;
-  setmanaFinal?: Moment;
-  horaInici?: Moment;
-  horaFinal?: Moment;
-  tempsPrevist?: Moment;
-  intervalControl?: number;
-  diaSetmana?: Dia;
+  horaInici?: string;
+  horaFinal?: string;
+  tempsPrevist?: number;
   facturacioAutomatica?: boolean;
   observacions?: string;
+  setmanaInicial?: Moment;
+  setmanaFinal?: Moment;
+  numeroControl?: number;
   periodicitatConfigurable?: IPeriodicitatConfigurable;
-  categoria?: ICategoria;
-  client?: IClient;
-  treballadors?: ITreballador[];
+  periodicitatSetmanals?: IPeriodicitatSetmanal[];
 }
 
 export class PlantillaFeina implements IPlantillaFeina {
   constructor(
     public id?: number,
-    public nom?: string,
-    public setmanaInicial?: Moment,
-    public setmanaFinal?: Moment,
-    public horaInici?: Moment,
-    public horaFinal?: Moment,
-    public tempsPrevist?: Moment,
-    public intervalControl?: number,
-    public diaSetmana?: Dia,
+    public horaInici?: string,
+    public horaFinal?: string,
+    public tempsPrevist?: number,
     public facturacioAutomatica?: boolean,
     public observacions?: string,
+    public setmanaInicial?: Moment,
+    public setmanaFinal?: Moment,
+    public numeroControl?: number,
     public periodicitatConfigurable?: IPeriodicitatConfigurable,
-    public categoria?: ICategoria,
-    public client?: IClient,
-    public treballadors?: ITreballador[]
+    public periodicitatSetmanals?: IPeriodicitatSetmanal[]
   ) {
     this.facturacioAutomatica = this.facturacioAutomatica || false;
   }

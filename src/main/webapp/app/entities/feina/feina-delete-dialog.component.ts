@@ -13,7 +13,7 @@ export class FeinaDeleteDialogComponent {
 
   constructor(protected feinaService: FeinaService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  cancel(): void {
+  clear(): void {
     this.activeModal.dismiss();
   }
 

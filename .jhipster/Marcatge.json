@@ -39,6 +39,5 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*",
-    "embedded": false
+    "applications": "*"
 }
