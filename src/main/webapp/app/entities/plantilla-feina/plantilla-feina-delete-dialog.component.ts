@@ -17,7 +17,7 @@ export class PlantillaFeinaDeleteDialogComponent {
     protected eventManager: JhiEventManager
   ) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

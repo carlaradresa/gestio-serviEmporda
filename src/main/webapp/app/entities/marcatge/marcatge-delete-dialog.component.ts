@@ -13,7 +13,7 @@ export class MarcatgeDeleteDialogComponent {
 
   constructor(protected marcatgeService: MarcatgeService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
-  clear(): void {
+  cancel(): void {
     this.activeModal.dismiss();
   }
 

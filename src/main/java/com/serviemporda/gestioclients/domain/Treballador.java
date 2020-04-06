@@ -1,4 +1,5 @@
 package com.serviemporda.gestioclients.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -6,6 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,6 +49,11 @@ public class Treballador implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
     private Set<Feina> feinas = new HashSet<>();
+
+    @ManyToMany(mappedBy = "treballadors")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<PlantillaFeina> plantillafeinas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -145,6 +152,31 @@ public class Treballador implements Serializable {
 
     public void setFeinas(Set<Feina> feinas) {
         this.feinas = feinas;
+    }
+
+    public Set<PlantillaFeina> getPlantillafeinas() {
+        return plantillafeinas;
+    }
+
+    public Treballador plantillafeinas(Set<PlantillaFeina> plantillaFeinas) {
+        this.plantillafeinas = plantillaFeinas;
+        return this;
+    }
+
+    public Treballador addPlantillafeina(PlantillaFeina plantillaFeina) {
+        this.plantillafeinas.add(plantillaFeina);
+        plantillaFeina.getTreballadors().add(this);
+        return this;
+    }
+
+    public Treballador removePlantillafeina(PlantillaFeina plantillaFeina) {
+        this.plantillafeinas.remove(plantillaFeina);
+        plantillaFeina.getTreballadors().remove(this);
+        return this;
+    }
+
+    public void setPlantillafeinas(Set<PlantillaFeina> plantillaFeinas) {
+        this.plantillafeinas = plantillaFeinas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

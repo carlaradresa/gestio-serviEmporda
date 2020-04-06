@@ -3,7 +3,7 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
         <property name="autoIncrement" value="true"/>
@@ -25,10 +25,10 @@
             <column name="setmana" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="temps_previst" type="bigint">
+            <column name="temps_previst" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="temps_real" type="bigint">
+            <column name="temps_real" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="estat" type="varchar(255)">
@@ -57,6 +57,8 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="feina" columnName="temps_previst" columnDataType="datetime"/>
+        <dropDefaultValue tableName="feina" columnName="temps_real" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20191029182930-1-relations" author="jhipster">
@@ -71,17 +73,6 @@
         </createTable>
 
         <addPrimaryKey columnNames="feina_id, treballador_id" tableName="feina_treballador"/>
-        
-        <createTable tableName="feina_ubicacio">
-            <column name="ubicacio_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="feina_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="feina_id, ubicacio_id" tableName="feina_ubicacio"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
@@ -103,8 +94,8 @@
             <column name="nom" type="string"/>
             <column name="descripcio" type="string"/>
             <column name="setmana" type="date"/>
-            <column name="temps_previst" type="numeric"/>
-            <column name="temps_real" type="numeric"/>
+            <column name="temps_previst" type="datetime"/>
+            <column name="temps_real" type="datetime"/>
             <column name="estat" type="string"/>
             <column name="interval_control" type="numeric"/>
             <column name="facturacio_automatica" type="boolean"/>
