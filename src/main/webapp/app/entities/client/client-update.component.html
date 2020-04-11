@@ -7,17 +7,17 @@
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                        readonly/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.client.nom" for="field_nom">Nom</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
-                           formControlName="nom"/>
+                           formControlName="nom" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.client.direccio" for="field_direccio">Direccio</label>
                     <input type="text" class="form-control" name="direccio" id="field_direccio"
-                           formControlName="direccio"/>
+                           formControlName="direccio" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.client.localitat" for="field_localitat">Localitat</label>
@@ -52,7 +52,7 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.client.ubicacio" for="field_ubicacio">Ubicacio</label>
-                    <select class="form-control" id="field_ubicacio" name="ubicacio" formControlName="ubicacio">
+                    <select class="form-control" id="field_ubicacio" name="ubicacio" formControlName="ubicacio" required>
                         <option [ngValue]="null"></option>
                         <option [ngValue]="ubicacioOption.id === editForm.get('ubicacio')!.value?.id ? editForm.get('ubicacio')!.value : ubicacioOption" *ngFor="let ubicacioOption of ubicacios; trackBy: trackById">{{ubicacioOption.ubicacio}}</option>
                     </select>

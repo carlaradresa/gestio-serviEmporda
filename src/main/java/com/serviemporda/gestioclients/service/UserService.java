@@ -134,6 +134,8 @@ public class UserService {
 
     public User createUser(UserDTO userDTO) {
         User user = new User();
+        String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
+        user.setPassword(encryptedPassword);
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -144,8 +146,7 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setPassword(encryptedPassword);
+        //String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);

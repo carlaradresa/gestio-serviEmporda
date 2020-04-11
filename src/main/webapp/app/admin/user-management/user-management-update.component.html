@@ -34,11 +34,35 @@
                         </small>
                     </div>
                 </div>
+                <!-- AFEGIM L'INPUT DE PASSWORD-->
+                <div class="form-group">
+                    <label class="form-control-label" >Password</label>
+                    <input type="text" class="form-control" name="password"
+                           formControlName="password">
+
+                    <div *ngIf="editForm.get('password').invalid && (editForm.get('password').dirty || editForm.get('password').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('password').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('password').errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                               [translateValues]="{max: 50}">
+                            This field cannot be longer than 50 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('password').errors.pattern" jhiTranslate="entity.validation.patternLogin">
+                            This field can only contain letters and digits.
+                        </small>
+                    </div>
+                </div>
+                <!-- FI AFEGIM L'INPUT DE PASSWORD-->
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
                     <input type="text" class="form-control" name="firstName"
                            formControlName="firstName">
-
                     <div *ngIf="editForm.get('firstName').invalid && (editForm.get('firstName').dirty || editForm.get('firstName').touched)">
                         <small class="form-text text-danger"
                         *ngIf="editForm.get('firstName').errors.maxlength" jhiTranslate="entity.validation.maxlength"

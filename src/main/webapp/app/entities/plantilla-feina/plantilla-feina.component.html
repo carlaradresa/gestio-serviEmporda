@@ -21,7 +21,7 @@
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></th>
-        <!--    <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></th>   -->
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica">Facturacio Automatica</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Observacions</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial">Setmana Inicial</span></th>
@@ -37,7 +37,7 @@
                 <td><a [routerLink]="['/plantilla-feina', plantillaFeina.id, 'view' ]">{{plantillaFeina.id}}</a></td>
                 <td>{{plantillaFeina.horaInici}}</td>
                 <td>{{plantillaFeina.horaFinal}}</td>
-           <!--     <td>{{plantillaFeina.tempsPrevist}}</td> -->
+                <td>{{plantillaFeina.tempsPrevist}}</td>
                 <td>{{plantillaFeina.facturacioAutomatica}}</td>
                 <td>{{plantillaFeina.observacions}}</td>
                 <td>{{plantillaFeina.setmanaInicial | date:'mediumDate'}}</td>
