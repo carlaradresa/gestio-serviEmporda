@@ -67,6 +67,7 @@ public class PlantillaFeinaResource {
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
+
     }
     /**
      * {@code PUT  /plantilla-feinas} : Updates an existing plantillaFeina.
