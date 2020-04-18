@@ -24,7 +24,7 @@
         {
             "fieldName": "estat",
             "fieldType": "Estat",
-            "fieldValues": "ACTIU,PAUSAT,INACTIU"
+            "fieldValues": "ACTIU,PAUSAT,INACTIU,FINALITZAT"
         },
         {
             "fieldName": "intervalControl",

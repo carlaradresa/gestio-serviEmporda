@@ -4,7 +4,9 @@
       "null": "",
       "ACTIU": "ACTIU",
       "PAUSAT": "PAUSAT",
-      "INACTIU": "INACTIU"
+      "INACTIU": "INACTIU",
+      "FINALITZAT": "FINALITZAT"
+
     }
   }
 }

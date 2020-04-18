@@ -297,7 +297,7 @@ public class Feina implements Serializable {
         return ubicacios;
     }
 
-    public Feina ubicacios(Set<Ubicacio> ubicacios) {
+    public Feina ubicacio(Set<Ubicacio> ubicacios) {
         this.ubicacios = ubicacios;
         return this;
     }

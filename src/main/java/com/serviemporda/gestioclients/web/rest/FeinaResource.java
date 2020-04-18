@@ -82,6 +82,9 @@ public class FeinaResource {
         if (feina.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        if (feina.getEstat().equals("FINALITZAT")){
+            feina.setEstat(Estat.FINALITZAT);
+        }
         Feina result = feinaRepository.save(feina);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, feina.getId().toString()))
@@ -123,6 +126,7 @@ public class FeinaResource {
     public ResponseEntity<Void> deleteFeina(@PathVariable Long id) {
         log.debug("REST request to delete Feina : {}", id);
         feinaRepository.deleteById(id);
+
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

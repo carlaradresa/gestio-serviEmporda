@@ -4,6 +4,8 @@ import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.mo
 
 export interface IPlantillaFeina {
   id?: number;
+  nomPlantilla?: string;
+  descripcio?: string;
   horaInici?: string;
   horaFinal?: string;
   tempsPrevist?: number;
@@ -19,6 +21,8 @@ export interface IPlantillaFeina {
 export class PlantillaFeina implements IPlantillaFeina {
   constructor(
     public id?: number,
+    public nomPlantilla?: string,
+    public descripcio?: string,
     public horaInici?: string,
     public horaFinal?: string,
     public tempsPrevist?: number,
@@ -32,4 +36,5 @@ export class PlantillaFeina implements IPlantillaFeina {
   ) {
     this.facturacioAutomatica = this.facturacioAutomatica || false;
   }
+
 }

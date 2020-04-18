@@ -7,7 +7,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -66,6 +68,10 @@ public class PlantillaFeina implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getFacturacioAutomatica() {
+        return facturacioAutomatica;
     }
 
     public LocalTime getHoraInici() {
@@ -190,6 +196,7 @@ public class PlantillaFeina implements Serializable {
         return periodicitatSetmanals;
     }
 
+
     public PlantillaFeina periodicitatSetmanals(Set<PeriodicitatSetmanal> periodicitatSetmanals) {
         this.periodicitatSetmanals = periodicitatSetmanals;
         return this;
@@ -231,15 +238,19 @@ public class PlantillaFeina implements Serializable {
     @Override
     public String toString() {
         return "PlantillaFeina{" +
-            "id=" + getId() +
-            ", horaInici='" + getHoraInici() + "'" +
-            ", horaFinal='" + getHoraFinal() + "'" +
-            ", tempsPrevist='" + getTempsPrevist() + "'" +
-            ", facturacioAutomatica='" + isFacturacioAutomatica() + "'" +
-            ", observacions='" + getObservacions() + "'" +
-            ", setmanaInicial='" + getSetmanaInicial() + "'" +
-            ", setmanaFinal='" + getSetmanaFinal() + "'" +
-            ", numeroControl=" + getNumeroControl() +
-            "}";
+            "id=" + id +
+            ", horaInici=" + horaInici +
+            ", horaFinal=" + horaFinal +
+            ", tempsPrevist=" + tempsPrevist +
+            ", facturacioAutomatica=" + facturacioAutomatica +
+            ", observacions='" + observacions + '\'' +
+            ", setmanaInicial=" + setmanaInicial +
+            ", setmanaFinal=" + setmanaFinal +
+            ", numeroControl=" + numeroControl +
+            ", periodicitatConfigurable=" + periodicitatConfigurable +
+            ", periodicitatSetmanals=" + periodicitatSetmanals +
+            '}';
     }
+
+
 }

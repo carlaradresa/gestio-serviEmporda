@@ -1,11 +1,9 @@
 package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.*;
-import com.serviemporda.gestioclients.domain.Feina;
-import com.serviemporda.gestioclients.domain.enumeration.Dia;
-import com.serviemporda.gestioclients.domain.enumeration.Estat;
 import com.serviemporda.gestioclients.repository.FeinaRepository;
 import com.serviemporda.gestioclients.repository.PlantillaFeinaRepository;
+import com.serviemporda.gestioclients.service.FeinaService;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -20,13 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.time.DayOfWeek;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing {@link com.serviemporda.gestioclients.domain.PlantillaFeina}.
@@ -38,17 +31,23 @@ import java.util.Optional;
 public class PlantillaFeinaResource {
 
     private final Logger log = LoggerFactory.getLogger(PlantillaFeinaResource.class);
+    private final Logger log2 = LoggerFactory.getLogger(FeinaResource.class);
 
     private static final String ENTITY_NAME = "plantillaFeina";
+
+    private final FeinaService feinaService;
+
+    private final FeinaRepository feinaRepository;
 
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
     private final PlantillaFeinaRepository plantillaFeinaRepository;
-    private FeinaRepository feinaRepository;
-    private FeinaResource feinaResource;
+    //private FeinaResource feinaResource;
 
-    public PlantillaFeinaResource(PlantillaFeinaRepository plantillaFeinaRepository) {
+    public PlantillaFeinaResource(FeinaService feinaService, FeinaRepository feinaRepository, PlantillaFeinaRepository plantillaFeinaRepository) {
+        this.feinaService = feinaService;
+        this.feinaRepository = feinaRepository;
         this.plantillaFeinaRepository = plantillaFeinaRepository;
     }
 
@@ -66,38 +65,11 @@ public class PlantillaFeinaResource {
             throw new BadRequestAlertException("A new plantillaFeina cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
-        //CREEM TOTES LES FEINES A PARTIR DE LA PLANTILLA:
 
-        //Obtenim les variables que necessitem per crear les noves feines:
-        LocalDate start = result.getSetmanaInicial();
-        LocalDate end = result.getSetmanaFinal();
-        String startDay = start.getDayOfWeek().name();
-        LocalTime hora_inici = result.getHoraInici();
-        LocalTime hora_final = result.getHoraFinal();
-
-        //Obtenim el temps previst de la feina
-        Duration duration = Duration.between(hora_inici, hora_final);
-
-        //Creem una nova feina amb l'informacio de la plantilla
-        Feina feinaNova = new Feina();
-        feinaNova.setNom("FALTA POSAR-HO");
-        feinaNova.setDescripcio("FALTA POSAR-HO");
-        //INICI S'HA DE CANVIAR
-        feinaNova.setSetmana(result.getSetmanaInicial());
-        //FI S'HA DE CANVIAR
-        feinaNova.setTempsPrevist((result.setTempsPrevist((int)duration.toMinutes())));
-        feinaNova.setIntervalControl(result.getNumeroControl());
-        feinaNova.setFacturacioAutomatica(result.isFacturacioAutomatica());
-        feinaNova.setPlantillaFeina(result);
-        //FALTA CATEGORIA, CLIENT, TREBALLADOR, UBICACIO
+        ArrayList<Feina> feines = feinaService.createFeina(result);
 
 
-//        feinaResource.createFeina(feinaNova);
-        //Comprovem el que ha seleccionat l'usuari en periodicitat configurable
-
-  /*      String periodicitatDiaSetmana = result.getPeriodicitatConfigurable().getPeriodicitat().name(); //SETMANA, ANY, DIA,...
-        Integer frequenciaPeriodicitat = result.getPeriodicitatConfigurable().getFrequencia(); //
-
+/*
         List<LocalDate> totalFeines = new ArrayList<>();
 
         LocalDate dateToCompare = start;
@@ -135,10 +107,7 @@ public class PlantillaFeinaResource {
             cl.setNom("Carla");
             Treballador t = new Treballador();
             Ubicacio u = new Ubicacio();
-
-            Feina feina = new Feina("nom", result.getObservacions(), result.getSetmanaInicial(), result.getTempsPrevist(), result.getTempsPrevist(), Estat.INACTIU, result.getNumeroControl(),result.isFacturacioAutomatica(), result.getObservacions(), "comentarisTreballador", plantillaFeina, c, cl, t, u);
-
-            feinaResource.createFeina(feina);*/
+*/
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
