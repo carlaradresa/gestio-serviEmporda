@@ -39,7 +39,6 @@ public class PlantillaFeinaResource {
 
     private final FeinaRepository feinaRepository;
 
-
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
     private final PlantillaFeinaRepository plantillaFeinaRepository;
