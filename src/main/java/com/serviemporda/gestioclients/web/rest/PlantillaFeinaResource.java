@@ -65,46 +65,6 @@ public class PlantillaFeinaResource {
 
         ArrayList<Feina> feines = feinaService.createFeina(result);
 
-
-/*
-        List<LocalDate> totalFeines = new ArrayList<>();
-
-        LocalDate dateToCompare = start;
-
-        int dayplus = 0;
-        while (!dateToCompare.isAfter(end)) {
-
-            if (startDay.equalsIgnoreCase(dateToCompare.getDayOfWeek().name())){
-
-                totalFeines.add(start);
-
-                if (frequenciaPeriodicitat == 1){
-
-                }
-            }
-
-            dateToCompare = start.plusDays(1 + dayplus);
-
-            dayplus ++;
-            if (start.getDayOfWeek().name().equalsIgnoreCase("DILLUNS")){
-                if (frequenciaPeriodicitat != 1){
-
-                }
-            }
-        }
-
-        for (int i = 0; i < totalFeines.size(); i ++){
-            System.out.println("FEINA:            "+totalFeines.get(i).toString());
-        }
-        System.out.println(totalFeines);
-*/
-        /*    Categoria c = new Categoria();
-            c.setNomCategoria("Neteja");
-            Client cl = new Client();
-            cl.setNom("Carla");
-            Treballador t = new Treballador();
-            Ubicacio u = new Ubicacio();
-*/
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
