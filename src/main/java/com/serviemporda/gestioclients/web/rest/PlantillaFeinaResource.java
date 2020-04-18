@@ -62,7 +62,6 @@ public class PlantillaFeinaResource {
             throw new BadRequestAlertException("A new plantillaFeina cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
-
         ArrayList<Feina> feines = feinaService.createFeina(result);
 
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
