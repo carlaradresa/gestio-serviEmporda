@@ -48,6 +48,7 @@ public class PlantillaFeinaResource {
         this.feinaRepository = feinaRepository;
         this.plantillaFeinaRepository = plantillaFeinaRepository;
     }
+
     /**
      * {@code POST  /plantilla-feinas} : Create a new plantillaFeina.
      *
