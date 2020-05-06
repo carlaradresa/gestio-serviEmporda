@@ -21,6 +21,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+// Prueba para subir a Master en https://github.com/carlaradresa/gestio-serviEmporda
+
 /**
  * Service class for managing users.
  */
