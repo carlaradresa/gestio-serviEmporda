@@ -1,6 +1,7 @@
 import { Moment } from 'moment';
 import { IPeriodicitatConfigurable } from 'app/shared/model/periodicitat-configurable.model';
 import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.model';
+import {IClient} from "app/shared/model/client.model";
 
 export interface IPlantillaFeina {
   id?: number;
@@ -16,6 +17,7 @@ export interface IPlantillaFeina {
   numeroControl?: number;
   periodicitatConfigurable?: IPeriodicitatConfigurable;
   periodicitatSetmanals?: IPeriodicitatSetmanal[];
+  client?: IClient;
 }
 
 export class PlantillaFeina implements IPlantillaFeina {
@@ -32,7 +34,8 @@ export class PlantillaFeina implements IPlantillaFeina {
     public setmanaFinal?: Moment,
     public numeroControl?: number,
     public periodicitatConfigurable?: IPeriodicitatConfigurable,
-    public periodicitatSetmanals?: IPeriodicitatSetmanal[]
+    public periodicitatSetmanals?: IPeriodicitatSetmanal[],
+    public client?: IClient
   ) {
     this.facturacioAutomatica = this.facturacioAutomatica || false;
   }

@@ -1,4 +1,6 @@
 package com.serviemporda.gestioclients.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -54,12 +56,21 @@ public class PlantillaFeina implements Serializable {
     @JoinColumn(unique = true)
     private PeriodicitatConfigurable periodicitatConfigurable;
 
+    @ManyToOne
+    @JsonIgnoreProperties("plantilla-feinas")
+    private Client client;
+
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "plantilla_feina_periodicitat_setmanal",
                joinColumns = @JoinColumn(name = "plantilla_feina_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "periodicitat_setmanal_id", referencedColumnName = "id"))
     private Set<PeriodicitatSetmanal> periodicitatSetmanals = new HashSet<>();
+
+    public PlantillaFeina() {
+
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -192,6 +203,18 @@ public class PlantillaFeina implements Serializable {
         this.periodicitatConfigurable = periodicitatConfigurable;
     }
 
+    public PlantillaFeina(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public Set<PeriodicitatSetmanal> getPeriodicitatSetmanals() {
         return periodicitatSetmanals;
     }
@@ -249,6 +272,7 @@ public class PlantillaFeina implements Serializable {
             ", numeroControl=" + numeroControl +
             ", periodicitatConfigurable=" + periodicitatConfigurable +
             ", periodicitatSetmanals=" + periodicitatSetmanals +
+            ", client=" + client +
             '}';
     }
 

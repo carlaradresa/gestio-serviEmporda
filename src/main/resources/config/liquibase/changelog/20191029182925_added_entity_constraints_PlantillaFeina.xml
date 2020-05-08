@@ -7,7 +7,7 @@
         Added the constraints for entity PlantillaFeina.
     -->
     <changeSet id="20191029182925-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="periodicitat_configurable_id"
                                  baseTableName="plantilla_feina"
                                  constraintName="fk_plantilla_feina_periodicitat_configurable_id"
@@ -25,6 +25,11 @@
                                  constraintName="plantilla_feina_periodicitat_se_periodicitat_setmanal_id"
                                  referencedColumnNames="id"
                                  referencedTableName="periodicitat_setmanal"/>
-        
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="plantilla_feina"
+                                 constraintName="fk_plantilla_feina_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
     </changeSet>
 </databaseChangeLog>

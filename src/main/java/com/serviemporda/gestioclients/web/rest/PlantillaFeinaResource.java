@@ -1,6 +1,7 @@
 package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.*;
+import com.serviemporda.gestioclients.repository.ClientRepository;
 import com.serviemporda.gestioclients.repository.FeinaRepository;
 import com.serviemporda.gestioclients.repository.PlantillaFeinaRepository;
 import com.serviemporda.gestioclients.service.FeinaService;
@@ -10,6 +11,7 @@ import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +41,9 @@ public class PlantillaFeinaResource {
 
     private final FeinaRepository feinaRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
     private final PlantillaFeinaRepository plantillaFeinaRepository;
@@ -62,6 +67,16 @@ public class PlantillaFeinaResource {
         if (plantillaFeina.getId() != null) {
             throw new BadRequestAlertException("A new plantillaFeina cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        ///////////////////
+
+       // Client client = clientRepository.findAll().get(0);
+
+      //  plantillaFeina.setClient(client);
+
+        ///////////////////
+
+
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
         ArrayList<Feina> feines = feinaService.createFeina(result);
 

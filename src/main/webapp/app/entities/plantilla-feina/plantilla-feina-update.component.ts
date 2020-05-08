@@ -8,14 +8,16 @@ import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
+import { ClientService } from 'app/entities/client/client.service';
 import { IPlantillaFeina, PlantillaFeina } from 'app/shared/model/plantilla-feina.model';
 import { PlantillaFeinaService } from './plantilla-feina.service';
 import { IPeriodicitatConfigurable } from 'app/shared/model/periodicitat-configurable.model';
 import { PeriodicitatConfigurableService } from 'app/entities/periodicitat-configurable/periodicitat-configurable.service';
 import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.model';
 import { PeriodicitatSetmanalService } from 'app/entities/periodicitat-setmanal/periodicitat-setmanal.service';
+import {IClient} from "app/shared/model/client.model";
 
-type SelectableEntity = IPeriodicitatConfigurable | IPeriodicitatSetmanal;
+type SelectableEntity = IPeriodicitatConfigurable | IPeriodicitatSetmanal | IClient;
 
 @Component({
   selector: 'jhi-plantilla-feina-update',
@@ -25,6 +27,8 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
   isSaving = false;
 
   periodicitatconfigurables: IPeriodicitatConfigurable[] = [];
+
+  clients: IClient[] = [];
 
   periodicitatsetmanals: IPeriodicitatSetmanal[] = [];
   setmanaInicialDp: any;
@@ -41,13 +45,15 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
     setmanaFinal: [],
     numeroControl: [],
     periodicitatConfigurable: [],
-    periodicitatSetmanals: []
+    periodicitatSetmanals: [],
+    client: []
   });
 
   constructor(
     protected plantillaFeinaService: PlantillaFeinaService,
     protected periodicitatConfigurableService: PeriodicitatConfigurableService,
     protected periodicitatSetmanalService: PeriodicitatSetmanalService,
+    protected clientService: ClientService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -80,6 +86,16 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
           }
         });
 
+      this.clientService
+        .query()
+        .pipe(
+          map((res: HttpResponse<IClient[]>) => {
+            return res.body ? res.body : [];
+          })
+        )
+        .subscribe((resBody: IClient[]) => (this.clients = resBody));
+
+
       this.periodicitatSetmanalService
         .query()
         .pipe(
@@ -103,7 +119,8 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
       setmanaFinal: plantillaFeina.setmanaFinal,
       numeroControl: plantillaFeina.numeroControl,
       periodicitatConfigurable: plantillaFeina.periodicitatConfigurable,
-      periodicitatSetmanals: plantillaFeina.periodicitatSetmanals
+      periodicitatSetmanals: plantillaFeina.periodicitatSetmanals,
+      client: plantillaFeina.client
     });
   }
 
@@ -134,7 +151,8 @@ export class PlantillaFeinaUpdateComponent implements OnInit {
       setmanaFinal: this.editForm.get(['setmanaFinal'])!.value,
       numeroControl: this.editForm.get(['numeroControl'])!.value,
       periodicitatConfigurable: this.editForm.get(['periodicitatConfigurable'])!.value,
-      periodicitatSetmanals: this.editForm.get(['periodicitatSetmanals'])!.value
+      periodicitatSetmanals: this.editForm.get(['periodicitatSetmanals'])!.value,
+      client: this.editForm.get(['client'])!.value
     };
   }
 

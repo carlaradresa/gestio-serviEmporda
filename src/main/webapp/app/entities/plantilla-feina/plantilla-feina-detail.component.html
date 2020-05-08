@@ -21,7 +21,7 @@
                 <dd>
                     <span>{{plantillaFeina.facturacioAutomatica}}</span>
                 </dd>
-                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Observacions</span></dt>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Nom feina</span></dt>
                 <dd>
                     <span>{{plantillaFeina.observacions}}</span>
                 </dd>
@@ -48,6 +48,12 @@
                     <span *ngFor="let periodicitatSetmanal of plantillaFeina.periodicitatSetmanals; let last = last">
                         <a [routerLink]="['/periodicitat-setmanal', periodicitatSetmanal?.id, 'view' ]">{{periodicitatSetmanal.diaSetmana}}</a>{{last ? '' : ', '}}
                     </span>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="plantillaFeina.client">
+                        <a [routerLink]="['/client', plantillaFeina.client?.id, 'view']">{{plantillaFeina.client?.id}}</a>
+                    </div>
                 </dd>
             </dl>
 
