@@ -55,6 +55,9 @@
             <column name="client_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="chronometer" type="integer">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -71,7 +74,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="feina_id, treballador_id" tableName="feina_treballador"/>
-        
+
         <createTable tableName="feina_ubicacio">
             <column name="ubicacio_id" type="bigint">
                 <constraints nullable="false"/>
@@ -82,7 +85,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="feina_id, ubicacio_id" tableName="feina_ubicacio"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -110,6 +113,7 @@
             <column name="facturacio_automatica" type="boolean"/>
             <column name="observacions" type="string"/>
             <column name="comentaris_treballador" type="string"/>
+            <column name="chronometer" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

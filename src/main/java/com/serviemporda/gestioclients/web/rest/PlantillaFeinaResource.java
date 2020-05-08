@@ -1,6 +1,7 @@
 package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.*;
+import com.serviemporda.gestioclients.repository.CategoriaRepository;
 import com.serviemporda.gestioclients.repository.ClientRepository;
 import com.serviemporda.gestioclients.repository.FeinaRepository;
 import com.serviemporda.gestioclients.repository.PlantillaFeinaRepository;
@@ -44,6 +45,10 @@ public class PlantillaFeinaResource {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
     private final PlantillaFeinaRepository plantillaFeinaRepository;
@@ -76,6 +81,8 @@ public class PlantillaFeinaResource {
 
         ///////////////////
 
+        Categoria categoria = categoriaRepository.findAll().get(0);
+        plantillaFeina.setCategoria(categoria);
 
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
         ArrayList<Feina> feines = feinaService.createFeina(result);

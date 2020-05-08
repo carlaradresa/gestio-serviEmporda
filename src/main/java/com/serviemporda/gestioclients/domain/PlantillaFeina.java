@@ -60,6 +60,10 @@ public class PlantillaFeina implements Serializable {
     @JsonIgnoreProperties("plantilla-feinas")
     private Client client;
 
+    @ManyToOne
+    @JsonIgnoreProperties("plantilla-feinas")
+    private Categoria categoria;
+
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -215,6 +219,20 @@ public class PlantillaFeina implements Serializable {
         this.client = client;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public PlantillaFeina categoria(Categoria categoria) {
+        this.categoria = categoria;
+        return this;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+
     public Set<PeriodicitatSetmanal> getPeriodicitatSetmanals() {
         return periodicitatSetmanals;
     }
@@ -273,6 +291,7 @@ public class PlantillaFeina implements Serializable {
             ", periodicitatConfigurable=" + periodicitatConfigurable +
             ", periodicitatSetmanals=" + periodicitatSetmanals +
             ", client=" + client +
+            ", categoria=" + categoria +
             '}';
     }
 
