@@ -85,6 +85,7 @@ public class FeinaResource {
         if (feina.getEstat().equals("FINALITZAT")){
             feina.setEstat(Estat.FINALITZAT);
         }
+
         Feina result = feinaRepository.save(feina);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, feina.getId().toString()))

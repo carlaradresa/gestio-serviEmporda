@@ -1,5 +1,6 @@
 package com.serviemporda.gestioclients.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.h2.table.Plan;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -47,6 +48,11 @@ public class Treballador implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
     private Set<Feina> feinas = new HashSet<>();
+
+    @ManyToMany(mappedBy = "treballadors")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<PlantillaFeina> plantillaFeinas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -147,6 +153,33 @@ public class Treballador implements Serializable {
         this.feinas = feinas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    public Set<PlantillaFeina> getPlantillaFeinas() {
+        return plantillaFeinas;
+    }
+
+    public Treballador plantillaFeines(Set<PlantillaFeina> plantillaFeinas) {
+        this.plantillaFeinas = plantillaFeinas;
+        return this;
+    }
+
+    public Treballador addPlantillaFeines(PlantillaFeina plantillaFeina) {
+        this.plantillaFeinas.add(plantillaFeina);
+        plantillaFeina.getTreballadors().add(this);
+        return this;
+    }
+
+    public Treballador removePlantillaFeina(PlantillaFeina plantillaFeina) {
+        this.plantillaFeinas.remove(plantillaFeina);
+        plantillaFeina.getTreballadors().remove(this);
+        return this;
+    }
+
+    public void setPlantillaFeinas(Set<PlantillaFeina> plantillaFeinas) {
+        this.plantillaFeinas = plantillaFeinas;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
 
     @Override
     public boolean equals(Object o) {

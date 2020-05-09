@@ -19,6 +19,7 @@
             <thead>
             <tr>
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.nom">Nom</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></th>
@@ -30,12 +31,15 @@
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatConfigurable">Periodicitat Configurable</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal">Periodicitat Setmanal</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.client">Client</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.categoria">Categoria</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.treballador">Treballador</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let plantillaFeina of plantillaFeinas ;trackBy: trackId">
                 <td><a [routerLink]="['/plantilla-feina', plantillaFeina.id, 'view' ]">{{plantillaFeina.id}}</a></td>
+                <td>{{plantillaFeina.nom}}</td>
                 <td>{{plantillaFeina.horaInici}}</td>
                 <td>{{plantillaFeina.horaFinal}}</td>
                 <td>{{plantillaFeina.tempsPrevist}}</td>
@@ -58,6 +62,16 @@
                     <div *ngIf="plantillaFeina.client">
                         <a [routerLink]="['/client', plantillaFeina.client?.id, 'view' ]" >{{plantillaFeina.client?.nom}}</a>
                     </div>
+                </td>
+                <td>
+                    <div *ngIf="plantillaFeina.categoria">
+                        <a [routerLink]="['/categoria', plantillaFeina.categoria?.id, 'view' ]" >{{plantillaFeina.categoria?.nomCategoria}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let treballador of plantillaFeina.treballadors; let last = last">
+                            <a class="form-control-static" [routerLink]="['/treballador', treballador?.id, 'view' ]">{{treballador.nom}}</a>{{last ? '' : ', '}}
+                        </span>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

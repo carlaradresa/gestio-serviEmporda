@@ -96,12 +96,6 @@
                         <option [ngValue]="getSelected(editForm.get('treballadors')!.value, treballadorOption)" *ngFor="let treballadorOption of treballadors; trackBy: trackById">{{treballadorOption.nom}}</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label jhiTranslate="gestioClientsApp.feina.ubicacio" for="field_ubicacios">Ubicacio</label>
-                    <select class="form-control" id="field_ubicacios" multiple name="ubicacios" formControlName="ubicacios">
-                        <option [ngValue]="getSelected(editForm.get('ubicacios')!.value, ubicacioOption)" *ngFor="let ubicacioOption of ubicacios; trackBy: trackById">{{ubicacioOption.ubicacio}}</option>
-                    </select>
-                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

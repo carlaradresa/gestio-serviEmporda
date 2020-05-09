@@ -28,6 +28,9 @@ public class PlantillaFeina implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nom")
+    private String nom;
+
     @Column(name = "hora_inici")
     private LocalTime horaInici;
 
@@ -72,6 +75,13 @@ public class PlantillaFeina implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "periodicitat_setmanal_id", referencedColumnName = "id"))
     private Set<PeriodicitatSetmanal> periodicitatSetmanals = new HashSet<>();
 
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "plantilla_feina_treballador",
+        joinColumns = @JoinColumn(name = "plantilla_feina_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "treballador_id", referencedColumnName = "id"))
+    private Set<Treballador> treballadors = new HashSet<>();
+
     public PlantillaFeina() {
 
     }
@@ -83,6 +93,15 @@ public class PlantillaFeina implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public Boolean getFacturacioAutomatica() {
@@ -258,6 +277,34 @@ public class PlantillaFeina implements Serializable {
     public void setPeriodicitatSetmanals(Set<PeriodicitatSetmanal> periodicitatSetmanals) {
         this.periodicitatSetmanals = periodicitatSetmanals;
     }
+
+    public Set<Treballador> getTreballadors() {
+        return treballadors;
+    }
+
+    public PlantillaFeina treballadors(Set<Treballador> treballadors) {
+        this.treballadors = treballadors;
+        return this;
+    }
+
+    public PlantillaFeina addTreballador(Treballador treballador) {
+        this.treballadors.add(treballador);
+        treballador.getPlantillaFeinas().add(this);
+        return this;
+    }
+
+    public PlantillaFeina removeTreballador(Treballador treballador) {
+        this.treballadors.remove(treballador);
+        treballador.getPlantillaFeinas().remove(this);
+        return this;
+    }
+
+    public void setTreballadors(Set<Treballador> treballadors) {
+        this.treballadors = treballadors;
+    }
+
+
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -292,6 +339,7 @@ public class PlantillaFeina implements Serializable {
             ", periodicitatSetmanals=" + periodicitatSetmanals +
             ", client=" + client +
             ", categoria=" + categoria +
+            ", nom=" + nom +
             '}';
     }
 

@@ -70,11 +70,6 @@
                             <a class="form-control-static" [routerLink]="['/treballador', treballador?.id, 'view' ]">{{treballador.nom}}</a>{{last ? '' : ', '}}
                         </span>
                 </td>
-                <td>
-                    <span *ngFor="let ubicacio of feina.ubicacios; let last = last">
-                            <a class="form-control-static" [routerLink]="['/ubicacio', ubicacio?.id, 'view' ]">{{ubicacio.ubicacio}}</a>{{last ? '' : ', '}}
-                        </span>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

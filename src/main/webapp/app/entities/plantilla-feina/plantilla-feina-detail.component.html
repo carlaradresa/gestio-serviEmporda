@@ -5,6 +5,10 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.nom">Nom</span></dt>
+                <dd>
+                    <span>{{plantillaFeina.nom}}</span>
+                </dd>
                 <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></dt>
                 <dd>
                     <span>{{plantillaFeina.horaInici}}</span>
@@ -54,6 +58,18 @@
                     <div *ngIf="plantillaFeina.client">
                         <a [routerLink]="['/client', plantillaFeina.client?.id, 'view']">{{plantillaFeina.client?.id}}</a>
                     </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.categoria">Categoria</span></dt>
+                <dd>
+                    <div *ngIf="plantillaFeina.categoria">
+                        <a [routerLink]="['/categoria', plantillaFeina.categoria?.id, 'view']">{{plantillaFeina.categoria?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestioClientsApp.plantillaFeina.treballador">Treballador</span></dt>
+                <dd>
+                    <span *ngFor="let treballador of plantillaFeina.treballadors; let last = last">
+                        <a [routerLink]="['/treballador', treballador?.id, 'view' ]">{{treballador.nom}}</a>{{last ? '' : ', '}}
+                    </span>
                 </dd>
             </dl>
 

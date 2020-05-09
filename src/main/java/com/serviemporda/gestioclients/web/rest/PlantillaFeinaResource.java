@@ -1,10 +1,7 @@
 package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.*;
-import com.serviemporda.gestioclients.repository.CategoriaRepository;
-import com.serviemporda.gestioclients.repository.ClientRepository;
-import com.serviemporda.gestioclients.repository.FeinaRepository;
-import com.serviemporda.gestioclients.repository.PlantillaFeinaRepository;
+import com.serviemporda.gestioclients.repository.*;
 import com.serviemporda.gestioclients.service.FeinaService;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
@@ -15,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +38,7 @@ public class PlantillaFeinaResource {
 
     private final FeinaService feinaService;
 
+    @Autowired
     private final FeinaRepository feinaRepository;
 
     @Autowired
@@ -47,6 +46,9 @@ public class PlantillaFeinaResource {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private TreballadorRepository treballadorRepository;
 
 
     @Value("${jhipster.clientApp.name}")
@@ -76,16 +78,18 @@ public class PlantillaFeinaResource {
         ///////////////////
 
        // Client client = clientRepository.findAll().get(0);
-
       //  plantillaFeina.setClient(client);
 
+      //  Categoria categoria = categoriaRepository.findAll().get(0);
+      //  plantillaFeina.setCategoria(categoria);
+
+
         ///////////////////
-
-        Categoria categoria = categoriaRepository.findAll().get(0);
-        plantillaFeina.setCategoria(categoria);
-
+     //   Treballador treballador = treballadorRepository.findAll().get(0);
+        feinaService.createFeina(plantillaFeina);
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
-        ArrayList<Feina> feines = feinaService.createFeina(result);
+
+
 
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -146,6 +150,7 @@ public class PlantillaFeinaResource {
     @DeleteMapping("/plantilla-feinas/{id}")
     public ResponseEntity<Void> deletePlantillaFeina(@PathVariable Long id) {
         log.debug("REST request to delete PlantillaFeina : {}", id);
+        feinaService.deleteFeinesFromPf(id);
         plantillaFeinaRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }

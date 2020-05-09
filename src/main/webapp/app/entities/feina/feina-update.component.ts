@@ -17,12 +17,10 @@ import { IClient } from 'app/shared/model/client.model';
 import { ClientService } from 'app/entities/client/client.service';
 import { ITreballador } from 'app/shared/model/treballador.model';
 import { TreballadorService } from 'app/entities/treballador/treballador.service';
-import { IUbicacio } from 'app/shared/model/ubicacio.model';
-import { UbicacioService } from 'app/entities/ubicacio/ubicacio.service';
 
-type SelectableEntity = IPlantillaFeina | ICategoria | IClient | ITreballador | IUbicacio;
+type SelectableEntity = IPlantillaFeina | ICategoria | IClient | ITreballador;
 
-type SelectableManyToManyEntity = ITreballador | IUbicacio;
+type SelectableManyToManyEntity = ITreballador;
 
 @Component({
   selector: 'jhi-feina-update',
@@ -39,7 +37,6 @@ export class FeinaUpdateComponent implements OnInit {
 
   treballadors: ITreballador[] = [];
 
-  ubicacios: IUbicacio[] = [];
   setmanaDp: any;
 
   editForm = this.fb.group({
@@ -58,7 +55,6 @@ export class FeinaUpdateComponent implements OnInit {
     categoria: [],
     client: [],
     treballadors: [],
-    ubicacios: []
   });
 
   constructor(
@@ -67,7 +63,6 @@ export class FeinaUpdateComponent implements OnInit {
     protected categoriaService: CategoriaService,
     protected clientService: ClientService,
     protected treballadorService: TreballadorService,
-    protected ubicacioService: UbicacioService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -111,15 +106,6 @@ export class FeinaUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: ITreballador[]) => (this.treballadors = resBody));
-
-      this.ubicacioService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IUbicacio[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IUbicacio[]) => (this.ubicacios = resBody));
     });
   }
 
@@ -140,7 +126,6 @@ export class FeinaUpdateComponent implements OnInit {
       categoria: feina.categoria,
       client: feina.client,
       treballadors: feina.treballadors,
-      ubicacios: feina.ubicacios
     });
   }
 
@@ -175,8 +160,7 @@ export class FeinaUpdateComponent implements OnInit {
       plantillaFeina: this.editForm.get(['plantillaFeina'])!.value,
       categoria: this.editForm.get(['categoria'])!.value,
       client: this.editForm.get(['client'])!.value,
-      treballadors: this.editForm.get(['treballadors'])!.value,
-      ubicacios: this.editForm.get(['ubicacios'])!.value
+      treballadors: this.editForm.get(['treballadors'])!.value
     };
   }
 

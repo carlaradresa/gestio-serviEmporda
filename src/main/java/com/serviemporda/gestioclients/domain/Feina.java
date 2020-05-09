@@ -82,6 +82,10 @@ public class Feina implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "treballador_id", referencedColumnName = "id"))
     private Set<Treballador> treballadors = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Treballador treballador_assignat;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "feina_ubicacio",
@@ -308,6 +312,15 @@ public class Feina implements Serializable {
     public void setTreballadors(Set<Treballador> treballadors) {
         this.treballadors = treballadors;
     }
+
+    public Treballador getTreballador_assignat() {
+        return treballador_assignat;
+    }
+
+    public void setTreballador_assignat(Treballador treballador_assignat) {
+        this.treballador_assignat = treballador_assignat;
+    }
+
 
     public Set<Ubicacio> getUbicacios() {
         return ubicacios;

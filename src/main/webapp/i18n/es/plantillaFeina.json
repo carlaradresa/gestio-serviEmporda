@@ -16,6 +16,7 @@
       "detail": {
         "title": "Plantilla Feina"
       },
+      "nom": "Nom",
       "horaInici": "Hora Inici",
       "horaFinal": "Hora Final",
       "tempsPrevist": "Temps Previst",
@@ -25,7 +26,10 @@
       "setmanaFinal": "Setmana Final",
       "numeroControl": "Numero Control",
       "periodicitatConfigurable": "Periodicitat Configurable",
-      "periodicitatSetmanal": "Periodicitat Setmanal"
+      "periodicitatSetmanal": "Periodicitat Setmanal",
+      "categoria": "Categoria",
+      "client": "Client",
+      "treballador": "Treballador"
     }
   }
 }

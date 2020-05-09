@@ -20,7 +20,7 @@
       "descripcio": "Descripcio",
       "setmana": "Setmana",
       "tempsPrevist": "Temps Previst",
-      "tempsReal": "Temps Real",
+      "tempsReal": "Temps Total",
       "estat": "Estat",
       "intervalControl": "Interval Control",
       "facturacioAutomatica": "Facturacio Automatica",
@@ -29,7 +29,7 @@
       "plantillaFeina": "Plantilla Feina",
       "categoria": "Categoria",
       "client": "Client",
-      "treballador": "Treballador",
+      "treballador": "Treballador/s",
       "ubicacio": "Ubicacio"
     }
   }
