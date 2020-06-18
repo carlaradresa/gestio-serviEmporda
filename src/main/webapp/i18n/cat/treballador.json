@@ -1,0 +1,27 @@
+{
+  "gestioClientsApp": {
+    "treballador": {
+      "home": {
+        "title": "Treballadors",
+        "createLabel": "Crear nou Treballador",
+        "createOrEditLabel": "Crear o editar Treballador",
+        "notFound": "Cap Treballador trobat"
+      },
+      "created": "Un nou Treballador ha estat creat amb l'identificador {{ param }}",
+      "updated": "Un Treballador ha estat actualitzat amb l'identificador {{ param }}",
+      "deleted": "Un Treballador ha estat eliminat amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar el Treballador {{ id }}?"
+      },
+      "detail": {
+        "title": "Treballador"
+      },
+      "nom": "Nom",
+      "carregaHores": "Càrrega Hores",
+      "estat": "Estat",
+      "controlQualitat": "Control Qualitat",
+      "user": "User",
+      "feina": "Feina"
+    }
+  }
+}

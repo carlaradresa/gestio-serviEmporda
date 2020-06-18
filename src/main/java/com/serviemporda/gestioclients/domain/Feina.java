@@ -60,9 +60,6 @@ public class Feina implements Serializable {
     @Column(name = "comentaris_treballador")
     private String comentarisTreballador;
 
-    @Column(name = "chronometer")
-    private Integer chronometer;
-
     @ManyToOne
     @JsonIgnoreProperties("feinas")
     private PlantillaFeina plantillaFeina;
@@ -81,10 +78,6 @@ public class Feina implements Serializable {
                joinColumns = @JoinColumn(name = "feina_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "treballador_id", referencedColumnName = "id"))
     private Set<Treballador> treballadors = new HashSet<>();
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Treballador treballador_assignat;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -236,19 +229,6 @@ public class Feina implements Serializable {
         this.comentarisTreballador = comentarisTreballador;
     }
 
-    public Integer getChronometer() {
-        return chronometer;
-    }
-
-    public Feina chronometer(Integer chronometer) {
-        this.chronometer = chronometer;
-        return this;
-    }
-
-    public void setChronometer(Integer chronometer) {
-        this.chronometer = chronometer;
-    }
-
     public PlantillaFeina getPlantillaFeina() {
         return plantillaFeina;
     }
@@ -313,15 +293,6 @@ public class Feina implements Serializable {
         this.treballadors = treballadors;
     }
 
-    public Treballador getTreballador_assignat() {
-        return treballador_assignat;
-    }
-
-    public void setTreballador_assignat(Treballador treballador_assignat) {
-        this.treballador_assignat = treballador_assignat;
-    }
-
-
     public Set<Ubicacio> getUbicacios() {
         return ubicacios;
     }
@@ -378,11 +349,10 @@ public class Feina implements Serializable {
             ", facturacioAutomatica='" + isFacturacioAutomatica() + "'" +
             ", observacions='" + getObservacions() + "'" +
             ", comentarisTreballador='" + getComentarisTreballador() + "'" +
-            ", chronometer='" + getChronometer() + "'" +
             "}";
     }
 
-    public Feina(String nom, String descripcio, LocalDate setmana, Integer tempsPrevist, Duration tempsReal, Estat estat, Integer intervalControl, Boolean facturacioAutomatica, String observacions, String comentarisTreballador, Integer chronometer, PlantillaFeina plantillaFeina, Categoria categoria, Client client, Set<Treballador> treballadors, Set<Ubicacio> ubicacios) {
+    public Feina(String nom, String descripcio, LocalDate setmana, Integer tempsPrevist, Duration tempsReal, Estat estat, Integer intervalControl, Boolean facturacioAutomatica, String observacions, String comentarisTreballador, PlantillaFeina plantillaFeina, Categoria categoria, Client client, Set<Treballador> treballadors, Set<Ubicacio> ubicacios) {
         this.nom = nom;
         this.descripcio = descripcio;
         this.setmana = setmana;
@@ -393,7 +363,6 @@ public class Feina implements Serializable {
         this.facturacioAutomatica = facturacioAutomatica;
         this.observacions = observacions;
         this.comentarisTreballador = comentarisTreballador;
-        this.chronometer = chronometer;
         this.plantillaFeina = plantillaFeina;
         this.categoria = categoria;
         this.client = client;

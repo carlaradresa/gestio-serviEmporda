@@ -2,6 +2,9 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-ubicacio-heading" jhiTranslate="gestioClientsApp.ubicacio.home.createOrEditLabel">Create or edit a Ubicacio</h2>
+            <p>
+                <span jhiTranslate="gestioClientsApp.ubicacio.pregunta">Si quieres acceder directamente a la web pulsa </span> <a href="https://www.coordenadas-gps.com" target="_blank" rel="noopener noreferrer" jhiTranslate="gestioClientsApp.ubicacio.aqui">aquí</a>!
+            </p>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
@@ -24,7 +27,6 @@
                     <input type="text" class="form-control" name="ubicacio" id="field_ubicacio"
                            formControlName="ubicacio" required/>
                 </div>
-
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

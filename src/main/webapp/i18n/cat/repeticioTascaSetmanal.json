@@ -1,0 +1,24 @@
+{
+  "gestioClientsApp": {
+    "repeticioTascaSetmanal": {
+      "home": {
+        "title": "Repetició Tasca Setmanal",
+        "createLabel": "Crear nova Repetició Tasca Setmanal",
+        "createOrEditLabel": "Crear o editar Repetició Tasca Setmanal",
+        "notFound": "Cap Repetició Tasca Setmanal trobada"
+      },
+      "created": "Una nova Repetició Tasca Setmanal ha estat creada amb l'identificador {{ param }}",
+      "updated": "Una Repetició Tasca Setmanal ha estat actualitzada amb l'identificador {{ param }}",
+      "deleted": "Una Repetició Tasca Setmanal ha estat eliminada amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar la Repetició Tasca Setmanal {{ id }}?"
+      },
+      "detail": {
+        "title": "Repetició Tasca Setmanal"
+      },
+      "dia": "Dia",
+      "activo": "Actiu",
+      "feina": "Feina"
+    }
+  }
+}

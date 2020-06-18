@@ -42,7 +42,7 @@ public class TreballadorResourceIT {
     private static final Duration UPDATED_CARREGA_HORES = Duration.ofHours(12);
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
-    private static final Estat UPDATED_ESTAT = Estat.PAUSAT;
+    private static final Estat UPDATED_ESTAT = Estat.FINALITZAT;
 
     private static final Boolean DEFAULT_CONTROL_QUALITAT = false;
     private static final Boolean UPDATED_CONTROL_QUALITAT = true;
@@ -172,7 +172,7 @@ public class TreballadorResourceIT {
             .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.toString())))
             .andExpect(jsonPath("$.[*].controlQualitat").value(hasItem(DEFAULT_CONTROL_QUALITAT.booleanValue())));
     }
-    
+
     @Test
     @Transactional
     public void getTreballador() throws Exception {

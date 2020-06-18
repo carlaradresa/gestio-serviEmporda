@@ -1,0 +1,35 @@
+{
+  "gestioClientsApp": {
+    "plantillaFeina": {
+      "home": {
+        "title": "Plantilla Feina",
+        "createLabel": "Crear nova Plantilla Feina",
+        "createOrEditLabel": "Crear o editar Plantilla Feina",
+        "notFound": "Cap Plantilla Feina trobada"
+      },
+      "created": "Una nova Plantilla Feina ha estat creada amb l'identificador {{ param }}",
+      "updated": "Una Plantilla Feina ha estat actualitzada amb l'identificador {{ param }}",
+      "deleted": "Una Plantilla Feina ha estat eliminada amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar la Plantilla Feina {{ id }}?"
+      },
+      "detail": {
+        "title": "Plantilla Feina"
+      },
+      "nom": "Nom",
+      "horaInici": "Hora Inici",
+      "horaFinal": "Hora Final",
+      "tempsPrevist": "Temps Previst",
+      "facturacioAutomatica": "Facturació Automàtica",
+      "observacions": "Observacions",
+      "setmanaInicial": "Setmana Inicial",
+      "setmanaFinal": "Setmana Final",
+      "numeroControl": "Número Control",
+      "periodicitatConfigurable": "Periodicitat Configurable",
+      "periodicitatSetmanal": "Periodicitat Setmanal",
+      "categoria": "Categoria",
+      "client": "Client",
+      "treballador": "Treballador"
+    }
+  }
+}

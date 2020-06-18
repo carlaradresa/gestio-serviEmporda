@@ -28,9 +28,11 @@
             <column name="temps_previst" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="temps_real" type="bigint">
+      <!--      <column name="temps_real" type="bigint">
                 <constraints nullable="true" />
             </column>
+
+      -->
             <column name="estat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -58,9 +60,6 @@
             <column name="chronometer" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="treballador_assignat_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_feina_treballador_assignat_id" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -77,18 +76,6 @@
         </createTable>
 
         <addPrimaryKey columnNames="feina_id, treballador_id" tableName="feina_treballador"/>
-
-        <createTable tableName="feina_ubicacio">
-            <column name="ubicacio_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="feina_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="feina_id, ubicacio_id" tableName="feina_ubicacio"/>
-
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -110,7 +97,7 @@
             <column name="descripcio" type="string"/>
             <column name="setmana" type="date"/>
             <column name="temps_previst" type="numeric"/>
-            <column name="temps_real" type="numeric"/>
+        <!--    <column name="temps_real" type="numeric"/> -->
             <column name="estat" type="string"/>
             <column name="interval_control" type="numeric"/>
             <column name="facturacio_automatica" type="boolean"/>

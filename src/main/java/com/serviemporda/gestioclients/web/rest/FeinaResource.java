@@ -54,7 +54,6 @@ public class FeinaResource {
         if (feina.getId() != null) {
             throw new BadRequestAlertException("A new feina cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        feina.setChronometer(23);
         feina.setEstat(Estat.INACTIU);
       //  feina.setTempsPrevist(feina.getTempsPrevist());
         if (feina.getDescripcio() == null){

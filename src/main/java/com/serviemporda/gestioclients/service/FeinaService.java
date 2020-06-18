@@ -48,7 +48,6 @@ public class FeinaService {
     public void deleteFeinesFromPf(Long id_plantillaFeina){
 
         List<Feina> feines;
-
         feines = feinaRepository.findAllWithEagerRelationships();
 
         for (int i = 0; i < feines.size(); i ++){
@@ -73,7 +72,6 @@ public class FeinaService {
 
         LocalTime hora_inici = result.getHoraInici();
         LocalTime hora_final = result.getHoraFinal();
-
 
         Set<Treballador> treballadors = result.getTreballadors();
 
@@ -260,12 +258,11 @@ public class FeinaService {
             Integer numeroControl = 0;
             String descripcio = "";
 
-            feinaNova.setTreballador_assignat(null);
             feinaNova.setTreballadors(treballadors);
             feinaNova.setNom(result.getNom());
-            feinaNova.setDescripcio(descripcio);
+            feinaNova.setDescripcio(result.getObservacions());
             feinaNova.setSetmana(start);
-            feinaNova.setTempsPrevist((int)duration.toHours());
+            feinaNova.setTempsPrevist(result.getTempsPrevist());
             feinaNova.setIntervalControl(numeroControl);
             feinaNova.setFacturacioAutomatica(result.isFacturacioAutomatica());
             feinaNova.setPlantillaFeina(result);
@@ -274,17 +271,7 @@ public class FeinaService {
             feinaNova.setUbicacios(null);
             feinaNova.setCategoria(result.getCategoria());
             feinaNova.setClient(result.getClient());
-            feinaNova.setChronometer(0);
             feinesNoves.add(feinaNova);
             feinaRepository.save(feinaNova);
         }
-
-      /*  Set<Treballador> treballadors1 = result.getTreballadors();
-        Iterator<Treballador> it2 = treballadors1.iterator();
-        while (it2.hasNext()){
-            feinaNova.setTreballador_assignat(it2.next());
-            feinesNoves.add(feinaNova);
-        }*/
-      //  feinaRepository.save(feinaNova);
-
 }

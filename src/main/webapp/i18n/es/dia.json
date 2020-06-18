@@ -2,14 +2,14 @@
   "gestioClientsApp": {
     "Dia": {
       "null": "",
-      "DILLUNS": "DILLUNS",
-      "DIMARTS": "DIMARTS",
-      "DIMECRES": "DIMECRES",
-      "DIJOUS": "DIJOUS",
-      "DIVENDRES": "DIVENDRES",
-      "DISSABTE": "DISSABTE",
-      "DIUMENGE": "DIUMENGE",
-      "QUALSEVOL": "QUALSEVOL"
+      "DILLUNS": "LUNES",
+      "DIMARTS": "MARTES",
+      "DIMECRES": "MIÉRCOLES",
+      "DIJOUS": "JUEVES",
+      "DIVENDRES": "VIERNES",
+      "DISSABTE": "SÁBADO",
+      "DIUMENGE": "DOMINGO",
+      "QUALSEVOL": "CUALQUIER"
     }
   }
 }

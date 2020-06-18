@@ -1,0 +1,26 @@
+{
+  "gestioClientsApp": {
+    "venedor": {
+      "home": {
+        "title": "Venedors",
+        "createLabel": "Crear nou Venedor",
+        "createOrEditLabel": "Crear o editar Venedor",
+        "notFound": "Cap Venedor trobat"
+      },
+      "created": "Un nou Venedor ha estat creat amb l'identificador {{ param }}",
+      "updated": "Un Venedor ha estat actualitzat amb l'identificador {{ param }}",
+      "deleted": "Un Venedor ha estat eliminat amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar el Venedor {{ id }}?"
+      },
+      "detail": {
+        "title": "Venedor"
+      },
+      "nom": "Nom",
+      "telefon": "Telèfon",
+      "email": "Email",
+      "observacions": "Observacions",
+      "ubicacio": "Ubicaci´´"
+    }
+  }
+}

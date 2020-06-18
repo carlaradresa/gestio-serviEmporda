@@ -1,0 +1,25 @@
+{
+  "gestioClientsApp": {
+    "periodicitatConfigurable": {
+      "home": {
+        "title": "Periodicitat Configurable",
+        "createLabel": "Crear nou Periodicitat Configurable",
+        "createOrEditLabel": "Crear o editar Periodicitat Configurable",
+        "notFound": "Cap Periodicitat Configurable trobada"
+      },
+      "created": "Un nou Periodicitat Configurable ha estat creada amb l'identificador {{ param }}",
+      "updated": "Un Periodicitat Configurable ha estat actualitzada amb l'identificador {{ param }}",
+      "deleted": "Un Periodicitat Configurable ha estat eliminada amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar el Periodicitat Configurable {{ id }}?"
+      },
+      "detail": {
+        "title": "Periodicitat Configurable"
+      },
+      "frequencia": "Freqüència",
+      "periodicitat": "Periodicitat",
+      "observacions": "Observacions",
+      "plantilla": "Plantilla"
+    }
+  }
+}

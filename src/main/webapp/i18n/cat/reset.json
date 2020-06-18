@@ -1,0 +1,27 @@
+{
+  "reset": {
+    "request": {
+      "title": "Restablir la seva contrasenya",
+      "form": {
+        "button": "Restablir la contrasenya"
+      },
+      "messages": {
+        "info": "Introdueix la direcció de correu electrònic que va utilitzar per registrar-se",
+        "success": "Revisi el seu correu electrònic per obtenir más informació sobre com restablir la seva contrasenya.",
+        "notfound": "<strong>Direcció de correu no registrada!</strong> Si us plau, comprovi i intenti-ho de nou"
+      }
+    },
+    "finish": {
+      "title": "Restablir la contrasenya",
+      "form": {
+        "button": "Validar la nova contrasenya"
+      },
+      "messages": {
+        "info": "Escull una contrasenya nova",
+        "success": "<strong>La seva contrasenya ha estat restablerta.</strong> Si us plau, ",
+        "keymissing": "Falta la clau de reinici.",
+        "error": "La seva contrasenya no pot ser restablerta. Recordi que una sol·licitud de reinici de contrasenya només és vàlida durant 24 hores."
+      }
+    }
+  }
+}

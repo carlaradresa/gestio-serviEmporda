@@ -1,0 +1,24 @@
+{
+  "register": {
+    "title": "Registre",
+    "form": {
+      "button": "Crear compte"
+    },
+    "messages": {
+      "validate": {
+        "login": {
+          "required": "El seu nom d'usuari és obligatori.",
+          "minlength": "El seu nom d'usuari ha de tenir a l'mínim 1 caràcter.",
+          "maxlength": "El seu nom d'usuari no pot tenir més de 50 caràcters.",
+          "pattern": "El seu nom d'usuari només pot contenir lletres minúscules i dígits."
+        }
+      },
+      "success": "<strong>Registre guardat!</strong> Si us plau, revisi el seu correu electrònic per confirmar.",
+      "error": {
+        "fail": "<strong>El registre ha fallat!</strong> Si us plau, intenti-ho de nou més tard.",
+        "userexists": "<strong>El nom d'usuari ja està registrat!</strong> Si us plau, escull un altre usuari.",
+        "emailexists": "<strong>El correu electrònic ja està en ús!</strong> Si us plau, escull un altre email."
+      }
+    }
+  }
+}

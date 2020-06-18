@@ -1,0 +1,26 @@
+{
+  "gestioClientsApp": {
+    "marcatge": {
+      "home": {
+        "title": "Marcatges",
+        "createLabel": "Crear nou Marcatge",
+        "createOrEditLabel": "Crear o editar Marcatge",
+        "notFound": "Cap Marcatge trobat"
+      },
+      "created": "Un nou Marcatge ha estat creat amb l'identificador {{ param }}",
+      "updated": "Un Marcatge ha estat actualitzat amb l'identificador {{ param }}",
+      "deleted": "Un Marcatge ha estat eliminat amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar el Marcatge {{ id }}?"
+      },
+      "detail": {
+        "title": "Marcatge"
+      },
+      "horaEntrada": "Hora Entrada",
+      "horaSortida": "Hora Sortida",
+      "desviacio": "Desviació",
+      "feina": "Feina",
+      "treballador": "Treballador"
+    }
+  }
+}

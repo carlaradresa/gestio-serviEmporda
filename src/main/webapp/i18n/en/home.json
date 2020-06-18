@@ -1,19 +1,16 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "Serviempordà",
+    "subtitle": "The official page where you can manage your company",
     "logged": {
-      "message": "You are logged in as user \"{{username}}\"."
+      "message": "You are logged in with the user\"{{username}}\"."
     },
-    "question": "If you have any question on JHipster:",
     "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @java_hipster on Twitter"
+      "homepage": "C/ Empordà, 21 Sant Antoni de Calonge 17252",
+      "stackoverflow": "info@serviemporda.com",
+      "bugtracker": "972 651 172"
     },
-    "like": "If you like JHipster, don't forget to give us a star on",
-    "github": "GitHub"
+    "like": "If you want to access the web directly, click",
+    "github": "here"
   }
 }

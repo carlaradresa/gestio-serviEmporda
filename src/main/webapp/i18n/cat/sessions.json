@@ -1,0 +1,15 @@
+{
+  "sessions": {
+    "title": "Sessions actives per [<strong>{{username}}</strong>]",
+    "table": {
+      "ipaddress": "Direcció IP",
+      "useragent": "Agent d'usuario",
+      "date": "Data",
+      "button": "Invalidar"
+    },
+    "messages": {
+      "success": "<strong>Sessió invalidada!</strong>",
+      "error": "<strong>Hi ha hagut un error!</strong> La sessió no pot ser invalidada."
+    }
+  }
+}

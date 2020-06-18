@@ -1,0 +1,11 @@
+{
+  "gestioClientsApp": {
+    "Estat": {
+      "null": "",
+      "ACTIU": "ACTIU",
+      "INACTIU": "INACTIU",
+      "FINALITZAT": "FINALITZAT"
+
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "gestioClientsApp": {
+    "control": {
+      "home": {
+        "title": "Controls",
+        "createLabel": "Crear nou Control",
+        "createOrEditLabel": "Crear o editar Control",
+        "notFound": "Cap Control trobat"
+      },
+      "created": "Un nou Control ha estat creat amb el l'identificador {{ param }}",
+      "updated": "Un Control ha estat actualitzat amb l'identificador {{ param }}",
+      "deleted": "Un Control ha estat eliminat amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar el Control {{ id }}?"
+      },
+      "detail": {
+        "title": "Control"
+      },
+      "numero": "Número",
+      "setmana": "Setmana",
+      "causa": "Causa",
+      "dataRevisio": "Data Revisió",
+      "comentaris": "Comentaris",
+      "revisor": "Revisor",
+      "feina": "Feina"
+    }
+  }
+}

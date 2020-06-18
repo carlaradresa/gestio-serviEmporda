@@ -89,8 +89,6 @@ public class PlantillaFeinaResource {
         feinaService.createFeina(plantillaFeina);
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
 
-
-
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);

@@ -67,7 +67,6 @@ public class PlantillaFeina implements Serializable {
     @JsonIgnoreProperties("plantilla-feinas")
     private Categoria categoria;
 
-
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "plantilla_feina_periodicitat_setmanal",
@@ -83,9 +82,7 @@ public class PlantillaFeina implements Serializable {
     private Set<Treballador> treballadors = new HashSet<>();
 
     public PlantillaFeina() {
-
     }
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -94,7 +91,6 @@ public class PlantillaFeina implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNom() {
         return nom;

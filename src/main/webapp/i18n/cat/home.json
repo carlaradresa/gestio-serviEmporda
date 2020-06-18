@@ -1,0 +1,17 @@
+
+{
+  "home": {
+    "title": "Serviempordà",
+    "subtitle": "La pàgina oficial on podràs gestionar la teva empresa",
+    "logged": {
+      "message": "Has iniciat sessió amb l'usuari \"{{username}}\"."
+    },
+    "link": {
+      "homepage": "C/ Empordà, 21 Sant Antoni de Calonge 17252",
+      "stackoverflow": "info@serviemporda.com",
+      "bugtracker": "972 651 172"
+    },
+    "like": "Si vols accedir directament a la web fes un click",
+    "github": "aquí"
+  }
+}

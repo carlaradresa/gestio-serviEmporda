@@ -2,10 +2,10 @@
   "gestioClientsApp": {
     "ubicacio": {
       "home": {
-        "title": "Ubicacios",
+        "title": "Ubicacio",
         "createLabel": "Crear nuevo Ubicacio",
         "createOrEditLabel": "Crear o editar Ubicacio",
-        "notFound": "Ningún Ubicacios encontrado"
+        "notFound": "Ninguna Ubicación encontrada"
       },
       "created": "Un nuevo Ubicacio ha sido creado con el identificador {{ param }}",
       "updated": "Un Ubicacio ha sido actualizado con el identificador {{ param }}",
@@ -21,7 +21,9 @@
       "ubicacio": "Ubicacio",
       "client": "Client",
       "venedor": "Venedor",
-      "feina": "Feina"
+      "feina": "Feina",
+      "pregunta": "Para acceder al mapa y obtener la longitud y latitud pulsa",
+      "aqui": "aquí"
     }
   }
 }

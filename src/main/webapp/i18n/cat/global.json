@@ -1,0 +1,147 @@
+{
+  "global": {
+    "title": "Serviempordà",
+    "browsehappy": "Està utilitzant un navegador <strong> no actualitzat </ strong>. Si us plau, <a href=\"http://browsehappy.com/?locale=es\"> actualitzi el seu navegador </a> per millorar la seva experiència.",
+    "menu": {
+      "home": "Inici",
+      "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+      "entities": {
+        "main": "Entitats",
+        "plantillaFeina": "Plantilla Feina",
+        "categoria": "Categoria",
+        "repeticioTascaSetmanal": "Repetició Tasca Setmanal",
+        "ubicacio": "Ubicació",
+        "client": "Client",
+        "feina": "Feina",
+        "control": "Control",
+        "marcatge": "Marcatge",
+        "treballador": "Treballador",
+        "venedor": "Venedor",
+        "periodicitatSetmanal": "Periodicitat Setmanal",
+        "periodicitatConfigurable": "Periodicitat Configurable",
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+      },
+      "account": {
+        "main": "Compte",
+        "settings": "Configuració",
+        "password": "Contrasenya",
+        "sessions": "Sessions",
+        "login": "Iniciar sesió",
+        "logout": "Tancar la sessió",
+        "register": "Crea un compte"
+      },
+      "admin": {
+        "main": "Administració",
+        "userManagement": "Gestió d'usuarios",
+        "tracker": "Registre d'usuarios",
+        "metrics": "Mètriques",
+        "health": "Salut",
+        "configuration": "Configuració",
+        "logs": "Logs",
+        "audits": "Auditories",
+        "apidocs": "API",
+        "database": "Base de dades",
+        "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+      },
+      "language": "Idioma"
+    },
+    "form": {
+      "username.label": "Usuari",
+      "username.placeholder": "Nom d'usuari",
+      "currentpassword.label": "Contrasenya actual",
+      "currentpassword.placeholder": "Contrasenya actual",
+      "newpassword.label": "Nova contrasenya",
+      "newpassword.placeholder": "Nova contrasenya",
+      "confirmpassword.label": "Confirmació de la nova contrasenya",
+      "confirmpassword.placeholder": "Confirmació de la nova contrasenya",
+      "email.label": "Correu electrònic",
+      "email.placeholder": "El seu correu electrònic"
+    },
+    "messages": {
+      "info": {
+        "authenticated": {
+          "prefix": "Si desitja ",
+          "link": "iniciar sessió",
+          "suffix": ", pot intentar amb els comptes predeterminades: <br/> - Administrador (usuari =\"admin\" i contrasenya=\"admin\") <br/>- Usuari (usuari=\"user\" i contrasenya=\"user\")."
+        },
+        "register": {
+          "noaccount": "¿Encara no tens un compte?",
+          "link": "Crear un compte"
+        }
+      },
+      "error": {
+        "dontmatch": "La contrasenya i la confirmació de contrasenya no coincideixen!"
+      },
+      "validate": {
+        "newpassword": {
+          "required": "Es requereix que introduïu una contrasenya.",
+          "minlength": "Es requereix que la contrasenya tingui almenys 4 caràcters",
+          "maxlength": "La seva contrasenya no pot tenir més de 50 caràcters",
+          "strength": "Seguretat de la contrasenya:"
+        },
+        "confirmpassword": {
+          "required": "Es requereix que confirmi la contrasenya.",
+          "minlength": "Es requereix que la contrasenya de confirmació tingui almenys 4 caràcters",
+          "maxlength": "La seva contrasenya de confirmació no pot tenir més de 50 caràcters"
+        },
+        "email": {
+          "required": "Es requereix un correu electrònic.",
+          "invalid": "El seu correu electrònic no és vàlid.",
+          "minlength": "Es requereix que el seu correu electrònic tingui com a mínim 5 caràcters",
+          "maxlength": "El seu correu electrònic no pot tenir més de 50 caràcters"
+        }
+      }
+    },
+    "field": {
+      "id": "ID"
+    },
+    "ribbon": {
+      "dev": "Desenvolupament"
+    },
+    "item-count": "Mostrant {{first}} - {{second}} de {{total}} elements."
+  },
+  "entity": {
+    "action": {
+      "addblob": "Afegir fitxer",
+      "addimage": "Afegir imatge",
+      "back": "Tornar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "open": "Obrir",
+      "save": "Guardar",
+      "view": "Vista"
+    },
+    "detail": {
+      "field": "Camp",
+      "value": "Valor"
+    },
+    "delete": {
+      "title": "Confirmar operació de borrat"
+    },
+    "validation": {
+      "required": "Aquest camp és obligatori.",
+      "minlength": "Aquest camp requereix almenys {{min}} caràcters.",
+      "maxlength": "Aquest camp no pot superar més de {{max}} caràcters.",
+      "min": "Aquest camp ha de ser major que {{min}}.",
+      "max": "Aquest camp no pot ser major que {{max}}.",
+      "minbytes": "Aquest camp ha de tenir como a mínim {{min}} bytes.",
+      "maxbytes": "Aquest camp no pot tenir més de {{max}} bytes.",
+      "pattern": "Aquest camp ha de seguir el patró {{pattern}}.",
+      "number": "Aquest camp ha de ser un número.",
+      "datetimelocal": "Aquest camp ha de ser una data i hora."
+    }
+  },
+  "error": {
+    "internalServerError": "Error intern en el servidor",
+    "server.not.reachable": "Servidor no accesible",
+    "url.not.found": "No existeix",
+    "NotNull": "El camp {{fieldName}} no pot estar buit!",
+    "Size": "El camp {{fieldName}} no compleix amb els requisits de grandària mínim / màxim!",
+    "userexists": "El nom d'usuario ja existeix!",
+    "emailexists": "La compte de correu ja està en ús!",
+    "idexists": "Un nou {{entityName}} no pot tenir ID",
+    "idnull": "ID invàlid"
+  },
+  "footer": "Peu de pàgina"
+}

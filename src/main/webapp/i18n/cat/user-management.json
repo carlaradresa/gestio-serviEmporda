@@ -1,0 +1,30 @@
+{
+  "userManagement": {
+    "home": {
+      "title": "Usuaris",
+      "createLabel": "Crear un nou usuari",
+      "createOrEditLabel": "Crear o editar un usuari"
+    },
+    "created": "S'ha creat un nou usuari amb identificador {{ param }}",
+    "updated": "S'ha actualitzat l'usuari amb l'identificador {{ param }}",
+    "deleted": "S'ha borrat l'usuari amb l'identificador {{ param }}",
+    "delete": {
+      "question": "Segur que vols eliminar l'usuario {{ login }}?"
+    },
+    "detail": {
+      "title": "Usuari"
+    },
+    "login": "Login",
+    "firstName": "Nom",
+    "lastName": "Cognoms",
+    "email": "Email",
+    "activated": "Activat",
+    "deactivated": "Desactivat",
+    "profiles": "Perfils",
+    "langKey": "Idioma",
+    "createdBy": "Creat per",
+    "createdDate": "Data de creació",
+    "lastModifiedBy": "Modificat per",
+    "lastModifiedDate": "Data de modificació"
+  }
+}

@@ -2,10 +2,9 @@
   "gestioClientsApp": {
     "Estat": {
       "null": "",
-      "ACTIU": "ACTIU",
-      "PAUSAT": "PAUSAT",
-      "INACTIU": "INACTIU",
-      "FINALITZAT": "FINALITZAT"
+      "ACTIU": "ACTIVO",
+      "INACTIU": "INACTIVO",
+      "FINALITZAT": "FINALIZADO"
 
     }
   }

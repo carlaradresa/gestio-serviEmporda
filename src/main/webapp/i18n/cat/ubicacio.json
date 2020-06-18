@@ -1,0 +1,29 @@
+{
+  "gestioClientsApp": {
+    "ubicacio": {
+      "home": {
+        "title": "Ubicació",
+        "createLabel": "Crear nova Ubicació",
+        "createOrEditLabel": "Crear o editar Ubicació",
+        "notFound": "Cap Ubicació trobada"
+      },
+      "created": "Una nova Ubicació ha estat creada amb l'identificador {{ param }}",
+      "updated": "Una Ubicació ha estat actualitzada amb l'identificador {{ param }}",
+      "deleted": "Una Ubicació ha estat eliminada amb l'identificador {{ param }}",
+      "delete": {
+        "question": "Segur que vols eliminar la Ubicació {{ id }}?"
+      },
+      "detail": {
+        "title": "Ubicació"
+      },
+      "longitud": "Longitud",
+      "latitud": "Latitud",
+      "ubicacio": "Ubicació",
+      "client": "Client",
+      "venedor": "Venedor",
+      "feina": "Feina",
+      "pregunta": "Para accedir al mapa i obtener la longitud i latitud prem",
+      "aqui": "aquí"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "activate": {
+    "title": "Activació",
+    "messages": {
+      "success": "<strong>El seu compte ha estat activat.</strong> Si us plau, ",
+      "error": "<strong>El seu compte no ha pogut estar activat.</strong> Si us plau, utilitzi el formulari d'inscripció per registrar-se."
+    }
+  }
+}

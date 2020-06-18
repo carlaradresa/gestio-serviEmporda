@@ -1,0 +1,19 @@
+{
+  "login": {
+    "title": "Iniciar la sessió",
+    "form": {
+      "password": "Contrasenya",
+      "password.placeholder": "La seva contrasenya",
+      "rememberme": "Iniciar la sessió automàticament",
+      "button": "Iniciar sessió"
+    },
+    "messages": {
+      "error": {
+        "authentication": "<strong>L'inici de sessió ha fallat!</strong> Si us plau, revisi les credencials i intenti de nou."
+      }
+    },
+    "password": {
+      "forgot": "Ha oblidat la seva contrasenya?"
+    }
+  }
+}

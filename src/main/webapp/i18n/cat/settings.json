@@ -1,0 +1,32 @@
+{
+  "settings": {
+    "title": "Configuració de l'usuario [<strong>{{username}}</strong>]",
+    "form": {
+      "firstname": "Nom",
+      "firstname.placeholder": "El seu nom",
+      "lastname": "Cognoms",
+      "lastname.placeholder": "Els seus cognoms",
+      "language": "Idioma",
+      "button": "Guardar"
+    },
+    "messages": {
+      "error": {
+        "fail": "<strong>Hi ha hagut un error!</strong> Els ajustaments no s'han pogut desar.",
+        "emailexists": "<strong>La direcció de correu ja exiteix!</strong> Si us plau, escull una altra."
+      },
+      "success": "<strong>Ajustaments guardats!</strong>",
+      "validate": {
+        "firstname": {
+          "required": "Es requereix que introdueix el teu nom.",
+          "minlength": "Es requereix que el seu nom tingui com a mínim 1 caràcter",
+          "maxlength": "El seu nom no pot tenir més de 50 caràcters"
+        },
+        "lastname": {
+          "required": "Es requereix que ingressi els seus cognoms.",
+          "minlength": "Es requereix que els seus cognoms tinguin com a mínim 1 caràcter",
+          "maxlength": "Els seus cognoms no poden tenir més de 50 caràcters"
+        }
+      }
+    }
+  }
+}

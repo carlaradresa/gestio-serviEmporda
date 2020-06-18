@@ -58,7 +58,6 @@ public class FeinaResourceIT {
     private static final Duration UPDATED_TEMPS_REAL = Duration.ofHours(12);
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
-    private static final Estat UPDATED_ESTAT = Estat.PAUSAT;
     private static final Estat INACTIVE_ESTAT = Estat.INACTIU;
     private static final Estat FINALITZAT_ESTAT = Estat.FINALITZAT;
 

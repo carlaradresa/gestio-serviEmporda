@@ -1,0 +1,93 @@
+{
+  "metrics": {
+    "title": "Mètriques d'aplicació",
+    "refresh.button": "Refrescar",
+    "updating": "Actualitzant...",
+    "jvm": {
+      "title": "Mètriques de JVM",
+      "memory": {
+        "title": "Memòria",
+        "total": "Memòria total",
+        "heap": "Memòria del Heap",
+        "nonheap": "Memòria no Heap"
+      },
+      "threads": {
+        "title": "Fils",
+        "all": "Tot",
+        "runnable": "Executables",
+        "timedwaiting": "Temps esperant",
+        "waiting": "Esperant",
+        "blocked": "Bloquejats",
+        "dump": {
+          "title": "Bolcat de fils",
+          "id": "Id: ",
+          "blockedtime": "Temps bloquejats",
+          "blockedcount": "Contador bloquejats",
+          "waitedtime": "Temps en espera",
+          "waitedcount": "Contador en espera",
+          "lockname": "Nom del bloqueig",
+          "stacktrace": "Stacktrace",
+          "show": "Mostrar",
+          "hide": "Ocultar"
+        }
+      },
+      "gc": {
+        "title": "Coleccions de paperera",
+        "marksweepcount": "Mark Sweep count",
+        "marksweeptime": "Mark Sweep time",
+        "scavengecount": "Scavenge count",
+        "scavengetime": "Scavenge time"
+      },
+      "http": {
+        "title": "Peticions HTTP (events per segon)",
+        "active": "Peticions actives:",
+        "total": "Peticions totals:",
+        "table": {
+          "code": "Codi",
+          "count": "Recompte",
+          "mean": "Mitja",
+          "average": "Promig"
+        },
+        "code": {
+          "ok": "Ok",
+          "notfound": "No trobat",
+          "servererror": "Error de servidor"
+        }
+      }
+    },
+    "servicesstats": {
+      "title": "Estadístiques de serveis (temps en milisegons)",
+      "table": {
+        "name": "Nom del servei",
+        "count": "Contador",
+        "mean": "Media",
+        "min": "Min",
+        "max": "Max",
+        "p50": "p50",
+        "p75": "p75",
+        "p95": "p95",
+        "p99": "p99"
+      }
+    },
+    "cache": {
+      "title": "Estadístiques de cache",
+      "cachename": "Nom cache",
+      "hits": "Accessos",
+      "misses": "Errors",
+      "evictions": "Contador desallotjament"
+    },
+    "datasource": {
+      "usage": "Ús",
+      "title": "Estadístiques de la font de dades (temps en milisegons)",
+      "name": "Ús del pool",
+      "count": "Recompte",
+      "mean": "Mitja",
+      "min": "Min",
+      "max": "Max",
+      "p50": "p50",
+      "p75": "p75",
+      "p95": "p95",
+      "p99": "p99"
+    }
+  }
+}

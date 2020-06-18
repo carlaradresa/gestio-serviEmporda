@@ -1,0 +1,28 @@
+{
+  "health": {
+    "title": "Control de salut",
+    "refresh.button": "Refrescar",
+    "stacktrace": "Stacktrace",
+    "details": {
+      "details": "Detalls",
+      "properties": "Propietats",
+      "name": "Nom",
+      "value": "Valor",
+      "error": "Error"
+    },
+    "indicator": {
+      "diskSpace": "Espai en disc",
+      "mail": "Email",
+      "db": "Database"
+    },
+    "table": {
+      "service": "Nom del sevei",
+      "status": "Estat"
+    },
+    "status": {
+      "UNKNOWN": "UNKNOWN",
+      "UP": "AIXECAT",
+      "DOWN": "CAIGUT"
+    }
+  }
+}

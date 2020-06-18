@@ -2,7 +2,7 @@
   "generator-jhipster": {
     "applicationType": "monolith",
     "gitCompany": "",
-    "baseName": "gestioClients",
+    "baseName": "serviEmpordà",
     "packageName": "com.serviemporda.gestioclients",
     "packageFolder": "com/serviemporda/gestioclients",
     "serverPort": 8080,
