@@ -12,7 +12,7 @@ entity PlantillaFeina {
 }
 
 enum Estat{
-	ACTIU, PAUSAT, INACTIU, FINALITZAT
+	ACTIU, INACTIU, FINALITZAT
 }
 entity Categoria{
 	nomCategoria String
@@ -20,7 +20,7 @@ entity Categoria{
 
 entity PeriodicitatConfigurable{
 	periodicitat Periodicitat,
-	frequencia Integer, 
+	frequencia Integer,
     observacions String
 }
 
@@ -29,7 +29,7 @@ enum Dia {
 }
 
 enum Periodicitat {
- DIA, SETMANA, QUINZENAL, MES, ANY 
+ DIA, SETMANA, QUINZENAL, MES, ANY
 }
 
 entity Ubicacio {

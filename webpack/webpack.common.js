@@ -80,7 +80,7 @@ module.exports = (options) => ({
                 groupBy: [
                     { pattern: "./src/main/webapp/i18n/es/*.json", fileName: "./i18n/es.json" },
                     { pattern: "./src/main/webapp/i18n/en/*.json", fileName: "./i18n/en.json" },
-                    { pattern: "./src/main/webapp/i18n/cat/*.json", fileName: "./i18n/cat.json" }
+                    { pattern: "./src/main/webapp/i18n/ca/*.json", fileName: "./i18n/ca.json" }
                   // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
                 ]
             }

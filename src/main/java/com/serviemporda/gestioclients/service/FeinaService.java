@@ -268,7 +268,7 @@ public class FeinaService {
             feinaNova.setPlantillaFeina(result);
             feinaNova.setObservacions(result.getObservacions());
             feinaNova.setEstat(Estat.INACTIU);
-            feinaNova.setUbicacios(null);
+        //    feinaNova.setUbicacios(null);
             feinaNova.setCategoria(result.getCategoria());
             feinaNova.setClient(result.getClient());
             feinesNoves.add(feinaNova);
