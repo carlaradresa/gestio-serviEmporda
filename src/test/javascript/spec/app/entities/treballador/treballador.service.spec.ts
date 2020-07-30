@@ -21,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(TreballadorService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Treballador(0, 'AAAAAAA', 0, Estat.ACTIU, false);
+      elemDefault = new Treballador(0, 'AAAAAAA', '00:00:00', Estat.ACTIU, false);
     });
 
     describe('Service methods', () => {

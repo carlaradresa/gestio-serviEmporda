@@ -2,6 +2,7 @@ package com.serviemporda.gestioclients.web.rest;
 
 import com.serviemporda.gestioclients.domain.PeriodicitatConfigurable;
 import com.serviemporda.gestioclients.repository.PeriodicitatConfigurableRepository;
+import com.serviemporda.gestioclients.service.PeriodicitatConfigurableService;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -10,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -38,8 +39,11 @@ public class PeriodicitatConfigurableResource {
 
     private final PeriodicitatConfigurableRepository periodicitatConfigurableRepository;
 
-    public PeriodicitatConfigurableResource(PeriodicitatConfigurableRepository periodicitatConfigurableRepository) {
+    private final PeriodicitatConfigurableService periodicitatConfigurableService;
+
+    public PeriodicitatConfigurableResource(PeriodicitatConfigurableRepository periodicitatConfigurableRepository, PeriodicitatConfigurableService periodicitatConfigurableService) {
         this.periodicitatConfigurableRepository = periodicitatConfigurableRepository;
+        this.periodicitatConfigurableService = periodicitatConfigurableService;
     }
 
     /**
@@ -56,6 +60,9 @@ public class PeriodicitatConfigurableResource {
             throw new BadRequestAlertException("A new periodicitatConfigurable cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PeriodicitatConfigurable result = periodicitatConfigurableRepository.save(periodicitatConfigurable);
+        PeriodicitatConfigurable result_modificate = periodicitatConfigurableService.createName(result);
+        result.setObservacions(result_modificate.getObservacions());
+
         return ResponseEntity.created(new URI("/api/periodicitat-configurables/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -77,6 +84,9 @@ public class PeriodicitatConfigurableResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         PeriodicitatConfigurable result = periodicitatConfigurableRepository.save(periodicitatConfigurable);
+        PeriodicitatConfigurable result_modificate = periodicitatConfigurableService.createName(result);
+        result.setObservacions(result_modificate.getObservacions());
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, periodicitatConfigurable.getId().toString()))
             .body(result);

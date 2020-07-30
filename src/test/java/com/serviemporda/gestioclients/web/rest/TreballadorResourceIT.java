@@ -38,8 +38,11 @@ public class TreballadorResourceIT {
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
 
-    private static final Duration DEFAULT_CARREGA_HORES = Duration.ofHours(6);
-    private static final Duration UPDATED_CARREGA_HORES = Duration.ofHours(12);
+    //private static final Duration DEFAULT_CARREGA_HORES = Duration.ofHours(6);
+   // private static final Duration UPDATED_CARREGA_HORES = Duration.ofHours(12);
+
+    private static final String DEFAULT_CARREGA_HORES = "00:00:00";
+    private static final String UPDATED_CARREGA_HORES = "00:00:00";
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
     private static final Estat UPDATED_ESTAT = Estat.FINALITZAT;
@@ -168,7 +171,7 @@ public class TreballadorResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(treballador.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
-            .andExpect(jsonPath("$.[*].carregaHores").value(hasItem(DEFAULT_CARREGA_HORES.toString())))
+            .andExpect(jsonPath("$.[*].carregaHores").value(hasItem(DEFAULT_CARREGA_HORES)))
             .andExpect(jsonPath("$.[*].estat").value(hasItem(DEFAULT_ESTAT.toString())))
             .andExpect(jsonPath("$.[*].controlQualitat").value(hasItem(DEFAULT_CONTROL_QUALITAT.booleanValue())));
     }
@@ -185,7 +188,7 @@ public class TreballadorResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(treballador.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
-            .andExpect(jsonPath("$.carregaHores").value(DEFAULT_CARREGA_HORES.toString()))
+            .andExpect(jsonPath("$.carregaHores").value(DEFAULT_CARREGA_HORES))
             .andExpect(jsonPath("$.estat").value(DEFAULT_ESTAT.toString()))
             .andExpect(jsonPath("$.controlQualitat").value(DEFAULT_CONTROL_QUALITAT.booleanValue()));
     }

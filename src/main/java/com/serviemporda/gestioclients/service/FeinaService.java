@@ -45,18 +45,31 @@ public class FeinaService {
         this.authorityRepository = authorityRepository;
     }
 
-    public void deleteFeinesFromPf(Long id_plantillaFeina){
+   /* public void deleteFeinesFromPf(Long id_plantillaFeina){
 
         List<Feina> feines;
         feines = feinaRepository.findAllWithEagerRelationships();
 
         for (int i = 0; i < feines.size(); i ++){
-            if ((feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) && !(feines.get(i).getEstat().equals("FINALITZAT"))){
+            if ((feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) && (!(feines.get(i).getEstat().equals("FINALITZAT")) && !(feines.get(i).getEstat().equals("FINALIZADO"))
+                && !(feines.get(i).getEstat().equals("COMPLETED")))){
                 feinaRepository.delete(feines.get(i));
             }
         }
-    }
+        plantillaFeinaRepository.deleteById(id_plantillaFeina);
+    }*/
 
+   public void deleteFeinesFromPf(Long id_plantillaFeina){
+
+       List<Feina> feines;
+       feines = feinaRepository.findAllWithEagerRelationships();
+
+       for (int i = 0; i < feines.size(); i ++){
+           if (feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) {
+                   feinaRepository.delete(feines.get(i));
+           }
+       }
+   }
     public void createFeina(PlantillaFeina result) {
 
         Feina feinaNova = new Feina();
@@ -262,7 +275,7 @@ public class FeinaService {
             feinaNova.setNom(result.getNom());
             feinaNova.setDescripcio(result.getObservacions());
             feinaNova.setSetmana(start);
-            feinaNova.setTempsPrevist(result.getTempsPrevist());
+            //feinaNova.setTempsPrevist(result.getTempsPrevist());
             feinaNova.setIntervalControl(numeroControl);
             feinaNova.setFacturacioAutomatica(result.isFacturacioAutomatica());
             feinaNova.setPlantillaFeina(result);
@@ -274,4 +287,5 @@ public class FeinaService {
             feinesNoves.add(feinaNova);
             feinaRepository.save(feinaNova);
         }
+
 }

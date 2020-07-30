@@ -1,9 +1,9 @@
 import { Moment } from 'moment';
 import { IPeriodicitatConfigurable } from 'app/shared/model/periodicitat-configurable.model';
 import { IPeriodicitatSetmanal } from 'app/shared/model/periodicitat-setmanal.model';
-import {IClient} from "app/shared/model/client.model";
-import {ICategoria} from "app/shared/model/categoria.model";
-import {ITreballador} from "app/shared/model/treballador.model";
+import { IClient } from 'app/shared/model/client.model';
+import { ICategoria } from 'app/shared/model/categoria.model';
+import { ITreballador } from 'app/shared/model/treballador.model';
 
 export interface IPlantillaFeina {
   id?: number;
@@ -11,7 +11,7 @@ export interface IPlantillaFeina {
   descripcio?: string;
   horaInici?: string;
   horaFinal?: string;
-  tempsPrevist?: number;
+  tempsPrevist?: string;
   facturacioAutomatica?: boolean;
   observacions?: string;
   setmanaInicial?: Moment;
@@ -31,7 +31,7 @@ export class PlantillaFeina implements IPlantillaFeina {
     public descripcio?: string,
     public horaInici?: string,
     public horaFinal?: string,
-    public tempsPrevist?: number,
+    public tempsPrevist?: string,
     public facturacioAutomatica?: boolean,
     public observacions?: string,
     public setmanaInicial?: Moment,
@@ -45,5 +45,4 @@ export class PlantillaFeina implements IPlantillaFeina {
   ) {
     this.facturacioAutomatica = this.facturacioAutomatica || false;
   }
-
 }

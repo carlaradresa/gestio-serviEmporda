@@ -2,35 +2,35 @@
   "gestioClientsApp": {
     "feina": {
       "home": {
-        "title": "Feinas",
-        "createLabel": "Crear nuevo Feina",
-        "createOrEditLabel": "Crear o editar Feina",
-        "notFound": "Ningún Feinas encontrado"
+        "title": "Tareas",
+        "createLabel": "Crear nueva Tarea",
+        "createOrEditLabel": "Crear o editar Tarea",
+        "notFound": "Ninguna Tarea encontrada"
       },
-      "created": "Un nuevo Feina ha sido creado con el identificador {{ param }}",
-      "updated": "Un Feina ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Feina ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nueva Tarea ha sido creada con el identificador {{ param }}",
+      "updated": "Un Tarea ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Un Tarea ha sido eliminada con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Feina {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Tarea {{ id }}?"
       },
       "detail": {
-        "title": "Feina"
+        "title": "Tarea"
       },
-      "nom": "Nom",
-      "descripcio": "Descripcio",
-      "setmana": "Setmana",
-      "tempsPrevist": "Temps Previst",
-      "tempsReal": "Temps Real",
-      "estat": "Estat",
-      "intervalControl": "Interval Control",
-      "facturacioAutomatica": "Facturacio Automatica",
-      "observacions": "Observacions",
-      "comentarisTreballador": "Comentaris Treballador",
-      "plantillaFeina": "Plantilla Feina",
+      "nom": "Nombre",
+      "descripcio": "Descripción",
+      "setmana": "Semana",
+      "tempsPrevist": "Tiempo Previsto",
+      "tempsReal": "Tiempo Real",
+      "estat": "Estado",
+      "intervalControl": "Intervalo Control",
+      "facturacioAutomatica": "Facturación Automática",
+      "observacions": "Observaciones",
+      "comentarisTreballador": "Comentarios Trabajador",
+      "plantillaFeina": "Plantilla",
       "categoria": "Categoria",
-      "client": "Client",
-      "treballador": "Treballador",
-      "ubicacio": "Ubicacio"
+      "client": "Cliente",
+      "treballador": "Trabajador",
+      "ubicacio": "Ubicación"
     }
   }
 }

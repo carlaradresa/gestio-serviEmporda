@@ -3,6 +3,7 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.GestioClientsApp;
 import com.serviemporda.gestioclients.domain.PeriodicitatConfigurable;
 import com.serviemporda.gestioclients.repository.PeriodicitatConfigurableRepository;
+import com.serviemporda.gestioclients.service.PeriodicitatConfigurableService;
 import com.serviemporda.gestioclients.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -65,10 +66,13 @@ public class PeriodicitatConfigurableResourceIT {
 
     private PeriodicitatConfigurable periodicitatConfigurable;
 
+    @Autowired
+    private PeriodicitatConfigurableService periodicitatConfigurableService;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PeriodicitatConfigurableResource periodicitatConfigurableResource = new PeriodicitatConfigurableResource(periodicitatConfigurableRepository);
+        final PeriodicitatConfigurableResource periodicitatConfigurableResource = new PeriodicitatConfigurableResource(periodicitatConfigurableRepository, periodicitatConfigurableService);
         this.restPeriodicitatConfigurableMockMvc = MockMvcBuilders.standaloneSetup(periodicitatConfigurableResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -164,7 +168,7 @@ public class PeriodicitatConfigurableResourceIT {
             .andExpect(jsonPath("$.[*].periodicitat").value(hasItem(DEFAULT_PERIODICITAT.toString())))
             .andExpect(jsonPath("$.[*].observacions").value(hasItem(DEFAULT_OBSERVACIONS)));
     }
-    
+
     @Test
     @Transactional
     public void getPeriodicitatConfigurable() throws Exception {

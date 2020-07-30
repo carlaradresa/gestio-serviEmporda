@@ -15,11 +15,11 @@
         },
         {
             "fieldName": "tempsPrevist",
-            "fieldType": "Duration"
+            "fieldType": "String"
         },
         {
             "fieldName": "tempsReal",
-            "fieldType": "Duration"
+            "fieldType": "String"
         },
         {
             "fieldName": "estat",
@@ -71,14 +71,6 @@
             "otherEntityRelationshipName": "feina",
             "relationshipName": "treballador",
             "otherEntityField": "nom",
-            "ownerSide": true
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "ubicacio",
-            "otherEntityRelationshipName": "feina",
-            "relationshipName": "ubicacio",
-            "otherEntityField": "ubicacio",
             "ownerSide": true
         }
     ],

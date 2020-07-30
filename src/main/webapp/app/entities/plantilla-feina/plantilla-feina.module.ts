@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { GestioClientsSharedModule } from 'app/shared/shared.module';
 import { PlantillaFeinaComponent } from './plantilla-feina.component';

@@ -3,9 +3,9 @@
         <span class="hipster img-fluid rounded"></span>
         <img src="src/main/webapp/content/images/jhipster_family_member_1_head-192.png">
     </div> -->
-    <div class="col-md-9">
+    <div class="col-md">
         <h1 class="display-4" jhiTranslate="home.title">Serviempordà</h1>
-        <p class="lead" jhiTranslate="home.subtitle">La pàgina oficial on podràs gestionar la teva empresa</p>
+       <!-- <p class="lead" jhiTranslate="home.subtitle">La pàgina oficial on podràs gestionar la teva empresa</p>-->
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
@@ -15,13 +15,13 @@
         </div>
 
         <ul>
-            <li><a jhiTranslate="home.link.homepage">C/ Empordà, 21 Sant Antoni de Calonge 17252</a></li>
-            <li><a jhiTranslate="home.link.stackoverflow">info@serviemporda.com</a></li>
-            <li><a jhiTranslate="home.link.bugtracker">972 651 172</a></li>
+            <li jhiTranslate="home.link.homepage">C/ Empordà, 21 Sant Antoni de Calonge 17252</li>
+            <li jhiTranslate="home.link.stackoverflow">info@serviemporda.com</li>
+            <li jhiTranslate="home.link.bugtracker">972 651 172</li>
         </ul>
 
         <p>
-            <span jhiTranslate="home.like">Si vols accedir directament a la web fes un click </span> <a href="https://www.serviemporda.com/ca/index.html" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">aquí</a>!
+            <span jhiTranslate="home.like">Si vols accedir directament a la web fes un click </span> <a href="https://www.serviemporda.com/ca/index.html" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">aquí!</a>
         </p>
     </div>
 </div>

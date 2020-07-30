@@ -2,23 +2,7 @@
     "name": "PlantillaFeina",
     "fields": [
         {
-            "fieldName": "horaInici",
-            "fieldType": "Instant"
-        },
-        {
-            "fieldName": "horaFinal",
-            "fieldType": "Instant"
-        },
-        {
-            "fieldName": "tempsPrevist",
-            "fieldType": "Duration"
-        },
-        {
-            "fieldName": "facturacioAutomatica",
-            "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "observacions",
+            "fieldName": "nom",
             "fieldType": "String"
         },
         {
@@ -30,8 +14,33 @@
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "numeroControl",
+            "fieldName": "horaInici",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "horaFinal",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tempsPrevist",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "intervalControl",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "diaSetmana",
+            "fieldType": "Dia",
+            "fieldValues": "DILLUNS,DIMARTS,DIMECRES,DIJOUS,DIVENDRES,DISSABTE,DIUMENGE,QUALSEVOL"
+        },
+        {
+            "fieldName": "facturacioAutomatica",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "observacions",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -44,11 +53,25 @@
             "ownerSide": true
         },
         {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoria",
+            "otherEntityRelationshipName": "plantillaFeina",
+            "relationshipName": "categoria",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "plantillaFeina",
+            "relationshipName": "client",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "many-to-many",
-            "otherEntityName": "periodicitatSetmanal",
-            "otherEntityRelationshipName": "plantilla",
-            "relationshipName": "periodicitatSetmanal",
-            "otherEntityField": "diaSetmana",
+            "otherEntityName": "treballador",
+            "otherEntityRelationshipName": "plantillafeina",
+            "relationshipName": "treballador",
+            "otherEntityField": "nom",
             "ownerSide": true
         }
     ],

@@ -38,7 +38,7 @@ public class PlantillaFeina implements Serializable {
     private LocalTime horaFinal;
 
     @Column(name = "temps_previst")
-    private Integer tempsPrevist;
+    private String tempsPrevist;
 
     @Column(name = "facturacio_automatica")
     private Boolean facturacioAutomatica;
@@ -130,16 +130,16 @@ public class PlantillaFeina implements Serializable {
         this.horaFinal = horaFinal;
     }
 
-    public Integer getTempsPrevist() {
+    public String getTempsPrevist() {
         return tempsPrevist;
     }
 
-    public PlantillaFeina tempsPrevist(Integer tempsPrevist) {
+    public PlantillaFeina tempsPrevist(String tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return this;
     }
 
-    public int setTempsPrevist(Integer tempsPrevist) {
+    public int setTempsPrevist(String tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return 0;
     }

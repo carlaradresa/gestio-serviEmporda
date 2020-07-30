@@ -15,12 +15,19 @@ import { PlantillaFeinaDeleteDialogComponent } from './plantilla-feina-delete-di
 export class PlantillaFeinaComponent implements OnInit, OnDestroy {
   plantillaFeinas?: IPlantillaFeina[];
   eventSubscriber?: Subscription;
+  orderProp: string;
+  filter: string;
+  reverse: boolean;
 
   constructor(
     protected plantillaFeinaService: PlantillaFeinaService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal
-  ) {}
+  ) {
+    this.filter = '';
+    this.orderProp = 'estat';
+    this.reverse = false;
+  }
 
   loadAll(): void {
     this.plantillaFeinaService.query().subscribe((res: HttpResponse<IPlantillaFeina[]>) => {

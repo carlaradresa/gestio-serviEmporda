@@ -148,6 +148,7 @@ public class PlantillaFeinaResource {
     @DeleteMapping("/plantilla-feinas/{id}")
     public ResponseEntity<Void> deletePlantillaFeina(@PathVariable Long id) {
         log.debug("REST request to delete PlantillaFeina : {}", id);
+     // feinaService.deleteFeinesFromPf(id);
         feinaService.deleteFeinesFromPf(id);
         plantillaFeinaRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();

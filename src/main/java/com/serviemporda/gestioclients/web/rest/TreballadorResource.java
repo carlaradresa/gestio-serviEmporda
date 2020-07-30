@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,8 +56,11 @@ public class TreballadorResource {
             throw new BadRequestAlertException("A new treballador cannot already have an ID", ENTITY_NAME, "idexists");
         }
         treballador.setEstat(Estat.INACTIU);
+        treballador.setCarregaHores("hola");
+      //  treballador.setCarregaHores("00:00:00");
 
         Treballador result = treballadorRepository.save(treballador);
+        String nom = result.getNom();
         return ResponseEntity.created(new URI("/api/treballadors/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);

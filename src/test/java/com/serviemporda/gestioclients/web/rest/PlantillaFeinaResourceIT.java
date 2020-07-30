@@ -46,8 +46,8 @@ public class PlantillaFeinaResourceIT {
     private static final LocalTime DEFAULT_HORA_FINAL = LocalTime.of(0,0);
     private static final LocalTime UPDATED_HORA_FINAL = LocalTime.now();
 
-    private static final Integer DEFAULT_TEMPS_PREVIST = 1;
-    private static final Integer UPDATED_TEMPS_PREVIST = 2;
+    private static final String DEFAULT_TEMPS_PREVIST = "00:00:00";
+    private static final String UPDATED_TEMPS_PREVIST = "00:00:00";
 
     private static final Boolean DEFAULT_FACTURACIO_AUTOMATICA = false;
     private static final Boolean UPDATED_FACTURACIO_AUTOMATICA = true;

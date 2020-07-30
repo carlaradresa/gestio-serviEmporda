@@ -2,26 +2,26 @@
   "gestioClientsApp": {
     "ubicacio": {
       "home": {
-        "title": "Ubicacio",
-        "createLabel": "Crear nuevo Ubicacio",
-        "createOrEditLabel": "Crear o editar Ubicacio",
+        "title": "Ubicación",
+        "createLabel": "Crear nueva Ubicación",
+        "createOrEditLabel": "Crear o editar Ubicación",
         "notFound": "Ninguna Ubicación encontrada"
       },
-      "created": "Un nuevo Ubicacio ha sido creado con el identificador {{ param }}",
-      "updated": "Un Ubicacio ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Ubicacio ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Ubicación ha sido creada con el identificador {{ param }}",
+      "updated": "Una Ubicación ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Ubicación ha sido eliminada con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Ubicacio {{ id }}?"
+        "question": "¿Seguro que quiere eliminar la Ubicación {{ id }}?"
       },
       "detail": {
-        "title": "Ubicacio"
+        "title": "Ubicación"
       },
       "longitud": "Longitud",
       "latitud": "Latitud",
-      "ubicacio": "Ubicacio",
-      "client": "Client",
+      "ubicacio": "Ubicación",
+      "client": "Cliente",
       "venedor": "Venedor",
-      "feina": "Feina",
+      "feina": "Tarea",
       "pregunta": "Para acceder al mapa y obtener la longitud y latitud pulsa",
       "aqui": "aquí"
     }

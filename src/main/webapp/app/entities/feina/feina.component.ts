@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IFeina } from 'app/shared/model/feina.model';
 import { FeinaService } from './feina.service';
 import { FeinaDeleteDialogComponent } from './feina-delete-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-feina',
@@ -15,8 +16,31 @@ import { FeinaDeleteDialogComponent } from './feina-delete-dialog.component';
 export class FeinaComponent implements OnInit, OnDestroy {
   feinas?: IFeina[];
   eventSubscriber?: Subscription;
+  orderProp: string;
+  filter: string;
+  reverse: boolean;
+  fromDate: string;
+  toDate: string;
+  page: number;
+  predicate: any;
+  routeData: any;
 
-  constructor(protected feinaService: FeinaService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
+  constructor(
+    protected feinaService: FeinaService,
+    protected eventManager: JhiEventManager,
+    protected modalService: NgbModal,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.filter = '';
+    this.orderProp = 'estat';
+    this.reverse = false;
+    this.routeData = this.activatedRoute.data.subscribe(data => {
+      this.page = data['pagingParams'].page;
+      this.reverse = data['pagingParams'].ascending;
+      this.predicate = data['pagingParams'].predicate;
+    });
+  }
 
   loadAll(): void {
     this.feinaService.query().subscribe((res: HttpResponse<IFeina[]>) => {
@@ -47,5 +71,14 @@ export class FeinaComponent implements OnInit, OnDestroy {
   delete(feina: IFeina): void {
     const modalRef = this.modalService.open(FeinaDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.feina = feina;
+  }
+  transition() {
+    this.router.navigate(['/entitites/feina'], {
+      queryParams: {
+        page: this.page,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    });
+    this.loadAll();
   }
 }

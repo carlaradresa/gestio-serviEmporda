@@ -2,26 +2,26 @@
   "gestioClientsApp": {
     "treballador": {
       "home": {
-        "title": "Treballadors",
-        "createLabel": "Crear nuevo Treballador",
-        "createOrEditLabel": "Crear o editar Treballador",
-        "notFound": "Ningún Treballadors encontrado"
+        "title": "Trabajador",
+        "createLabel": "Crear nuevo Trebajador",
+        "createOrEditLabel": "Crear o editar Trabajador",
+        "notFound": "Ningún Trabajador encontrado"
       },
-      "created": "Un nuevo Treballador ha sido creado con el identificador {{ param }}",
-      "updated": "Un Treballador ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Treballador ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Trabajador ha sido creado con el identificador {{ param }}",
+      "updated": "Un Trabajador ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Trabajador ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Treballador {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Trabajador {{ id }}?"
       },
       "detail": {
-        "title": "Treballador"
+        "title": "Trabajador"
       },
-      "nom": "Nom",
-      "carregaHores": "Carrega Hores",
-      "estat": "Estat",
-      "controlQualitat": "Control Qualitat",
-      "user": "User",
-      "feina": "Feina"
+      "nom": "Nombre",
+      "carregaHores": "Carga de horas",
+      "estat": "Estado",
+      "controlQualitat": "Control qualidad",
+      "user": "Usuario",
+      "feina": "Tarea"
     }
   }
 }

@@ -16,6 +16,14 @@
       "detail": {
         "title": "Feina"
       },
+      "filters": {
+        "status": "Filtrar per estat:",
+        "date": {
+          "title": "Filtrar per data:",
+          "from": "des de",
+          "to": "fins"
+        }
+      },
       "nom": "Nom",
       "descripcio": "Descripció",
       "setmana": "Setmana",

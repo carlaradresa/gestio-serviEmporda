@@ -45,7 +45,7 @@ export class FeinaUpdateComponent implements OnInit {
     descripcio: [],
     setmana: [],
     tempsPrevist: [],
-  //  tempsReal: [],
+    tempsReal: [],
     estat: [],
     intervalControl: [],
     facturacioAutomatica: [],
@@ -54,7 +54,7 @@ export class FeinaUpdateComponent implements OnInit {
     plantillaFeina: [],
     categoria: [],
     client: [],
-    treballadors: [],
+    treballadors: []
   });
 
   constructor(
@@ -116,7 +116,7 @@ export class FeinaUpdateComponent implements OnInit {
       descripcio: feina.descripcio,
       setmana: feina.setmana,
       tempsPrevist: feina.tempsPrevist,
-   //   tempsReal: feina.tempsReal,
+      tempsReal: feina.tempsReal,
       estat: feina.estat,
       intervalControl: feina.intervalControl,
       facturacioAutomatica: feina.facturacioAutomatica,
@@ -125,7 +125,7 @@ export class FeinaUpdateComponent implements OnInit {
       plantillaFeina: feina.plantillaFeina,
       categoria: feina.categoria,
       client: feina.client,
-      treballadors: feina.treballadors,
+      treballadors: feina.treballadors
     });
   }
 
@@ -151,7 +151,7 @@ export class FeinaUpdateComponent implements OnInit {
       descripcio: this.editForm.get(['descripcio'])!.value,
       setmana: this.editForm.get(['setmana'])!.value,
       tempsPrevist: this.editForm.get(['tempsPrevist'])!.value,
-  //    tempsReal: this.editForm.get(['tempsReal'])!.value,
+      tempsReal: this.editForm.get(['tempsReal'])!.value,
       estat: this.editForm.get(['estat'])!.value,
       intervalControl: this.editForm.get(['intervalControl'])!.value,
       facturacioAutomatica: this.editForm.get(['facturacioAutomatica'])!.value,

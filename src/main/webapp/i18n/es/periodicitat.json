@@ -3,10 +3,10 @@
     "Periodicitat": {
       "null": "",
       "DIA": "DIA",
-      "SETMANA": "SETMANA",
+      "SETMANA": "SEMANA",
       "QUINZENAL": "QUINZENAL",
       "MES": "MES",
-      "ANY": "ANY"
+      "ANY": "AÑO"
     }
   }
 }

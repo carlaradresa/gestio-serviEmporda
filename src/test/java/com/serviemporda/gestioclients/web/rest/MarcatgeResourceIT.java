@@ -3,6 +3,7 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.GestioClientsApp;
 import com.serviemporda.gestioclients.domain.Marcatge;
 import com.serviemporda.gestioclients.repository.MarcatgeRepository;
+import com.serviemporda.gestioclients.service.MarcatgeService;
 import com.serviemporda.gestioclients.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -63,6 +64,9 @@ public class MarcatgeResourceIT {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private MarcatgeService marcatgeService;
+
     private MockMvc restMarcatgeMockMvc;
 
     private Marcatge marcatge;
@@ -70,7 +74,7 @@ public class MarcatgeResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final MarcatgeResource marcatgeResource = new MarcatgeResource(marcatgeRepository);
+        final MarcatgeResource marcatgeResource = new MarcatgeResource(marcatgeRepository, marcatgeService);
         this.restMarcatgeMockMvc = MockMvcBuilders.standaloneSetup(marcatgeResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

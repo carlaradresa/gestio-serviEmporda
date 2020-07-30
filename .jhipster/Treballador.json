@@ -7,7 +7,7 @@
         },
         {
             "fieldName": "carregaHores",
-            "fieldType": "Duration"
+            "fieldType": "String"
         },
         {
             "fieldName": "estat",
@@ -33,6 +33,14 @@
             "otherEntityName": "feina",
             "otherEntityRelationshipName": "treballador",
             "relationshipName": "feina",
+            "otherEntityField": "id",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "plantillaFeina",
+            "otherEntityRelationshipName": "treballador",
+            "relationshipName": "plantillafeina",
             "otherEntityField": "id",
             "ownerSide": false
         }

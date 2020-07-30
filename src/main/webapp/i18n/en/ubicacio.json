@@ -2,26 +2,28 @@
   "gestioClientsApp": {
     "ubicacio": {
       "home": {
-        "title": "Ubicacios",
-        "createLabel": "Create a new Ubicacio",
-        "createOrEditLabel": "Create or edit a Ubicacio",
-        "notFound": "No Ubicacios found"
+        "title": "Locations",
+        "createLabel": "Create a new Location",
+        "createOrEditLabel": "Create or edit a Location",
+        "notFound": "No Location found"
       },
-      "created": "A new Ubicacio is created with identifier {{ param }}",
-      "updated": "A Ubicacio is updated with identifier {{ param }}",
-      "deleted": "A Ubicacio is deleted with identifier {{ param }}",
+      "created": "A new Location is created with identifier {{ param }}",
+      "updated": "A Location is updated with identifier {{ param }}",
+      "deleted": "A Location is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Ubicacio {{ id }}?"
+        "question": "Are you sure you want to delete Location {{ id }}?"
       },
       "detail": {
-        "title": "Ubicacio"
+        "title": "Location"
       },
-      "longitud": "Longitud",
-      "latitud": "Latitud",
-      "ubicacio": "Ubicacio",
+      "longitud": "Length",
+      "latitud": "Latitude",
+      "ubicacio": "Location",
       "client": "Client",
-      "venedor": "Venedor",
-      "feina": "Feina"
+      "venedor": "Seller",
+      "feina": "Task",
+      "pregunta": "To access the map and obtain the longitude and latitude press",
+      "aqui": "here"
     }
   }
 }

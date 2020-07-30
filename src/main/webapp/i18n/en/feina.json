@@ -2,35 +2,35 @@
   "gestioClientsApp": {
     "feina": {
       "home": {
-        "title": "Feinas",
-        "createLabel": "Create a new Feina",
-        "createOrEditLabel": "Create or edit a Feina",
-        "notFound": "No Feinas found"
+        "title": "Tasks",
+        "createLabel": "Create a new Task",
+        "createOrEditLabel": "Create or edit a Task",
+        "notFound": "No Task found"
       },
-      "created": "A new Feina is created with identifier {{ param }}",
-      "updated": "A Feina is updated with identifier {{ param }}",
-      "deleted": "A Feina is deleted with identifier {{ param }}",
+      "created": "A new Task is created with identifier {{ param }}",
+      "updated": "A Task is updated with identifier {{ param }}",
+      "deleted": "A Task is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Feina {{ id }}?"
+        "question": "Are you sure you want to delete Task {{ id }}?"
       },
       "detail": {
-        "title": "Feina"
+        "title": "Task"
       },
-      "nom": "Nom",
-      "descripcio": "Descripcio",
-      "setmana": "Setmana",
-      "tempsPrevist": "Temps Previst",
-      "tempsReal": "Temps Total",
-      "estat": "Estat",
+      "nom": "Name",
+      "descripcio": "Description",
+      "setmana": "Week",
+      "tempsPrevist": "Expected time",
+      "tempsReal": "Total time",
+      "estat": "Estate",
       "intervalControl": "Interval Control",
-      "facturacioAutomatica": "Facturacio Automatica",
-      "observacions": "Observacions",
-      "comentarisTreballador": "Comentaris Treballador",
-      "plantillaFeina": "Plantilla Feina",
-      "categoria": "Categoria",
+      "facturacioAutomatica": "Automatic control",
+      "observacions": "Observations",
+      "comentarisTreballador": "Employees comments",
+      "plantillaFeina": "Template",
+      "categoria": "Category",
       "client": "Client",
-      "treballador": "Treballador/s",
-      "ubicacio": "Ubicacio"
+      "treballador": "Employees",
+      "ubicacio": "Location"
     }
   }
 }

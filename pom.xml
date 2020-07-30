@@ -6,7 +6,7 @@
     <groupId>com.serviemporda.gestioclients</groupId>
     <artifactId>gestio-clients</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>Gestio Clients</name>
 
     <repositories>
@@ -902,6 +902,7 @@
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-undertow</artifactId>
+                    <scope>provided</scope>
                 </dependency>
             </dependencies>
             <build>
@@ -951,17 +952,6 @@
                                 </goals>
                                 <configuration>
                                     <arguments>install</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>webpack build test</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>test</phase>
-                                <configuration>
-                                    <arguments>run webpack:test</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
                                 </configuration>
                             </execution>
                             <execution>

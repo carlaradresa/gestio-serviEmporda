@@ -2,34 +2,34 @@
   "gestioClientsApp": {
     "plantillaFeina": {
       "home": {
-        "title": "Plantilla Feinas",
-        "createLabel": "Crear nuevo Plantilla Feina",
-        "createOrEditLabel": "Crear o editar Plantilla Feina",
-        "notFound": "Ningún Plantilla Feinas encontrado"
+        "title": "Plantilla",
+        "createLabel": "Crear nueva plantilla",
+        "createOrEditLabel": "Crear o editar plantilla",
+        "notFound": "Ningúna plantilla encontrada"
       },
-      "created": "Un nuevo Plantilla Feina ha sido creado con el identificador {{ param }}",
-      "updated": "Un Plantilla Feina ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Plantilla Feina ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva plantilla ha sido creada con el identificador {{ param }}",
+      "updated": "Una plantilla ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una plantilla ha sido eliminada con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Plantilla Feina {{ id }}?"
+        "question": "¿Seguro que quiere eliminar plantilla {{ id }}?"
       },
       "detail": {
-        "title": "Plantilla Feina"
+        "title": "Plantilla"
       },
-      "nom": "Nom",
+      "nom": "Nombre",
       "horaInici": "Hora Inici",
       "horaFinal": "Hora Final",
-      "tempsPrevist": "Temps Previst",
-      "facturacioAutomatica": "Facturacio Automatica",
-      "observacions": "Observacions",
+      "tempsPrevist": "Tiempo Previsto",
+      "facturacioAutomatica": "Facturación Automática",
+      "observacions": "Observaciones",
       "setmanaInicial": "Setmana Inicial",
       "setmanaFinal": "Setmana Final",
-      "numeroControl": "Numero Control",
-      "periodicitatConfigurable": "Periodicitat Configurable",
-      "periodicitatSetmanal": "Periodicitat Setmanal",
+      "numeroControl": "Número Control",
+      "periodicitatConfigurable": "Periodicidad Configurable",
+      "periodicitatSetmanal": "Periodicidad Setmanal",
       "categoria": "Categoria",
-      "client": "Client",
-      "treballador": "Treballador"
+      "client": "Cliente",
+      "treballador": "Trabajador"
     }
   }
 }

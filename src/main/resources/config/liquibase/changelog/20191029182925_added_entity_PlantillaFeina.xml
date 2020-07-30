@@ -25,7 +25,7 @@
             <column name="hora_final" type="time">
                 <constraints nullable="true" />
             </column>
-            <column name="temps_previst" type="bigint">
+            <column name="temps_previst" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="facturacio_automatica" type="boolean">
@@ -102,7 +102,7 @@
             <column name="nom" type="string"/>
             <column name="hora_inici" type="datetime"/>
             <column name="hora_final" type="datetime"/>
-            <column name="temps_previst" type="numeric"/>
+            <column name="temps_previst" type="string"/>
             <column name="facturacio_automatica" type="boolean"/>
             <column name="observacions" type="string"/>
             <column name="setmana_inicial" type="date"/>

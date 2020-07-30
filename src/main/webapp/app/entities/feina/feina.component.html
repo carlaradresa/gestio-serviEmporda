@@ -11,13 +11,26 @@
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
+    <span jhiTranslate="gestioClientsApp.feina.filters.status">Filtrar per estat:</span> <input type="text" [(ngModel)]="filter" class="form-control" placeholder="Buscar...">
+    <h4 jhiTranslate="gestioClientsApp.feina.filters.date.title">Filtrar per data:</h4>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" jhiTranslate="gestioClientsApp.feina.filters.date.from">from</span>
+        </div>
+        <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()"/>
+
+        <div class="input-group-append">
+            <span class="input-group-text" jhiTranslate="gestioClientsApp.feina.filters.date.to">To</span>
+        </div>
+        <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()"/>
+    </div>
     <div class="alert alert-warning" *ngIf="feinas?.length === 0">
         <span jhiTranslate="gestioClientsApp.feina.home.notFound">No feinas found</span>
     </div>
     <div class="table-responsive" *ngIf="feinas?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-            <tr>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.nom">Nom</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.descripcio">Descripcio</span></th>
@@ -37,7 +50,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let feina of feinas ;trackBy: trackId">
+            <tr *ngFor="let feina of (feinas | pureFilter:filter:'estat' | orderBy:orderProp:reverse) ;trackBy: trackId">
                 <td><a [routerLink]="['/feina', feina.id, 'view' ]">{{feina.id}}</a></td>
                 <td>{{feina.nom}}</td>
                 <td>{{feina.descripcio}}</td>

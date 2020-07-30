@@ -25,14 +25,12 @@
             <column name="setmana" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="temps_previst" type="bigint">
+            <column name="temps_previst" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-      <!--      <column name="temps_real" type="bigint">
+            <column name="temps_real" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-      -->
             <column name="estat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -57,11 +55,10 @@
             <column name="client_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="chronometer" type="integer">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+     <!--   <dropDefaultValue tableName="feina" columnName="temps_previst" columnDataType="datetime"/>-->
+     <!--   <dropDefaultValue tableName="feina" columnName="temps_real" columnDataType="varchar(255)"/>-->
     </changeSet>
 
     <changeSet id="20191029182930-1-relations" author="jhipster">
@@ -76,13 +73,14 @@
         </createTable>
 
         <addPrimaryKey columnNames="feina_id, treballador_id" tableName="feina_treballador"/>
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
     <!--
         Load sample data generated with Faker.js
         - This data can be easily edited using a CSV editor (or even MS Excel) and
-          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+          is located in the 'src/main/resources/config/liquibase/data' directory
         - By default this data is applied when running with the JHipster 'dev' profile.
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
@@ -96,14 +94,13 @@
             <column name="nom" type="string"/>
             <column name="descripcio" type="string"/>
             <column name="setmana" type="date"/>
-            <column name="temps_previst" type="numeric"/>
-        <!--    <column name="temps_real" type="numeric"/> -->
+            <column name="temps_previst" type="string"/>
+            <column name="temps_real" type="string"/>
             <column name="estat" type="string"/>
             <column name="interval_control" type="numeric"/>
             <column name="facturacio_automatica" type="boolean"/>
             <column name="observacions" type="string"/>
             <column name="comentaris_treballador" type="string"/>
-            <column name="chronometer" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

@@ -5,7 +5,7 @@ import { Estat } from 'app/shared/model/enumerations/estat.model';
 export interface ITreballador {
   id?: number;
   nom?: string;
-  carregaHores?: number;
+  carregaHores?: string;
   estat?: Estat;
   controlQualitat?: boolean;
   user?: IUser;
@@ -16,7 +16,7 @@ export class Treballador implements ITreballador {
   constructor(
     public id?: number,
     public nom?: string,
-    public carregaHores?: number,
+    public carregaHores?: string,
     public estat?: Estat,
     public controlQualitat?: boolean,
     public user?: IUser,

@@ -3,9 +3,12 @@
     "plantillaFeina": {
       "home": {
         "title": "Plantilla Feina",
-        "createLabel": "Crear nova Plantilla Feina",
+        "createLabel": "Crear nova Plantilla",
         "createOrEditLabel": "Crear o editar Plantilla Feina",
         "notFound": "Cap Plantilla Feina trobada"
+      },
+      "filters": {
+        "estat": "Filtre per estat:"
       },
       "created": "Una nova Plantilla Feina ha estat creada amb l'identificador {{ param }}",
       "updated": "Una Plantilla Feina ha estat actualitzada amb l'identificador {{ param }}",
@@ -20,6 +23,7 @@
       "horaInici": "Hora Inici",
       "horaFinal": "Hora Final",
       "tempsPrevist": "Temps Previst",
+      "tempsReal": "Temps Real",
       "facturacioAutomatica": "Facturació Automàtica",
       "observacions": "Observacions",
       "setmanaInicial": "Setmana Inicial",

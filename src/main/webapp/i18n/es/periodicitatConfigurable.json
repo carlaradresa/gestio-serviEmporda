@@ -2,23 +2,23 @@
   "gestioClientsApp": {
     "periodicitatConfigurable": {
       "home": {
-        "title": "Periodicitat Configurables",
-        "createLabel": "Crear nuevo Periodicitat Configurable",
-        "createOrEditLabel": "Crear o editar Periodicitat Configurable",
-        "notFound": "Ningún Periodicitat Configurables encontrado"
+        "title": "Periodicidad Configurable",
+        "createLabel": "Crear nueva Periodicidad Configurable",
+        "createOrEditLabel": "Crear o editar Periodicidad Configurable",
+        "notFound": "Ninguna Periodiciad Configurable encontrada"
       },
-      "created": "Un nuevo Periodicitat Configurable ha sido creado con el identificador {{ param }}",
-      "updated": "Un Periodicitat Configurable ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Periodicitat Configurable ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Periodicidad Configurable ha sido creada con el identificador {{ param }}",
+      "updated": "Una Periodicitat Configurable ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Periodicidad Configurable ha sido eliminada con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Periodicitat Configurable {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Periodicidad Configurable {{ id }}?"
       },
       "detail": {
-        "title": "Periodicitat Configurable"
+        "title": "Periodicidad Configurable"
       },
-      "frequencia": "Frequencia",
-      "periodicitat": "Periodicitat",
-      "observacions": "Observacions",
+      "frequencia": "Frecuencia",
+      "periodicitat": "Periodicidad",
+      "observacions": "Observaciones",
       "plantilla": "Plantilla"
     }
   }

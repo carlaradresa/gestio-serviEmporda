@@ -17,24 +17,29 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaInici" for="field_horaInici">Hora Inici</label>
                     <div class="d-flex">
-                        <input id="field_horaInici" type="time" class="form-control" name="horaInici" formControlName="horaInici" placeholder="HH:mm" required/>
+                        <input id="field_horaInici" type="time" class="form-control" name="horaInici" formControlName="horaInici" placeholder="HH:mm"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal" for="field_horaFinal">Hora Final</label>
                     <div class="d-flex">
-                        <input id="field_horaFinal" type="time" class="form-control" name="horaFinal" formControlName="horaFinal" placeholder="HH:mm" required/>
+                        <input id="field_horaFinal" type="time" class="form-control" name="horaFinal" formControlName="horaFinal" placeholder="HH:mm"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist" for="field_tempsPrevist">Temps Previst</label>
-                    <input type="number" class="form-control" name="tempsPrevist" id="field_tempsPrevist"
-                           formControlName="tempsPrevist"/>
+                    <input type="string" class="form-control" name="tempsPrevist" id="field_tempsPrevist"
+                           formControlName="tempsPrevist" placeholder="HH:MM"/>
                 </div>
+            <!--    <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist" for="field_tempsReal">Temps Real</label>
+                    <input type="string" class="form-control" name="tempsPrevist" id="field_tempsReal"
+                           formControlName="tempsReal"/>
+                </div>-->
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica" for="field_facturacioAutomatica">Facturacio Automatica</label>
                     <input type="checkbox" class="form-control" name="facturacioAutomatica" id="field_facturacioAutomatica"
-                           formControlName="facturacioAutomatica"/>
+                           formControlName="facturacioAutomatica" style="width:38px"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.observacions" for="field_observacions">Nom feina</label>
@@ -72,12 +77,24 @@
                         <option [ngValue]="periodicitatConfigurableOption.id === editForm.get('periodicitatConfigurable')!.value?.id ? editForm.get('periodicitatConfigurable')!.value : periodicitatConfigurableOption" *ngFor="let periodicitatConfigurableOption of periodicitatconfigurables; trackBy: trackById">{{periodicitatConfigurableOption.observacions}}</option>
                     </select>
                 </div>
+                <button id="jh-create-periodicitat-configurable" class="btn btn-primary jh-create-entity create-periodicitat-configurable" [routerLink]="['/periodicitat-configurable/new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="gestioClientsApp.periodicitatConfigurable.detail.title">
+                     Create a new Periodicitat Configurable
+                     </span>
+                </button>
                 <div class="form-group">
                     <label jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal" for="field_periodicitatSetmanals">Periodicitat Setmanal</label>
                     <select class="form-control" id="field_periodicitatSetmanals" multiple name="periodicitatSetmanals" formControlName="periodicitatSetmanals" required>
                         <option [ngValue]="getSelected(editForm.get('periodicitatSetmanals')!.value, periodicitatSetmanalOption)" *ngFor="let periodicitatSetmanalOption of periodicitatsetmanals; trackBy: trackById">{{periodicitatSetmanalOption.diaSetmana}}</option>
                     </select>
                 </div>
+                <button id="jh-create-periodicitat-setmanal" class="btn btn-primary jh-create-entity create-periodicitat-configurable" [routerLink]="['/periodicitat-setmanal/new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="gestioClientsApp.periodicitatSetmanal.detail.title">
+                     Create a new Periodicitat Configurable
+                     </span>
+                </button>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.client" for="field_client">Client</label>
                     <select class="form-control" id="field_client" name="client" formControlName="client" required>
@@ -85,6 +102,12 @@
                         <option [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption" *ngFor="let clientOption of clients; trackBy: trackById">{{clientOption.nom}}</option>
                     </select>
                 </div>
+                <button id="jh-create-entity-client" class="btn btn-primary jh-create-entity create-client" [routerLink]="['/client/new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="gestioClientsApp.client.detail.title">
+                     Create a new Client
+                     </span>
+                </button>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gestioClientsApp.plantillaFeina.categoria" for="field_categoria">Categoria</label>
                     <select class="form-control" id="field_categoria" name="categoria" formControlName="categoria" required>
@@ -92,12 +115,24 @@
                         <option [ngValue]="categoriaOption.id === editForm.get('categoria')!.value?.id ? editForm.get('categoria')!.value : categoriaOption" *ngFor="let categoriaOption of categorias; trackBy: trackById">{{categoriaOption.nomCategoria}}</option>
                     </select>
                 </div>
+                <button id="jh-create-entity-categoria" class="btn btn-primary jh-create-entity create-categoria" [routerLink]="['/categoria/new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="gestioClientsApp.categoria.detail.title">
+                     Create a new Categoria
+                     </span>
+                </button>
                 <div class="form-group">
                     <label jhiTranslate="gestioClientsApp.plantillaFeina.treballador" for="field_treballadors">Treballador</label>
                     <select class="form-control" id="field_treballadors" multiple name="treballadors" formControlName="treballadors">
                         <option [ngValue]="getSelected(editForm.get('treballadors')!.value, treballadorOption)" *ngFor="let treballadorOption of treballadors; trackBy: trackById">{{treballadorOption.nom}}</option>
                     </select>
                 </div>
+                <button id="jh-create-entity-treballador" class="btn btn-primary jh-create-entity create-treballador" [routerLink]="['/treballador/new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="gestioClientsApp.treballador.detail.title">
+                     Create a new Treballador
+                     </span>
+                </button>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

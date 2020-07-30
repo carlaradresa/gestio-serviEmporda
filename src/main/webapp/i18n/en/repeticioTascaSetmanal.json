@@ -2,23 +2,23 @@
   "gestioClientsApp": {
     "repeticioTascaSetmanal": {
       "home": {
-        "title": "Repeticio Tasca Setmanals",
-        "createLabel": "Create a new Repeticio Tasca Setmanal",
-        "createOrEditLabel": "Create or edit a Repeticio Tasca Setmanal",
-        "notFound": "No Repeticio Tasca Setmanals found"
+        "title": "Weekly task repetition",
+        "createLabel": "Create a new Weekly task repetitionl",
+        "createOrEditLabel": "Create or edit a Weekly task repetition",
+        "notFound": "No Weekly task repetition found"
       },
-      "created": "A new Repeticio Tasca Setmanal is created with identifier {{ param }}",
-      "updated": "A Repeticio Tasca Setmanal is updated with identifier {{ param }}",
-      "deleted": "A Repeticio Tasca Setmanal is deleted with identifier {{ param }}",
+      "created": "A new Weekly task repetition is created with identifier {{ param }}",
+      "updated": "A Weekly task repetition is updated with identifier {{ param }}",
+      "deleted": "A Weekly task repetition is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Repeticio Tasca Setmanal {{ id }}?"
+        "question": "Are you sure you want to delete Weekly task repetition {{ id }}?"
       },
       "detail": {
-        "title": "Repeticio Tasca Setmanal"
+        "title": "Weekly task repetition"
       },
-      "dia": "Dia",
-      "activo": "Activo",
-      "feina": "Feina"
+      "dia": "Day",
+      "activo": "Active",
+      "feina": "Task"
     }
   }
 }

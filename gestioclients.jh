@@ -4,7 +4,7 @@ entity PlantillaFeina {
     setmanaFinal LocalDate,
     horaInici Instant,
     horaFinal Instant,
-    tempsPrevist Instant,
+    tempsPrevist String,
     intervalControl Integer,
     diaSetmana Dia,
     facturacioAutomatica Boolean,
@@ -53,8 +53,8 @@ entity Feina {
     nom String,
     descripcio String,
     setmana LocalDate,
-    tempsPrevist Instant,
-    tempsReal Instant,
+    tempsPrevist String,
+    tempsReal String,
     estat Estat,
     intervalControl Integer,
     facturacioAutomatica Boolean,
@@ -78,7 +78,7 @@ entity Marcatge {
 
 entity Treballador {
     nom String,
-    carregaHores Duration,
+    carregaHores String,
     estat Estat,
     controlQualitat Boolean
 }
@@ -100,11 +100,12 @@ relationship ManyToOne {
     Feina{client} to Client,
     Control{revisor} to Treballador,
     Control{feina} to Feina,
-    PlantillaFeina{client} to Client
+    PlantillaFeina{client} to Client,
+    Client{ubicacio(ubicacio)} to Ubicacio{client}
+
 }
 
 relationship OneToOne {
-    Client{ubicacio(ubicacio)} to Ubicacio{client},
     Venedor{ubicacio(ubicacio)} to Ubicacio{venedor},
     Treballador{user(login)} to User,
     PlantillaFeina{periodicitatConfigurable(observacions)} to PeriodicitatConfigurable{plantilla}

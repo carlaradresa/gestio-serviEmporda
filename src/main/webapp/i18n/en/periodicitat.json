@@ -2,11 +2,11 @@
   "gestioClientsApp": {
     "Periodicitat": {
       "null": "",
-      "DIA": "DIA",
-      "SETMANA": "SETMANA",
-      "QUINZENAL": "QUINZENAL",
-      "MES": "MES",
-      "ANY": "ANY"
+      "DIA": "DAY",
+      "SETMANA": "WEEK",
+      "QUINZENAL": "SEMIMONTHLY",
+      "MES": "MONTH",
+      "ANY": "YEAR"
     }
   }
 }

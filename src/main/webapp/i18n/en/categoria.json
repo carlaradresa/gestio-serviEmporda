@@ -2,21 +2,21 @@
   "gestioClientsApp": {
     "categoria": {
       "home": {
-        "title": "Categorias",
-        "createLabel": "Create a new Categoria",
-        "createOrEditLabel": "Create or edit a Categoria",
-        "notFound": "No Categorias found"
+        "title": "Categoriess",
+        "createLabel": "Create a new Category",
+        "createOrEditLabel": "Create or edit a Category",
+        "notFound": "No Category found"
       },
-      "created": "A new Categoria is created with identifier {{ param }}",
-      "updated": "A Categoria is updated with identifier {{ param }}",
-      "deleted": "A Categoria is deleted with identifier {{ param }}",
+      "created": "A new Category is created with identifier {{ param }}",
+      "updated": "A Category is updated with identifier {{ param }}",
+      "deleted": "A Category is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Categoria {{ id }}?"
+        "question": "Are you sure you want to delete Category {{ id }}?"
       },
       "detail": {
-        "title": "Categoria"
+        "title": "Category"
       },
-      "nomCategoria": "Nom Categoria"
+      "nomCategoria": "Category name"
     }
   }
 }

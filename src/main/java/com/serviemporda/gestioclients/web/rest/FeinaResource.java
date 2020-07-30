@@ -3,6 +3,7 @@ package com.serviemporda.gestioclients.web.rest;
 import com.serviemporda.gestioclients.domain.Feina;
 import com.serviemporda.gestioclients.domain.enumeration.Estat;
 import com.serviemporda.gestioclients.repository.FeinaRepository;
+import com.serviemporda.gestioclients.service.FeinaService;
 import com.serviemporda.gestioclients.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -36,6 +37,7 @@ public class FeinaResource {
     private String applicationName;
 
     private final FeinaRepository feinaRepository;
+
 
     public FeinaResource(FeinaRepository feinaRepository) {
         this.feinaRepository = feinaRepository;
@@ -84,7 +86,6 @@ public class FeinaResource {
         if (feina.getEstat().equals("FINALITZAT")){
             feina.setEstat(Estat.FINALITZAT);
         }
-
         Feina result = feinaRepository.save(feina);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, feina.getId().toString()))
@@ -126,7 +127,6 @@ public class FeinaResource {
     public ResponseEntity<Void> deleteFeina(@PathVariable Long id) {
         log.debug("REST request to delete Feina : {}", id);
         feinaRepository.deleteById(id);
-
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

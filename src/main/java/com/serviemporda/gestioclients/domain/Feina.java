@@ -1,15 +1,13 @@
 package com.serviemporda.gestioclients.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.models.auth.In;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,10 +37,10 @@ public class Feina implements Serializable {
     private LocalDate setmana;
 
     @Column(name = "temps_previst")
-    private Integer tempsPrevist;
+    private String tempsPrevist;
 
     @Column(name = "temps_real")
-    private Duration tempsReal;
+    private String tempsReal;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estat")
@@ -78,17 +76,6 @@ public class Feina implements Serializable {
                joinColumns = @JoinColumn(name = "feina_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "treballador_id", referencedColumnName = "id"))
     private Set<Treballador> treballadors = new HashSet<>();
-
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "feina_ubicacio",
-               joinColumns = @JoinColumn(name = "feina_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "ubicacio_id", referencedColumnName = "id"))
-    private Set<Ubicacio> ubicacios = new HashSet<>();
-
-    public Feina() {
-        this.estat = Estat.INACTIU;
-    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -138,29 +125,29 @@ public class Feina implements Serializable {
         this.setmana = setmana;
     }
 
-    public Integer getTempsPrevist() {
+    public String getTempsPrevist() {
         return tempsPrevist;
     }
 
-    public Feina tempsPrevist(Integer tempsPrevist) {
+    public Feina tempsPrevist(String tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return this;
     }
 
-    public void setTempsPrevist(Integer tempsPrevist) {
+    public void setTempsPrevist(String tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
     }
 
-    public Duration getTempsReal() {
+    public String getTempsReal() {
         return tempsReal;
     }
 
-    public Feina tempsReal(Duration tempsReal) {
+    public Feina tempsReal(String tempsReal) {
         this.tempsReal = tempsReal;
         return this;
     }
 
-    public void setTempsReal(Duration tempsReal) {
+    public void setTempsReal(String tempsReal) {
         this.tempsReal = tempsReal;
     }
 
@@ -292,31 +279,6 @@ public class Feina implements Serializable {
     public void setTreballadors(Set<Treballador> treballadors) {
         this.treballadors = treballadors;
     }
-
-    public Set<Ubicacio> getUbicacios() {
-        return ubicacios;
-    }
-
-    public Feina ubicacio(Set<Ubicacio> ubicacios) {
-        this.ubicacios = ubicacios;
-        return this;
-    }
-
-    public Feina addUbicacio(Ubicacio ubicacio) {
-        this.ubicacios.add(ubicacio);
-        ubicacio.getFeinas().add(this);
-        return this;
-    }
-
-    public Feina removeUbicacio(Ubicacio ubicacio) {
-        this.ubicacios.remove(ubicacio);
-        ubicacio.getFeinas().remove(this);
-        return this;
-    }
-
-    public void setUbicacios(Set<Ubicacio> ubicacios) {
-        this.ubicacios = ubicacios;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -350,23 +312,5 @@ public class Feina implements Serializable {
             ", observacions='" + getObservacions() + "'" +
             ", comentarisTreballador='" + getComentarisTreballador() + "'" +
             "}";
-    }
-
-    public Feina(String nom, String descripcio, LocalDate setmana, Integer tempsPrevist, Duration tempsReal, Estat estat, Integer intervalControl, Boolean facturacioAutomatica, String observacions, String comentarisTreballador, PlantillaFeina plantillaFeina, Categoria categoria, Client client, Set<Treballador> treballadors, Set<Ubicacio> ubicacios) {
-        this.nom = nom;
-        this.descripcio = descripcio;
-        this.setmana = setmana;
-        this.tempsPrevist = tempsPrevist;
-        this.tempsReal = tempsReal;
-        this.estat = estat;
-        this.intervalControl = intervalControl;
-        this.facturacioAutomatica = facturacioAutomatica;
-        this.observacions = observacions;
-        this.comentarisTreballador = comentarisTreballador;
-        this.plantillaFeina = plantillaFeina;
-        this.categoria = categoria;
-        this.client = client;
-        this.treballadors = treballadors;
-        this.ubicacios = ubicacios;
     }
 }

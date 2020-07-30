@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 /**
- * Spring Data  repository for the Feina entity.
+ * Spring Data repository for the Feina entity.
  */
 @Repository
 public interface FeinaRepository extends JpaRepository<Feina, Long> {

@@ -7,9 +7,9 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entitats",
-        "plantillaFeina": "Plantilla Feina",
+        "plantillaFeina": "Plantilla",
         "categoria": "Categoria",
-        "repeticioTascaSetmanal": "Repetició Tasca Setmanal",
+        "repeticioTascaSetmanal": "Repetició tasca setmanal",
         "ubicacio": "Ubicació",
         "client": "Client",
         "feina": "Feina",
@@ -17,8 +17,8 @@
         "marcatge": "Marcatge",
         "treballador": "Treballador",
         "venedor": "Venedor",
-        "periodicitatSetmanal": "Periodicitat Setmanal",
-        "periodicitatConfigurable": "Periodicitat Configurable",
+        "periodicitatSetmanal": "Periodicitat setmanal",
+        "periodicitatConfigurable": "Periodicitat configurable",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -26,13 +26,13 @@
         "settings": "Configuració",
         "password": "Contrasenya",
         "sessions": "Sessions",
-        "login": "Iniciar sesió",
+        "login": "Iniciar sessió",
         "logout": "Tancar la sessió",
         "register": "Crea un compte"
       },
       "admin": {
         "main": "Administració",
-        "userManagement": "Gestió d'usuarios",
+        "userManagement": "Usuaris",
         "tracker": "Registre d'usuarios",
         "metrics": "Mètriques",
         "health": "Salut",
@@ -143,5 +143,5 @@
     "idexists": "Un nou {{entityName}} no pot tenir ID",
     "idnull": "ID invàlid"
   },
-  "footer": "Peu de pàgina"
+  "footer": "info@serviemporda.com"
 }

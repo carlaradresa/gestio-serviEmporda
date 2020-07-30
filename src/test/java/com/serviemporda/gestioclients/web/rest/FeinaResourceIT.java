@@ -51,11 +51,11 @@ public class FeinaResourceIT {
     private static final LocalDate DEFAULT_SETMANA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_SETMANA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_TEMPS_PREVIST = 1;
-    private static final Integer UPDATED_TEMPS_PREVIST = 2;
+    private static final String DEFAULT_TEMPS_PREVIST = "00:00:00";
+    private static final String UPDATED_TEMPS_PREVIST = "00:00:00";
 
-    private static final Duration DEFAULT_TEMPS_REAL = Duration.ofHours(6);
-    private static final Duration UPDATED_TEMPS_REAL = Duration.ofHours(12);
+    private static final String DEFAULT_TEMPS_REAL = "00:00:00";
+    private static final String UPDATED_TEMPS_REAL = "00:00:00";
 
     private static final Estat DEFAULT_ESTAT = Estat.ACTIU;
     private static final Estat INACTIVE_ESTAT = Estat.INACTIU;
@@ -121,8 +121,8 @@ public class FeinaResourceIT {
             .nom(DEFAULT_NOM)
             .descripcio(DEFAULT_DESCRIPCIO)
             .setmana(DEFAULT_SETMANA)
-            .tempsPrevist(DEFAULT_TEMPS_PREVIST)
-            .tempsReal(DEFAULT_TEMPS_REAL)
+            //.tempsPrevist(DEFAULT_TEMPS_PREVIST)
+           // .tempsReal(DEFAULT_TEMPS_REAL)
             .estat(INACTIVE_ESTAT)
             .intervalControl(DEFAULT_INTERVAL_CONTROL)
             .facturacioAutomatica(DEFAULT_FACTURACIO_AUTOMATICA)
@@ -141,8 +141,8 @@ public class FeinaResourceIT {
             .nom(UPDATED_NOM)
             .descripcio(UPDATED_DESCRIPCIO)
             .setmana(UPDATED_SETMANA)
-            .tempsPrevist(UPDATED_TEMPS_PREVIST)
-            .tempsReal(UPDATED_TEMPS_REAL)
+            //.tempsPrevist(UPDATED_TEMPS_PREVIST)
+            //.tempsReal(UPDATED_TEMPS_REAL)
             .estat(INACTIVE_ESTAT)
             .intervalControl(UPDATED_INTERVAL_CONTROL)
             .facturacioAutomatica(UPDATED_FACTURACIO_AUTOMATICA)
@@ -306,8 +306,8 @@ public class FeinaResourceIT {
             .nom(UPDATED_NOM)
             .descripcio(UPDATED_DESCRIPCIO)
             .setmana(UPDATED_SETMANA)
-            .tempsPrevist(UPDATED_TEMPS_PREVIST)
-            .tempsReal(UPDATED_TEMPS_REAL)
+            //.tempsPrevist(UPDATED_TEMPS_PREVIST)
+            //.tempsReal(UPDATED_TEMPS_REAL)
             .estat(INACTIVE_ESTAT)
             .intervalControl(UPDATED_INTERVAL_CONTROL)
             .facturacioAutomatica(UPDATED_FACTURACIO_AUTOMATICA)

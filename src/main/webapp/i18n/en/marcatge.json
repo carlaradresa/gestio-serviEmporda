@@ -2,25 +2,25 @@
   "gestioClientsApp": {
     "marcatge": {
       "home": {
-        "title": "Marcatges",
-        "createLabel": "Create a new Marcatge",
-        "createOrEditLabel": "Create or edit a Marcatge",
-        "notFound": "No Marcatges found"
+        "title": "Marking",
+        "createLabel": "Create a new Marking",
+        "createOrEditLabel": "Create or edit a Marking",
+        "notFound": "No Marking found"
       },
-      "created": "A new Marcatge is created with identifier {{ param }}",
-      "updated": "A Marcatge is updated with identifier {{ param }}",
-      "deleted": "A Marcatge is deleted with identifier {{ param }}",
+      "created": "A new Marking is created with identifier {{ param }}",
+      "updated": "A Marking is updated with identifier {{ param }}",
+      "deleted": "A Marking is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Marcatge {{ id }}?"
+        "question": "Are you sure you want to delete Marking {{ id }}?"
       },
       "detail": {
-        "title": "Marcatge"
+        "title": "Marking"
       },
-      "horaEntrada": "Hora Entrada",
-      "horaSortida": "Hora Sortida",
-      "desviacio": "Desviacio",
-      "feina": "Feina",
-      "treballador": "Treballador"
+      "horaEntrada": "Start hour",
+      "horaSortida": "Finish hour",
+      "desviacio": "Deviation",
+      "feina": "Task",
+      "treballador": "Employee"
     }
   }
 }

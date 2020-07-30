@@ -2,22 +2,22 @@
   "gestioClientsApp": {
     "periodicitatSetmanal": {
       "home": {
-        "title": "Periodicitat Setmanals",
-        "createLabel": "Create a new Periodicitat Setmanal",
-        "createOrEditLabel": "Create or edit a Periodicitat Setmanal",
-        "notFound": "No Periodicitat Setmanals found"
+        "title": "Weekly periodicity",
+        "createLabel": "Create a new Weekly periodicity",
+        "createOrEditLabel": "Create or edit a Weekly periodicity",
+        "notFound": "No Weekly periodicity found"
       },
-      "created": "A new Periodicitat Setmanal is created with identifier {{ param }}",
-      "updated": "A Periodicitat Setmanal is updated with identifier {{ param }}",
-      "deleted": "A Periodicitat Setmanal is deleted with identifier {{ param }}",
+      "created": "A new Weekly periodicity is created with identifier {{ param }}",
+      "updated": "A Weekly periodicity is updated with identifier {{ param }}",
+      "deleted": "A Weekly periodicity is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Periodicitat Setmanal {{ id }}?"
+        "question": "Are you sure you want to delete Weekly periodicity {{ id }}?"
       },
       "detail": {
-        "title": "Periodicitat Setmanal"
+        "title": "Weekly periodicity"
       },
-      "diaSetmana": "Dia Setmana",
-      "plantilla": "Plantilla"
+      "diaSetmana": "Week day",
+      "plantilla": "Template"
     }
   }
 }

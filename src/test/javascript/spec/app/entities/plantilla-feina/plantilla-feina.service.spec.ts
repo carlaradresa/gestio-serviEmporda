@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new PlantillaFeina(0, '','','00:00:00', '00:00:00', 0, false, 'AAAAAAA', currentDate, currentDate, 0);
+      elemDefault = new PlantillaFeina(0, '', '', '00:00:00', '00:00:00', '00:00:00', false, 'AAAAAAA', currentDate, currentDate, 0);
     });
 
     describe('Service methods', () => {

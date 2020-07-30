@@ -31,7 +31,7 @@ public class Treballador implements Serializable {
     private String nom;
 
     @Column(name = "carrega_hores")
-    private Duration carregaHores;
+    private String carregaHores;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estat")
@@ -76,16 +76,16 @@ public class Treballador implements Serializable {
         this.nom = nom;
     }
 
-    public Duration getCarregaHores() {
+    public String getCarregaHores() {
         return carregaHores;
     }
 
-    public Treballador carregaHores(Duration carregaHores) {
+    public Treballador carregaHores(String carregaHores) {
         this.carregaHores = carregaHores;
         return this;
     }
 
-    public void setCarregaHores(Duration carregaHores) {
+    public void setCarregaHores(String carregaHores) {
         this.carregaHores = carregaHores;
     }
 

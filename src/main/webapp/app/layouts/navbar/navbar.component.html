@@ -1,9 +1,8 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
-        <span jhiTranslate="global.title" class="navbar-title">GestioClients</span> <span class="navbar-version">{{version}}</span>
-    </a>
-    <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+        <span jhiTranslate="global.title" class="navbar-title">Serviempordà</span>
+    </a><a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
     </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
@@ -16,7 +15,6 @@
                     </span>
                 </a>
             </li>
-            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
@@ -34,15 +32,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="categoria" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="treballador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.categoria">Categoria</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="repeticio-tasca-setmanal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.repeticioTascaSetmanal">Repeticio Tasca Setmanal</span>
+                            <span jhiTranslate="global.menu.entities.treballador">Treballador</span>
                         </a>
                     </li>
                     <li>
@@ -58,11 +50,35 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="feina" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="categoria" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.feina">Feina</span>
+                            <span jhiTranslate="global.menu.entities.categoria">Categoria</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="periodicitat-configurable" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.periodicitatConfigurable">Periodicitat Configurable</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="periodicitat-setmanal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.periodicitatSetmanal">Periodicitat Setmanal</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="venedor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.venedor">Venedor</span>
+                        </a>
+                    </li>
+              <!--      <li>
+                        <a class="dropdown-item" routerLink="repeticio-tasca-setmanal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.repeticioTascaSetmanal">Repeticio Tasca Setmanal</span>
+                        </a>
+                    </li>-->
                     <li>
                         <a class="dropdown-item" routerLink="control" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
@@ -76,27 +92,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="treballador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="feina" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.treballador">Treballador</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="venedor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.venedor">Venedor</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="periodicitat-setmanal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.periodicitatSetmanal">Periodicitat Setmanal</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="periodicitat-configurable" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.periodicitatConfigurable">Periodicitat Configurable</span>
+                            <span jhiTranslate="global.menu.entities.feina">Feina</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
@@ -116,7 +114,7 @@
                             <span jhiTranslate="global.menu.admin.userManagement">User management</span>
                         </a>
                     </li>
-                    <li>
+                  <li>
                         <a class="dropdown-item" routerLink="admin/metrics" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.admin.metrics">Metrics</span>

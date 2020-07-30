@@ -10,9 +10,10 @@ export interface IFeina {
   id?: number;
   nom?: string;
   descripcio?: string;
+  numero?: number;
   setmana?: Moment;
-  tempsPrevist?: number;
-  tempsReal?: number;
+  tempsPrevist?: string;
+  tempsReal?: string;
   estat?: Estat;
   intervalControl?: number;
   facturacioAutomatica?: boolean;
@@ -30,9 +31,10 @@ export class Feina implements IFeina {
     public id?: number,
     public nom?: string,
     public descripcio?: string,
+    public numero?: number,
     public setmana?: Moment,
-    public tempsPrevist?: number,
-    public tempsReal?: number,
+    public tempsPrevist?: string,
+    public tempsReal?: string,
     public estat?: Estat,
     public intervalControl?: number,
     public facturacioAutomatica?: boolean,

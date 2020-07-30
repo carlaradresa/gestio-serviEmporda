@@ -5,7 +5,7 @@
         "title": "Controls",
         "createLabel": "Create a new Control",
         "createOrEditLabel": "Create or edit a Control",
-        "notFound": "No Controls found"
+        "notFound": "No Control found"
       },
       "created": "A new Control is created with identifier {{ param }}",
       "updated": "A Control is updated with identifier {{ param }}",
@@ -16,13 +16,13 @@
       "detail": {
         "title": "Control"
       },
-      "numero": "Numero",
-      "setmana": "Setmana",
-      "causa": "Causa",
-      "dataRevisio": "Data Revisio",
-      "comentaris": "Comentaris",
-      "revisor": "Revisor",
-      "feina": "Feina"
+      "numero": "Number",
+      "setmana": "Week",
+      "causa": "Cause",
+      "dataRevisio": "Revision date",
+      "comentaris": "Comments",
+      "revisor": "Reviewer",
+      "feina": "Task"
     }
   }
 }

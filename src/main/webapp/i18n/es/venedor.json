@@ -2,10 +2,10 @@
   "gestioClientsApp": {
     "venedor": {
       "home": {
-        "title": "Venedors",
+        "title": "Venedores",
         "createLabel": "Crear nuevo Venedor",
         "createOrEditLabel": "Crear o editar Venedor",
-        "notFound": "Ningún Venedors encontrado"
+        "notFound": "Ningún Venedor encontrado"
       },
       "created": "Un nuevo Venedor ha sido creado con el identificador {{ param }}",
       "updated": "Un Venedor ha sido actualizado con el identificador {{ param }}",
@@ -16,11 +16,11 @@
       "detail": {
         "title": "Venedor"
       },
-      "nom": "Nom",
-      "telefon": "Telefon",
-      "email": "Email",
-      "observacions": "Observacions",
-      "ubicacio": "Ubicacio"
+      "nom": "Nombre",
+      "telefon": "Teléfono",
+      "email": "Correo",
+      "observacions": "Observaciones",
+      "ubicacio": "Ubicación"
     }
   }
 }
