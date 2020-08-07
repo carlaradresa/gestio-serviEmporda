@@ -3,9 +3,8 @@
     "Estat": {
       "null": "",
       "ACTIU": "ACTIU",
-      "INACTIU": "INACTIU",
+      "INACTIU": "PENDENT",
       "FINALITZAT": "FINALITZAT"
-
     }
   }
 }

@@ -12,7 +12,7 @@
     <jhi-alert></jhi-alert>
     <br/>
     <span jhiTranslate="gestioClientsApp.feina.filters.status">Filtrar per estat:</span> <input type="text" [(ngModel)]="filter" class="form-control" placeholder="Buscar...">
-    <h4 jhiTranslate="gestioClientsApp.feina.filters.date.title">Filtrar per data:</h4>
+  <!--  <h4 jhiTranslate="gestioClientsApp.feina.filters.date.title">Filtrar per data:</h4>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" jhiTranslate="gestioClientsApp.feina.filters.date.from">from</span>
@@ -23,7 +23,7 @@
             <span class="input-group-text" jhiTranslate="gestioClientsApp.feina.filters.date.to">To</span>
         </div>
         <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()"/>
-    </div>
+    </div>-->
     <div class="alert alert-warning" *ngIf="feinas?.length === 0">
         <span jhiTranslate="gestioClientsApp.feina.home.notFound">No feinas found</span>
     </div>
@@ -50,14 +50,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let feina of (feinas | pureFilter:filter:'estat' | orderBy:orderProp:reverse) ;trackBy: trackId">
-                <td><a [routerLink]="['/feina', feina.id, 'view' ]">{{feina.id}}</a></td>
+           <tr *ngFor="let feina of (feinas | pureFilter:filter:'setmana' | orderBy:orderProp:reverse) ;trackBy: trackId">
+          <!--  <tr *ngFor="let feina of feinas ;trackBy: trackId">-->
+            <td><a [routerLink]="['/feina', feina.id, 'view' ]">{{feina.id}}</a></td>
                 <td>{{feina.nom}}</td>
                 <td>{{feina.descripcio}}</td>
                 <td>{{feina.setmana | date:'mediumDate'}}</td>
                 <td>{{feina.tempsPrevist}}</td>
                 <td>{{feina.tempsReal}}</td>
-                <td jhiTranslate="{{'gestioClientsApp.Estat.' + feina.estat}}">{{feina.estat}}</td>
+              <!--  <td jhiTranslate="{{'gestioClientsApp.Estat.' + feina.estat}}">{{feina.estat}}</td>-->
+                <td>
+                        <span class="badge" [ngClass]="getBadgeClass(feina.estat)" jhiTranslate="{{'gestioClientsApp.Estat.' + feina.estat}}">
+                            {{feina.estat}}
+                        </span>
+               </td>
                 <td>{{feina.intervalControl}}</td>
                 <td>{{feina.facturacioAutomatica}}</td>
                 <td>{{feina.observacions}}</td>

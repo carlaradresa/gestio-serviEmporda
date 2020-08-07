@@ -3,7 +3,7 @@
     "Estat": {
       "null": "",
       "ACTIU": "ACTIVE",
-      "INACTIU": "INACTIVE",
+      "INACTIU": "PENDING",
       "FINALITZAT": "COMPLETED"
     }
   }

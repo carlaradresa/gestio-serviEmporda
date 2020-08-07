@@ -33,7 +33,7 @@ export class FeinaComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.filter = '';
-    this.orderProp = 'estat';
+    this.orderProp = 'setmana';
     this.reverse = false;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data['pagingParams'].page;
@@ -80,5 +80,17 @@ export class FeinaComponent implements OnInit, OnDestroy {
       }
     });
     this.loadAll();
+  }
+
+  getBadgeClass(statusState) {
+    if (statusState === 'ACTIU') {
+      return 'badge-info';
+    } else {
+      if (statusState === 'INACTIU') {
+        return 'badge-danger';
+      } else {
+        return 'badge-success';
+      }
+    }
   }
 }

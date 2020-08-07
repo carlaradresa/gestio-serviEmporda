@@ -35,6 +35,8 @@ public class FeinaService {
     private final AuthorityRepository authorityRepository;
 
     List<Feina> feinesNoves;               //si generem més d'una feina
+    List<Feina> getAllFeines;
+    List<PlantillaFeina> getAllPlantilles;
 
     Duration duration;
 
@@ -66,7 +68,10 @@ public class FeinaService {
 
        for (int i = 0; i < feines.size(); i ++){
            if (feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) {
-                   feinaRepository.delete(feines.get(i));
+               if (feines.get(i).getEstat().ordinal() != 2) {
+                   Feina f = feines.get(i);
+                   feinaRepository.delete(f);
+               }
            }
        }
    }
@@ -281,11 +286,156 @@ public class FeinaService {
             feinaNova.setPlantillaFeina(result);
             feinaNova.setObservacions(result.getObservacions());
             feinaNova.setEstat(Estat.INACTIU);
-        //    feinaNova.setUbicacios(null);
+            //feinaNova.setUbicacios(null);
             feinaNova.setCategoria(result.getCategoria());
             feinaNova.setClient(result.getClient());
             feinesNoves.add(feinaNova);
             feinaRepository.save(feinaNova);
         }
 
+    public void updateFeines(PlantillaFeina plantillaFeina) {
+
+       Long id_plantilla = plantillaFeina.getId();
+       int id_plantillaFeina = 0;
+       getAllFeines = feinaRepository.findAllWithEagerRelationships();
+       getAllPlantilles = plantillaFeinaRepository.findAllWithEagerRelationships();
+       boolean plantillaTrobada = false;
+       boolean crearNovesFeines = false;
+
+       //CONDICIONS NECESSÀRIES
+        boolean setmanaFinalChanged = false;
+        boolean periodicitatConfChanged = false;
+        boolean periodicitatSetChanged = false;
+
+        for (int a = 0; a < getAllPlantilles.size() && !plantillaTrobada; a ++){
+            if (getAllPlantilles.get(a).getId() == id_plantilla){
+                if (!plantillaFeina.getSetmanaFinal().equals(getAllPlantilles.get(a).getSetmanaFinal())){
+                    setmanaFinalChanged = true;
+                }
+                if (!plantillaFeina.getPeriodicitatConfigurable().equals(getAllPlantilles.get(a).getPeriodicitatConfigurable())){
+                    periodicitatConfChanged = true;
+                } if (!plantillaFeina.getPeriodicitatSetmanals().equals(getAllPlantilles.get(a).getPeriodicitatSetmanals())){
+                    periodicitatSetChanged = true;
+                }
+                plantillaTrobada = true;
+                id_plantillaFeina = a;
+            }
+        }
+        //CONTROLEM CADA UNA DE LES CONDICIONS NECESSÀRIES:
+        //Si no hi ha cap canvi dels 3
+        if (!setmanaFinalChanged && !periodicitatConfChanged && !periodicitatSetChanged){
+            for (int i = 0; i < getAllFeines.size(); i++) {
+                if (getAllFeines.get(i).getPlantillaFeina().getId().equals(id_plantilla)) {
+                    if (getAllFeines.get(i).getEstat().ordinal() != 0 && getAllFeines.get(i).getEstat().ordinal() != 2) {
+                        updateFeinaFromPlantilla(getAllFeines.get(i), plantillaFeina);
+                    }
+                }
+            }
+        }else{
+            if (setmanaFinalChanged && !periodicitatConfChanged && !periodicitatSetChanged){
+                if (plantillaFeina.getSetmanaFinal().isBefore(getAllPlantilles.get(id_plantillaFeina).getSetmanaFinal())) {
+                    //Borrar les feines posteriors a plantillaFeina.getSetmanaFinal() fins getAllPlantilles.get(id_plantillaFeina).getSetmanaFinal()
+                    for (int b = 0; b < getAllFeines.size(); b ++){
+                        if (getAllFeines.get(b).getSetmana().isAfter(plantillaFeina.getSetmanaFinal())) {
+                            feinaRepository.delete(getAllFeines.get(b));
+                        }
+                    }
+                }else{
+                    boolean ultimaFeina = false;
+                    int indexF = 0;
+                    for (int c = 0; c < getAllFeines.size(); c ++) {
+                        if (!getAllFeines.get(getAllFeines.size() - 1).getSetmana().isAfter(plantillaFeina.getSetmanaFinal())){
+                            ultimaFeina = true;
+                            indexF = c;
+                        }
+                    }
+                //Afegir les feines posteriors a getAllPlantilles.get(id_plantillaFeina).getSetmanaFinal() fins plantillaFeina.getSetmanaFinal()
+                }
+                //modificar totes les altres feines
+          /*  if (!setmanaFinalChanged && periodicitatConfChanged && !periodicitatSetChanged){
+                //control de totes les feines que no siguin ord() = 0 i 2
+
+            }
+            if (!setmanaFinalChanged && !periodicitatConfChanged && periodicitatSetChanged){
+
+            }*/
+
+                //Hi han tots els canvis
+
+            }/*else{
+                for (int b = 0; b < getAllFeines.size(); b++) {
+                    if (getAllFeines.get(b).getEstat().ordinal() != 0 || getAllFeines.get(b).getEstat().ordinal() != 2) {
+                        Long id_feina = Long.valueOf(b);
+                        feinaRepository.deleteById(id_feina);
+                    }
+                }
+                createFeina(plantillaFeina);
+            }*/
+        }
+/*
+
+        // CONTROLEM SI S'HA CANVIAT LA SETMANA FINAL DE REALITZAR LES FEINES
+       for (int i = 0; (i < getAllPlantilles.size() && !plantillaTrobada); i ++){
+           if (getAllPlantilles.get(i).getId() == id_plantilla){
+               if (!plantillaFeina.getPeriodicitatConfigurable().getObservacions().equalsIgnoreCase(getAllPlantilles.get(i).getPeriodicitatConfigurable().getObservacions())){
+                   for (int k = 0; k < getAllFeines.size(); i ++){
+                       if (getAllFeines.get(i).getEstat().ordinal() != 0 || getAllFeines.get(i).getEstat().ordinal() != 2){
+                           Long id_feina = Long.valueOf(i);
+                           feinaRepository.deleteById(id_feina);
+                       }
+                   }
+                   createFeina(plantillaFeina);
+               }else{
+                   if (!getAllPlantilles.get(i).getSetmanaFinal().equals(plantillaFeina.getSetmanaFinal())){
+                       crearNovesFeines = controlSetmanaFinal(getAllPlantilles.get(i), plantillaFeina, id_plantilla);
+                   }
+               }
+               plantillaTrobada = true;
+           }
+       }
+
+       //EN CAS QUE S'HAGIN DE TORNAR A CREAR LES FEINES
+       if (crearNovesFeines){
+           createFeina(plantillaFeina);
+       }else {
+           //SI NOMES S'HAN BORRAT ALGUNES FEINES I S'HAN D'ACTUALITZAR
+           for (int i = 0; i < getAllFeines.size(); i++) {
+               if (getAllFeines.get(i).getPlantillaFeina().getId().equals(id_plantilla)) {
+                   if (getAllFeines.get(i).getEstat().ordinal() != 0 && getAllFeines.get(i).getEstat().ordinal() != 2) {
+                       updateFeinaFromPlantilla(getAllFeines.get(i), plantillaFeina);
+                   }
+               }
+           }
+       }*/
+    }
+
+    private boolean controlSetmanaFinal(PlantillaFeina plantillaFeinaAntiga, PlantillaFeina plantillaFeinaNova, Long id_plantillaFeina) {
+
+       boolean crearNovesFeines = false;
+
+         for (int i = 0; i < getAllFeines.size(); i ++){
+             if ((getAllFeines.get(i).getPlantillaFeina().getId() == id_plantillaFeina) && (getAllFeines.get(i).getEstat().ordinal() != 2)){
+                 if (plantillaFeinaNova.getSetmanaFinal().isBefore(plantillaFeinaAntiga.getSetmanaFinal())) {
+                     if (getAllFeines.get(i).getSetmana().isAfter(plantillaFeinaNova.getSetmanaFinal())) {
+                         feinaRepository.delete(getAllFeines.get(i));
+                     }
+                 }else{
+                     feinaRepository.delete(getAllFeines.get(i));
+                     crearNovesFeines = true;
+                 }
+             }
+         }
+         return crearNovesFeines;
+   }
+
+    private void updateFeinaFromPlantilla(Feina feina, PlantillaFeina plantillaFeina) {
+        feina.setNom(plantillaFeina.getNom());
+        feina.setDescripcio(plantillaFeina.getObservacions());
+        feina.setTempsPrevist(plantillaFeina.getTempsPrevist());
+        feina.setIntervalControl(plantillaFeina.getNumeroControl());
+        feina.setFacturacioAutomatica(plantillaFeina.getFacturacioAutomatica());
+        feina.setCategoria(plantillaFeina.getCategoria());
+        feina.setClient(plantillaFeina.getClient());
+        feina.setTreballadors(plantillaFeina.getTreballadors());
+    }
 }

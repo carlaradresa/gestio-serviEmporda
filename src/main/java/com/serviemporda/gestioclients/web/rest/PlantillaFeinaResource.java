@@ -83,7 +83,6 @@ public class PlantillaFeinaResource {
       //  Categoria categoria = categoriaRepository.findAll().get(0);
       //  plantillaFeina.setCategoria(categoria);
 
-
         ///////////////////
      //   Treballador treballador = treballadorRepository.findAll().get(0);
         feinaService.createFeina(plantillaFeina);
@@ -108,6 +107,7 @@ public class PlantillaFeinaResource {
         if (plantillaFeina.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        feinaService.updateFeines(plantillaFeina);
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, plantillaFeina.getId().toString()))

@@ -10,6 +10,7 @@
       "created": "Un nueva Tarea ha sido creada con el identificador {{ param }}",
       "updated": "Un Tarea ha sido actualizada con el identificador {{ param }}",
       "deleted": "Un Tarea ha sido eliminada con el identificador {{ param }}",
+      "refresh.button": "Actualizar",
       "delete": {
         "question": "¿Seguro que quiere eliminar Tarea {{ id }}?"
       },

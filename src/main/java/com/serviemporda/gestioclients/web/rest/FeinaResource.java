@@ -83,7 +83,7 @@ public class FeinaResource {
         if (feina.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        if (feina.getEstat().equals("FINALITZAT")){
+        if (feina.getEstat().ordinal() == 2){
             feina.setEstat(Estat.FINALITZAT);
         }
         Feina result = feinaRepository.save(feina);
