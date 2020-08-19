@@ -8,7 +8,8 @@ entity PlantillaFeina {
     intervalControl Integer,
     diaSetmana Dia,
     facturacioAutomatica Boolean,
-    observacions String
+    observacions String,
+    borrat Boolean
 }
 
 enum Estat{
@@ -59,7 +60,8 @@ entity Feina {
     intervalControl Integer,
     facturacioAutomatica Boolean,
     observacions String,
-    comentarisTreballador String
+    comentarisTreballador String,
+    borrat_feina Boolean
   }
 
 entity Control {

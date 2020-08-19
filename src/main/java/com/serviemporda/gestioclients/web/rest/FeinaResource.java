@@ -57,6 +57,7 @@ public class FeinaResource {
             throw new BadRequestAlertException("A new feina cannot already have an ID", ENTITY_NAME, "idexists");
         }
         feina.setEstat(Estat.INACTIU);
+        feina.setBorrat_feina(false);
       //  feina.setTempsPrevist(feina.getTempsPrevist());
         if (feina.getDescripcio() == null){
             feina.setDescripcio("");

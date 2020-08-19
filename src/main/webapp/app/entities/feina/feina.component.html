@@ -10,9 +10,9 @@
     </h2>
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
-    <br/>
-    <span jhiTranslate="gestioClientsApp.feina.filters.status">Filtrar per estat:</span> <input type="text" [(ngModel)]="filter" class="form-control" placeholder="Buscar...">
-  <!--  <h4 jhiTranslate="gestioClientsApp.feina.filters.date.title">Filtrar per data:</h4>
+ <!--   <br/>-->
+ <!--   <span jhiTranslate="gestioClientsApp.feina.filters.status">Filtrar per estat:</span> <input type="text" [(ngModel)]="filter" class="form-control" placeholder="Buscar...">
+    <h4 jhiTranslate="gestioClientsApp.feina.filters.date.title">Filtrar per data:</h4>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" jhiTranslate="gestioClientsApp.feina.filters.date.from">from</span>
@@ -23,46 +23,45 @@
             <span class="input-group-text" jhiTranslate="gestioClientsApp.feina.filters.date.to">To</span>
         </div>
         <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()"/>
-    </div>-->
+    </div>
     <div class="alert alert-warning" *ngIf="feinas?.length === 0">
         <span jhiTranslate="gestioClientsApp.feina.home.notFound">No feinas found</span>
-    </div>
+    </div>-->
     <div class="table-responsive" *ngIf="feinas?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.nom">Nom</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.descripcio">Descripcio</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.setmana">Setmana</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.tempsPrevist">Temps Previst</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.tempsReal">Temps Real</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.estat">Estat</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.intervalControl">Interval Control</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.facturacioAutomatica">Facturacio Automatica</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.observacions">Nom feina</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.comentarisTreballador">Comentaris Treballador</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.plantillaFeina">Plantilla Feina</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.categoria">Categoria</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.client">Client</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.treballador">Treballador</span></th>
-            <th scope="col"></th>
+                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.nom">Nom</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.descripcio">Descripcio</span></th>
+                <th scope="col" jhiSortBy="setmana"><span jhiTranslate="gestioClientsApp.feina.setmana">Setmana</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.tempsPrevist">Temps Previst</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.tempsReal">Temps Real</span></th>
+                <th scope="col" jhiSortBy="estat"><span jhiTranslate="gestioClientsApp.feina.estat">Estat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.intervalControl">Interval Control</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.facturacioAutomatica">Facturacio Automatica</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.observacions">Nom feina</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.comentarisTreballador">Comentaris Treballador</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.plantillaFeina">Plantilla Feina</span></th>
+                <th scope="col" jhiSortBy="categoria"><span jhiTranslate="gestioClientsApp.feina.categoria">Categoria</span><fa-icon [icon]="'sort'"></fa-icon></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.client">Client</span></th>
+                <th scope="col" ><span jhiTranslate="gestioClientsApp.feina.treballador">Treballador</span></th>
+                <th scope="col"></th>
             </tr>
             </thead>
-            <tbody>
-           <tr *ngFor="let feina of (feinas | pureFilter:filter:'setmana' | orderBy:orderProp:reverse) ;trackBy: trackId">
-          <!--  <tr *ngFor="let feina of feinas ;trackBy: trackId">-->
-            <td><a [routerLink]="['/feina', feina.id, 'view' ]">{{feina.id}}</a></td>
-                <td>{{feina.nom}}</td>
+            <tbody *ngIf ="feinas">
+      <!--     <tr *ngFor="let feina of (feinas | pureFilter:filter:'estat' | orderBy:orderProp:reverse) ;trackBy: trackId">-->
+            <tr *ngFor="let feina of feinas ; trackBy: trackId">
+            <td><a [routerLink]="['/feina', feina.id, 'view' ]">{{feina.id}}</a></td>                <td>{{feina.nom}}</td>
                 <td>{{feina.descripcio}}</td>
                 <td>{{feina.setmana | date:'mediumDate'}}</td>
                 <td>{{feina.tempsPrevist}}</td>
                 <td>{{feina.tempsReal}}</td>
               <!--  <td jhiTranslate="{{'gestioClientsApp.Estat.' + feina.estat}}">{{feina.estat}}</td>-->
                 <td>
-                        <span class="badge" [ngClass]="getBadgeClass(feina.estat)" jhiTranslate="{{'gestioClientsApp.Estat.' + feina.estat}}">
-                            {{feina.estat}}
-                        </span>
+                    <span class="badge" [ngClass]="getBadgeClass(feina.estat)" jhiTranslate="{{'gestioClientsApp.Estat.' + feina.estat}}">
+                        {{feina.estat}}
+                    </span>
                </td>
                 <td>{{feina.intervalControl}}</td>
                 <td>{{feina.facturacioAutomatica}}</td>
@@ -113,4 +112,12 @@
             </tbody>
         </table>
     </div>
+  <!--  <div [hidden]="feinas?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>-->
 </div>

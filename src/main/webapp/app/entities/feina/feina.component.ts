@@ -3,18 +3,20 @@ import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IFeina } from 'app/shared/model/feina.model';
 import { FeinaService } from './feina.service';
 import { FeinaDeleteDialogComponent } from './feina-delete-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 
 @Component({
   selector: 'jhi-feina',
   templateUrl: './feina.component.html'
 })
 export class FeinaComponent implements OnInit, OnDestroy {
-  feinas?: IFeina[];
+  feinas: IFeina[];
   eventSubscriber?: Subscription;
   orderProp: string;
   filter: string;
@@ -24,28 +26,50 @@ export class FeinaComponent implements OnInit, OnDestroy {
   page: number;
   predicate: any;
   routeData: any;
+  totalItems: number;
+  itemsPerPage: any;
+  links: any;
+  previousPage: any;
 
   constructor(
     protected feinaService: FeinaService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
     private activatedRoute: ActivatedRoute,
+    private parseLinks: JhiParseLinks,
+    private alertService: JhiAlertService,
     private router: Router
   ) {
-    this.filter = '';
-    this.orderProp = 'setmana';
-    this.reverse = false;
+    this.itemsPerPage = ITEMS_PER_PAGE;
+    //  this.filter = '';
+    //  this.orderProp = 'setmana';
+    //  this.reverse = false;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data['pagingParams'].page;
+      this.previousPage = data['pagingParams'].page;
       this.reverse = data['pagingParams'].ascending;
       this.predicate = data['pagingParams'].predicate;
     });
   }
 
   loadAll(): void {
-    this.feinaService.query().subscribe((res: HttpResponse<IFeina[]>) => {
-      this.feinas = res.body ? res.body : [];
-    });
+    this.feinaService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe((res: HttpResponse<IFeina[]>) => {
+        this.feinas = res.body ? res.body : [];
+      });
+  }
+
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
   }
 
   ngOnInit(): void {
@@ -72,14 +96,22 @@ export class FeinaComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(FeinaDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.feina = feina;
   }
+
   transition() {
-    this.router.navigate(['/entitites/feina'], {
+    this.router.navigate(['./feina'], {
       queryParams: {
         page: this.page,
         sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
       }
     });
     this.loadAll();
+  }
+
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.transition();
+    }
   }
 
   getBadgeClass(statusState) {

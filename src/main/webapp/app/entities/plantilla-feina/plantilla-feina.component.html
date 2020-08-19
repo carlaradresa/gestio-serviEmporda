@@ -11,7 +11,7 @@
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
-    <span jhiTranslate="gestioClientsApp.plantillaFeina.filters.estat">Filtre per estat:</span> <input type="text" [(ngModel)]="filter" class="form-control" placeholder="Buscar...">
+    <!--<span jhiTranslate="gestioClientsApp.plantillaFeina.filters.estat">Filtre per estat:</span> <input type="text" [(ngModel)]="filter" class="form-control" placeholder="Buscar...">-->
     <div class="alert alert-warning" *ngIf="plantillaFeinas?.length === 0">
         <span jhiTranslate="gestioClientsApp.plantillaFeina.home.notFound">No plantillaFeinas found</span>
     </div>
@@ -19,27 +19,28 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.nom">Nom</span></th>
+            <th scope="col"><span jhiTranslate="global.field.id">ID</span><fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.nom">Nom</span><fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.observacions">Descripció</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaInici">Hora Inici</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.horaFinal">Hora Final</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsPrevist">Temps Previst</span></th>
         <!--    <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.tempsReal">Temps Real</span></th>-->
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica">Facturació Automàtica</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.facturacioAutomatica">Facturació Automàtica</span><fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaInicial">Setmana Inicial</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.setmanaFinal">Setmana Final</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.numeroControl">Numero Control</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatConfigurable">Periodicitat Configurable</span></th>
             <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.periodicitatSetmanal">Periodicitat Setmanal</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.client">Client</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.categoria">Categoria</span></th>
-            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.treballador">Treballador</span></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.client">Client</span><fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.categoria">Categoria</span><fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col" ><span jhiTranslate="gestioClientsApp.plantillaFeina.treballador">Treballador</span><fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let plantillaFeina of (plantillaFeinas | pureFilter:filter:'estat' | orderBy:orderProp:reverse) ;trackBy: trackId">
+            <!--<tr *ngFor="let plantillaFeina of (plantillaFeinas | pureFilter:filter:'estat' | orderBy:orderProp:reverse) ;trackBy: trackId">-->
+            <tr *ngFor="let plantillaFeina of plantillaFeinas">
                 <td><a [routerLink]="['/plantilla-feina', plantillaFeina.id, 'view' ]">{{plantillaFeina.id}}</a></td>
                 <td>{{plantillaFeina.nom}}</td>
                 <td>{{plantillaFeina.observacions}}</td>

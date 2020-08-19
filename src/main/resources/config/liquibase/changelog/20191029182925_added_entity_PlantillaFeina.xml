@@ -43,6 +43,9 @@
             <column name="numero_control" type="integer">
                 <constraints nullable="true" />
             </column>
+            <column name="borrat" type="boolean">
+                <constraints nullable="true" />
+            </column>
             <column name="periodicitat_configurable_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_plantilla_feina_periodicitat_configurable_id" />
             </column>
@@ -108,6 +111,7 @@
             <column name="setmana_inicial" type="date"/>
             <column name="setmana_final" type="date"/>
             <column name="numero_control" type="numeric"/>
+            <column name="borrat" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

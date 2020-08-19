@@ -10,6 +10,7 @@ import { TreballadorService } from './treballador.service';
 import { TreballadorComponent } from './treballador.component';
 import { TreballadorDetailComponent } from './treballador-detail.component';
 import { TreballadorUpdateComponent } from './treballador-update.component';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 
 @Injectable({ providedIn: 'root' })
 export class TreballadorResolve implements Resolve<ITreballador> {
@@ -37,9 +38,13 @@ export const treballadorRoute: Routes = [
   {
     path: '',
     component: TreballadorComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams
+    },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'gestioClientsApp.treballador.home.title'
+      pageTitle: 'gestioClientsApp.treballador.home.title',
+      defaultSort: 'id,asc'
     },
     canActivate: [UserRouteAccessService]
   },

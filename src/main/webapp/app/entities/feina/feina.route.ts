@@ -10,6 +10,7 @@ import { FeinaService } from './feina.service';
 import { FeinaComponent } from './feina.component';
 import { FeinaDetailComponent } from './feina-detail.component';
 import { FeinaUpdateComponent } from './feina-update.component';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 
 @Injectable({ providedIn: 'root' })
 export class FeinaResolve implements Resolve<IFeina> {
@@ -37,9 +38,13 @@ export const feinaRoute: Routes = [
   {
     path: '',
     component: FeinaComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams
+    },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'gestioClientsApp.feina.home.title'
+      pageTitle: 'gestioClientsApp.feina.home.title',
+      defaultSort: 'id,desc'
     },
     canActivate: [UserRouteAccessService]
   },

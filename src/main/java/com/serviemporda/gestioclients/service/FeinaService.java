@@ -62,20 +62,26 @@ public class FeinaService {
     }*/
 
    public void deleteFeinesFromPf(Long id_plantillaFeina){
-
+/*
        List<Feina> feines;
+       PlantillaFeina plantillaFeina = null;
        feines = feinaRepository.findAllWithEagerRelationships();
 
        for (int i = 0; i < feines.size(); i ++){
            if (feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) {
-               if (feines.get(i).getEstat().ordinal() != 2) {
-                   Feina f = feines.get(i);
-                   feinaRepository.delete(f);
+               plantillaFeina = feines.get(i).getPlantillaFeina();
+               if (feines.get(i).getEstat().ordinal() == 1) {
+                   feinaRepository.delete(feines.get(i));
                }
            }
        }
+       System.out.println("Número de feines: "+feinaRepository.findAllWithEagerRelationships().size());
+*/
+       plantillaFeinaRepository.deleteById(id_plantillaFeina);
+    //   System.out.println("Número de plantilles: "+plantillaFeinaRepository.getOne(plantillaFeina.getId()));
+
    }
-    public void createFeina(PlantillaFeina result) {
+    public void createFeina(PlantillaFeina result, List<Feina> feinesNoBorrables) {
 
         Feina feinaNova = new Feina();
         feinesNoves = new ArrayList<>();
@@ -102,7 +108,7 @@ public class FeinaService {
 
           //  Iterator<Treballador> it = treballadors.iterator();
           //  while (it.hasNext()){
-                saveFeina(result.getSetmanaInicial(),result,duration,treballadors);
+                saveFeina(result.getSetmanaInicial(),result,duration,treballadors, feinesNoBorrables);
           //  }
 
         }else{
@@ -146,14 +152,14 @@ public class FeinaService {
                     if (dateToCompare.getDayOfWeek().toString().equals(diesSetmana.get(0))){
                         //mirem la periodicitat configurable i creem les feines
                       //  while (iteratorTreballador.hasNext()) {
-                            saveFeina(dateToCompare, result, duration, treballadors);
+                            saveFeina(dateToCompare, result, duration, treballadors,feinesNoBorrables);
                      //   }
                         if (period.equalsIgnoreCase("DIA")){
                             dateToCompare = dateToCompare.plusDays(freqPeriod);
                             while ((dateToCompare.isBefore(end)) || (dateToCompare.compareTo(end) == 0)){
                          //       Iterator<Treballador> iteratorTreballador2 = treballadors.iterator();
                           //      while (iteratorTreballador2.hasNext()) {
-                                    saveFeina(dateToCompare, result, duration, treballadors);
+                                    saveFeina(dateToCompare, result, duration, treballadors, feinesNoBorrables);
                           //      }
                                 dateToCompare = dateToCompare.plusDays(freqPeriod);
                             }
@@ -163,7 +169,7 @@ public class FeinaService {
                                 dateToCompare = dateToCompare.plusWeeks(freqPeriod);
                                 while ((dateToCompare.isBefore(end)) || (dateToCompare.compareTo(end) == 0)){
                             //        while (iteratorTreballador.hasNext()) {
-                                        saveFeina(dateToCompare,result,duration, treballadors);
+                                        saveFeina(dateToCompare,result,duration, treballadors, feinesNoBorrables);
                              //       }
                                     dateToCompare = dateToCompare.plusWeeks(freqPeriod);
                                 }
@@ -172,7 +178,7 @@ public class FeinaService {
                                     dateToCompare = dateToCompare.plusDays(15*freqPeriod);
                                     while ((dateToCompare.isBefore(end)) || (dateToCompare.compareTo(end) == 0)){
                                  //       while (iteratorTreballador.hasNext()) {
-                                            saveFeina(dateToCompare, result, duration, treballadors);
+                                            saveFeina(dateToCompare, result, duration, treballadors, feinesNoBorrables);
                                  //       }
                                         dateToCompare = dateToCompare.plusDays(15*freqPeriod);
                                     }
@@ -181,7 +187,7 @@ public class FeinaService {
                                         dateToCompare = dateToCompare.plusMonths(freqPeriod);
                                         while ((dateToCompare.isBefore(end)) || (dateToCompare.compareTo(end) == 0)){
                                      //       while (iteratorTreballador.hasNext()) {
-                                                saveFeina(dateToCompare, result, duration, treballadors);
+                                                saveFeina(dateToCompare, result, duration, treballadors, feinesNoBorrables);
                                       //      }
                                             dateToCompare = dateToCompare.plusMonths(freqPeriod);
                                         }
@@ -189,7 +195,7 @@ public class FeinaService {
                                         dateToCompare = dateToCompare.plusYears(freqPeriod);
                                         while ((dateToCompare.isBefore(end)) || (dateToCompare.compareTo(end) == 0)){
                                     //        while (iteratorTreballador.hasNext()) {
-                                                saveFeina(dateToCompare, result, duration, treballadors);
+                                                saveFeina(dateToCompare, result, duration, treballadors, feinesNoBorrables);
                                      //       }
                                             dateToCompare = dateToCompare.plusYears(freqPeriod);
                                         }
@@ -216,7 +222,7 @@ public class FeinaService {
                     for (String dayOfWeek : diesSetmana) {
                         if (dateToCompare.getDayOfWeek().toString().equals(dayOfWeek)){
                        //     while (iteratorTreballador.hasNext()) {
-                                saveFeina(dateToCompare, result, duration, treballadors);
+                                saveFeina(dateToCompare, result, duration, treballadors, feinesNoBorrables);
                        //     }
                         }
                     }
@@ -270,11 +276,12 @@ public class FeinaService {
         return dayChanged;
     }
 
-    private void saveFeina(LocalDate start, PlantillaFeina result, Duration duration, Set<Treballador> treballadors) {
+    private void saveFeina(LocalDate start, PlantillaFeina result, Duration duration, Set<Treballador> treballadors, List<Feina> feinesNoBorrables) {
 
             Feina feinaNova = new Feina();
             Integer numeroControl = 0;
             String descripcio = "";
+            boolean createFeina = false;
 
             feinaNova.setTreballadors(treballadors);
             feinaNova.setNom(result.getNom());
@@ -289,8 +296,21 @@ public class FeinaService {
             //feinaNova.setUbicacios(null);
             feinaNova.setCategoria(result.getCategoria());
             feinaNova.setClient(result.getClient());
-            feinesNoves.add(feinaNova);
-            feinaRepository.save(feinaNova);
+            if (feinesNoBorrables != null){
+                for (int i = 0; i < feinesNoBorrables.size() && !createFeina; i ++){
+                    if (feinaNova.getSetmana().isEqual(feinesNoBorrables.get(i).getSetmana()) &&
+                        feinaNova.getTreballadors().equals(feinesNoBorrables.get(i).getTreballadors()) &&
+                        feinaNova.getPlantillaFeina().equals(feinesNoBorrables.get(i).getPlantillaFeina())){
+                        createFeina = true;
+                    }
+                }
+            }
+
+            if (!createFeina){
+                feinesNoves.add(feinaNova);
+                feinaRepository.save(feinaNova);
+            }
+
         }
 
     public void updateFeines(PlantillaFeina plantillaFeina) {
@@ -302,7 +322,9 @@ public class FeinaService {
        boolean plantillaTrobada = false;
        boolean crearNovesFeines = false;
 
-       //CONDICIONS NECESSÀRIES
+        List<Feina> feinesNoBorrables = new ArrayList<>();
+
+        //CONDICIONS NECESSÀRIES
         boolean setmanaFinalChanged = false;
         boolean periodicitatConfChanged = false;
         boolean periodicitatSetChanged = false;
@@ -319,6 +341,12 @@ public class FeinaService {
                 }
                 plantillaTrobada = true;
                 id_plantillaFeina = a;
+            }
+        }
+
+        for (int a = 0; a < getAllFeines.size(); a ++){
+            if (getAllFeines.get(a).getEstat().ordinal() != 1){
+                feinesNoBorrables.add(getAllFeines.get(a));
             }
         }
         //CONTROLEM CADA UNA DE LES CONDICIONS NECESSÀRIES:
@@ -343,12 +371,18 @@ public class FeinaService {
                 }else{
                     boolean ultimaFeina = false;
                     int indexF = 0;
-                    for (int c = 0; c < getAllFeines.size(); c ++) {
+                    for (int k = 0; k < getAllFeines.size(); k ++){
+                        if (getAllFeines.get(k).getEstat().ordinal() == 1){
+                            feinaRepository.delete(getAllFeines.get(k));
+                        }
+                    }
+                    createFeina(plantillaFeina,feinesNoBorrables);
+                   /* for (int c = 0; c < getAllFeines.size(); c ++) {
                         if (!getAllFeines.get(getAllFeines.size() - 1).getSetmana().isAfter(plantillaFeina.getSetmanaFinal())){
                             ultimaFeina = true;
                             indexF = c;
                         }
-                    }
+                    }*/
                 //Afegir les feines posteriors a getAllPlantilles.get(id_plantillaFeina).getSetmanaFinal() fins plantillaFeina.getSetmanaFinal()
                 }
                 //modificar totes les altres feines
@@ -362,15 +396,14 @@ public class FeinaService {
 
                 //Hi han tots els canvis
 
-            }/*else{
+            }else{
                 for (int b = 0; b < getAllFeines.size(); b++) {
-                    if (getAllFeines.get(b).getEstat().ordinal() != 0 || getAllFeines.get(b).getEstat().ordinal() != 2) {
-                        Long id_feina = Long.valueOf(b);
-                        feinaRepository.deleteById(id_feina);
+                    if (getAllFeines.get(b).getEstat().ordinal() == 1){
+                        feinaRepository.delete(getAllFeines.get(b));
                     }
                 }
-                createFeina(plantillaFeina);
-            }*/
+                createFeina(plantillaFeina,feinesNoBorrables);
+            }
         }
 /*
 
@@ -437,5 +470,39 @@ public class FeinaService {
         feina.setCategoria(plantillaFeina.getCategoria());
         feina.setClient(plantillaFeina.getClient());
         feina.setTreballadors(plantillaFeina.getTreballadors());
+    }
+
+    public void setBorratToFeines(Long id_plantillaFeina) {
+
+        List<Feina> feines;
+        feines = feinaRepository.findAllWithEagerRelationships();
+        boolean hiHaFeinesAsociadesNoPendents = false;
+
+        for (int i = 0; i < feines.size(); i ++){
+            if (feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) {
+                if ((feines.get(i).getEstat().ordinal() == 0) || (feines.get(i).getEstat().ordinal() == 2)) {
+                    hiHaFeinesAsociadesNoPendents = true;
+                    feines.get(i).setBorrat_feina(true);
+                }
+            }
+        }
+
+        if (!hiHaFeinesAsociadesNoPendents){
+            for (int i = 0; i < feines.size(); i ++){
+                if (feines.get(i).getPlantillaFeina().getId().equals(id_plantillaFeina)) {
+                    feinaRepository.delete(feines.get(i));
+                }
+            }
+            plantillaFeinaRepository.deleteById(id_plantillaFeina);
+        }else{
+            boolean trobat = false;
+
+            for (int a = 0; a < feines.size() && !trobat ; a ++) {
+                if (feines.get(a).getPlantillaFeina().getId().equals(id_plantillaFeina)) {
+                    feines.get(a).getPlantillaFeina().setBorrat(true);
+                    trobat = true;
+                }
+            }
+        }
     }
 }

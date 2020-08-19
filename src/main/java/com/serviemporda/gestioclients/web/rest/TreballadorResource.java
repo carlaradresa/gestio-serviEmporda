@@ -56,7 +56,7 @@ public class TreballadorResource {
             throw new BadRequestAlertException("A new treballador cannot already have an ID", ENTITY_NAME, "idexists");
         }
         treballador.setEstat(Estat.INACTIU);
-        treballador.setCarregaHores("hola");
+        treballador.setCarregaHores("00:00:00");
       //  treballador.setCarregaHores("00:00:00");
 
         Treballador result = treballadorRepository.save(treballador);

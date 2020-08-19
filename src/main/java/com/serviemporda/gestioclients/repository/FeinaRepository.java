@@ -15,14 +15,14 @@ import java.util.Optional;
 @Repository
 public interface FeinaRepository extends JpaRepository<Feina, Long> {
 
-    @Query(value = "select distinct feina from Feina feina left join fetch feina.treballadors",
+    @Query(value = "select distinct feina from Feina feina left join fetch feina.treballadors where feina.borrat_feina = false",
         countQuery = "select count(distinct feina) from Feina feina")
     Page<Feina> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct feina from Feina feina left join fetch feina.treballadors")
+    @Query("select distinct feina from Feina feina left join fetch feina.treballadors where feina.borrat_feina = false")
     List<Feina> findAllWithEagerRelationships();
 
-    @Query("select feina from Feina feina left join fetch feina.treballadors where feina.id =:id")
+    @Query("select feina from Feina feina left join fetch feina.treballadors where feina.id =:id and feina.borrat_feina = false")
     Optional<Feina> findOneWithEagerRelationships(@Param("id") Long id);
 
 }

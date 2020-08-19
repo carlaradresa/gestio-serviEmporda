@@ -12,14 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -71,6 +69,7 @@ public class PlantillaFeinaResource {
     @PostMapping("/plantilla-feinas")
     public ResponseEntity<PlantillaFeina> createPlantillaFeina(@RequestBody PlantillaFeina plantillaFeina) throws URISyntaxException {
         log.debug("REST request to save PlantillaFeina : {}", plantillaFeina);
+        plantillaFeina.setBorrat(false);
         if (plantillaFeina.getId() != null) {
             throw new BadRequestAlertException("A new plantillaFeina cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -85,7 +84,7 @@ public class PlantillaFeinaResource {
 
         ///////////////////
      //   Treballador treballador = treballadorRepository.findAll().get(0);
-        feinaService.createFeina(plantillaFeina);
+        feinaService.createFeina(plantillaFeina, null);
         PlantillaFeina result = plantillaFeinaRepository.save(plantillaFeina);
 
              return ResponseEntity.created(new URI("/api/plantilla-feinas/" + result.getId()))
@@ -148,9 +147,11 @@ public class PlantillaFeinaResource {
     @DeleteMapping("/plantilla-feinas/{id}")
     public ResponseEntity<Void> deletePlantillaFeina(@PathVariable Long id) {
         log.debug("REST request to delete PlantillaFeina : {}", id);
-     // feinaService.deleteFeinesFromPf(id);
-        feinaService.deleteFeinesFromPf(id);
-        plantillaFeinaRepository.deleteById(id);
+        // feinaService.deleteFeinesFromPf(id);
+        // feinaService.deleteFeinesFromPf(id);
+        feinaService.setBorratToFeines(id);
+      //  plantillaFeinaRepository.deleteById(id);
+
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

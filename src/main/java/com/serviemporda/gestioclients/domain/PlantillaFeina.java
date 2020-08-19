@@ -55,6 +55,9 @@ public class PlantillaFeina implements Serializable {
     @Column(name = "numero_control")
     private Integer numeroControl;
 
+    @Column(name = "borrat")
+    private Boolean borrat;
+
     @OneToOne
     @JoinColumn(unique = true)
     private PeriodicitatConfigurable periodicitatConfigurable;
@@ -142,6 +145,19 @@ public class PlantillaFeina implements Serializable {
     public int setTempsPrevist(String tempsPrevist) {
         this.tempsPrevist = tempsPrevist;
         return 0;
+    }
+
+    public Boolean getBorrat() {
+        return borrat;
+    }
+
+    public void setBorrat(Boolean borrat) {
+        this.borrat = borrat;
+    }
+
+    public PlantillaFeina borrat(Boolean borrat) {
+        this.borrat = borrat;
+        return this;
     }
 
     public Boolean isFacturacioAutomatica() {

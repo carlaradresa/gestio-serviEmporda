@@ -58,6 +58,9 @@ public class Feina implements Serializable {
     @Column(name = "comentaris_treballador")
     private String comentarisTreballador;
 
+    @Column(name = "borrat_feina")
+    private Boolean borrat_feina;
+
     @ManyToOne
     @JsonIgnoreProperties("feinas")
     private PlantillaFeina plantillaFeina;
@@ -175,6 +178,20 @@ public class Feina implements Serializable {
 
     public void setIntervalControl(Integer intervalControl) {
         this.intervalControl = intervalControl;
+    }
+
+
+    public Boolean getBorrat_feina() {
+        return borrat_feina;
+    }
+
+    public void setBorrat_feina(Boolean borrat_feina) {
+        this.borrat_feina = borrat_feina;
+    }
+
+    public Feina borrat_feina(Boolean borrat_feina) {
+        this.borrat_feina = borrat_feina;
+        return this;
     }
 
     public Boolean isFacturacioAutomatica() {

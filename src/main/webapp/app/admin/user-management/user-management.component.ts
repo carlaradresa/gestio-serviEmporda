@@ -6,11 +6,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+//import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { AccountService } from 'app/core/auth/account.service';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.model';
 import { UserManagementDeleteDialogComponent } from './user-management-delete-dialog.component';
+import { ITreballador } from 'app/shared/model/treballador.model';
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -24,27 +25,27 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   userListSubscription: Subscription;
   routeData: Subscription;
   links: any;
-  totalItems: any;
-  itemsPerPage: any;
+  // totalItems: any;
+  //itemsPerPage: any;
   page: any;
   predicate: any;
-  previousPage: any;
+  // previousPage: any;
   reverse: any;
 
   constructor(
     private userService: UserService,
-    private alertService: JhiAlertService,
+    //  private alertService: JhiAlertService,
     private accountService: AccountService,
-    private parseLinks: JhiParseLinks,
+    //  private parseLinks: JhiParseLinks,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private eventManager: JhiEventManager,
     private modalService: NgbModal
   ) {
-    this.itemsPerPage = ITEMS_PER_PAGE;
+    // this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
-      this.previousPage = data.pagingParams.page;
+      //  this.previousPage = data.pagingParams.page;
       this.reverse = data.pagingParams.ascending;
       this.predicate = data.pagingParams.predicate;
     });
@@ -54,7 +55,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     this.accountService.identity().subscribe(account => {
       this.currentAccount = account;
       this.loadAll();
-      this.registerChangeInUsers();
+      //  this.registerChangeInUsers();
     });
   }
 
@@ -89,10 +90,12 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     this.userService
       .query({
         page: this.page - 1,
-        size: this.itemsPerPage,
+        //     size: this.itemsPerPage,
         sort: this.sort()
       })
-      .subscribe((res: HttpResponse<User[]>) => this.onSuccess(res.body, res.headers), (res: HttpResponse<any>) => this.onError(res.body));
+      .subscribe((res: HttpResponse<ITreballador[]>) => {
+        this.users = res.body ? res.body : [];
+      });
   }
 
   trackIdentity(index, item: User) {
@@ -107,12 +110,12 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  loadPage(page: number) {
+  /* loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.transition();
     }
-  }
+  }*/
 
   transition() {
     this.router.navigate(['./'], {
@@ -129,14 +132,14 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.user = user;
   }
-
+  /*
   private onSuccess(data, headers) {
     this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = headers.get('X-Total-Count');
+  //  this.totalItems = headers.get('X-Total-Count');
     this.users = data;
   }
 
   private onError(error) {
     this.alertService.error(error.error, error.message, null);
-  }
+  }*/
 }
